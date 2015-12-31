@@ -5,10 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 
-var orm = require('./models/orm');
+var routes = require('./routes/index');
+var admin = require('./routes/admin');
+
+// load config file
+var jsonfile = require("jsonfile");
+var path = require("path")
+var config = jsonfile.readFileSync(path.join(__dirname,"./config.json"));
 
 var app = express();
 
@@ -24,8 +30,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// session setup
+app.use(session({
+  resave: false,
+  saveUninitialized: true,
+  store: new RedisStore({host:config.redis.host,port:config.redis.port}),
+  rolling: true,
+  secret: config.redis.sessionSecret,
+  cookie: {
+    maxAge: 1000*60*60*24*7
+  }
+}));
+
 app.use('/', routes);
-app.use('/users', users);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
