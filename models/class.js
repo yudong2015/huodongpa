@@ -5,7 +5,7 @@ var orm = require("./orm");
 var Teacher = require("./teacher");
 
 module.exports = orm.define('class', {
-  id: { type:Sequelize.INTEGER, primaryKey: true, autoIncreament: true },
+  id: { type:Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: Sequelize.STRING, allowNull: false },
   teacherId: { type: Sequelize.INTEGER, references: {model: Teacher, key: 'id'} },
   registerDate: { type: Sequelize.DATE, allowNull: false },

@@ -5,7 +5,7 @@ var orm = require("./orm");
 var User = require("./user");
 
 module.exports = orm.define('invitation', {
-  id: { type:Sequelize.INTEGER, primaryKey: true, autoIncreament: true },
+  id: { type:Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
   inviterId: { type:Sequelize.INTEGER, references: {model: User, key: 'id'} },
   inviteeId: { type: Sequelize.INTEGER, references: {model: User, key: 'id'} }
 });

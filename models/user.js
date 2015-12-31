@@ -3,7 +3,7 @@ var Sequelize = require("sequelize");
 var orm = require("./orm");
 
 module.exports = orm.define('user', {
-  id: { type:Sequelize.INTEGER, primaryKey: true, autoIncreament: true },
+  id: { type:Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
   username: { type: Sequelize.STRING, allowNull: false },
   password: { type: Sequelize.STRING, allowNull: false },
   name: { type: Sequelize.STRING },

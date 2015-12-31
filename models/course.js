@@ -5,7 +5,7 @@ var orm = require("./orm");
 var Category = require("./category");
 
 module.exports = orm.define('course', {
-  id: { type: Sequelize.INTEGER, primaryKey: true, autoIncreament: true },
+  id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type:Sequelize.STRING, allowNull: false},
   categoryId: { type: Sequelize.INTEGER, references: {model: Category, key: 'id'} },
   description: { type: Sequelize.TEXT }
