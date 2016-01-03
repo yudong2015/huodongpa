@@ -1,0 +1,46 @@
+<% include header.ejs %>
+  <div class="helper-bar">
+    <div class="pull-left search">
+      <form class="form-inline">
+      <div class="form-group">
+        <input type="text" class="form-control" name="search" placeholder="输入主人名称或编号" value='<%=search%>'>
+      </div>
+      <button type="submit" class="btn btn-primary">查询</button>
+      </form>
+    </div>
+    <div class="pull-right new">
+      <a type="submit" class="btn btn-success" href="/admin/teachers/new">新增主人</a>
+    </div>
+  </div>
+  <div>
+    <table class="table table-striped">
+      <tr><th>主人编号</th><th>主人名称</th><th>主人头像</th><th>主人分类</th><th>主人简介</th><th>总盈利</th><th>操作</th></tr>
+      <% for(var i=0; i<teachers.rows.length; i++) {%>
+      <tr>
+        <td><a href="/admin/teachers/detail?id=<%=teachers.rows[i].id%>"><%=teachers.rows[i].id%></a></td>
+        <td><%=teachers.rows[i].name%></td>
+        <td><%=teachers.rows[i].avatar%></td>
+        <td>
+          <% 
+            var categories = {};
+            for(var j=0; j<teachers.rows[i].Classes.length; j++) {
+              categories[teachers.rows[i].Classes[j].course.name] = true;
+              categories[teachers.rows[i].Classes[j].course.category.name] = true;
+            }
+          %>
+          <% for(var cate in categories) { %>
+          <%= cate%>,
+          <%}%>
+        </td>
+        <td><%=teachers.rows[i].description%></td>
+        <td>暂无</td>
+        <td>
+          <a href="/admin/teachers/edit?id=<%=teachers.rows[i].id%>">编辑</a><br>
+          <a class="text-danger" data-id="<%=teachers.rows[i].id%>" href="">删除</a>
+        </td>
+      </tr>
+      <% } %>
+    </table>
+    <% include pagination.ejs%>
+  </div>
+<% include footer.ejs %>

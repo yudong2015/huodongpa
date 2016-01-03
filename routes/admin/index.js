@@ -20,25 +20,13 @@ router.use(function(req, res, next){
 });
 
 router.use('/courses', require('./courses'));
+router.use('/classes', require('./classes'));
+router.use('/teachers', require('./teachers'));
+router.use('/users', require('./users'));
 
 // default admin index, redirect to courses.
 router.get('/', function(req, res, next) {
   res.redirect("courses");
-});
-
-// teacher management
-router.get('/teachers', function(req, res, next) {
-
-  res.render("admin/courses", {
-    nav: 'teachers'
-  });
-});
-
-// user(student) management
-router.get('/users', function(req, res, next) {
-  res.render("admin/courses", {
-    nav: 'users'
-  });
 });
 
 // admin login

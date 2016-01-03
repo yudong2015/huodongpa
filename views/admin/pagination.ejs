@@ -1,0 +1,42 @@
+  <%if (pagination.perpage < pagination.count){ %>
+    <div class="text-center">
+    <nav>
+      <ul class="pagination">
+        <% var base = Math.floor(pagination.curpage/pagination.showpage)*pagination.showpage %>
+        <%if(base == 0) { %>
+        <li class="disabled">
+          <span>
+            <span aria-hidden="true" class="text-muted">&laquo;</span>
+          </span>
+        </li>
+        <% } else { %>
+        <li>
+          <a href="?<%=pagination.query%>&perpage=<%=pagination.perpage%>&curpage=<%=base-1%>" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <% } %>
+        <% for(var i=0; i<pagination.showpage && (base + i)*pagination.perpage<pagination.count; i++) { %>
+        <li <%if(pagination.curpage == base + i){%>class="active"<%}%>>
+          <a href="?<%=pagination.query%>&perpage=<%=pagination.perpage%>&curpage=<%=base + i%>">
+            <%= base + i + 1%>
+          </a>
+        </li>
+        <% } %>
+        <% if((base + i + 1)*pagination.perpage<pagination.count) {%>
+        <li>
+          <a href="?<%=pagination.query%>&perpage=<%=pagination.perpage%>&curpage=<%=base+showpage%>" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        <% } else {%>
+        <li class="disabled">
+          <span>
+            <span aria-hidden="true" class="text-muted">&raquo;</span>
+          </span>
+        </li>
+        <% } %>
+      </ul>
+    </nav>
+    </div>
+  <% } %>

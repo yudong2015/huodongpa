@@ -1,0 +1,44 @@
+<% include header.ejs %>
+  <div class="helper-bar">
+    <div class="pull-left">
+      <ol class="breadcrumb">
+      <li><a href="/admin/courses">课程管理</a></li>
+      <li class="active"><%=course.name%>(<%=course.id%>)</li>
+      </ol>
+    </div>
+  </div>
+    <div class="col-md-9" style="padding-left: 0">
+      
+      <table class="table table-striped">
+        <tr>
+          <th>班级编号</th>
+          <th>班级名称</th>
+          <th>授课主人</th>
+          <th>报名日期</th>
+          <th>地点</th>
+          <th>学费</th>
+          <th>人数</th>
+          <th>操作</th>
+        </tr>
+        <% for(var i=0; i<classes.rows.length; i++) {%>
+        <tr>
+          <td><%=classes.rows[i].id%></td>
+          <td><%=classes.rows[i].name%></td>
+          <td><% if(classes.rows[i].teacher){%><%=classes.rows[i].teacher.name%><%}else{%>无<%}%></td>
+          <td><%=classes.rows[i].registerDate%></td>
+          <td><%=classes.rows[i].address%></td>
+          <td><%=classes.rows[i].tuition%></td>
+          <td><%=classes.rows[i].minStudentsNumber%>~<%=classes.rows[i].maxStudentsNumber%></td>
+          <td>
+            <a href="/admin/classes/edit?id=<%=classes.rows[i].id%>">编辑</a><br>
+            <a class="text-danger" data-id="<%=classes.rows[i].id%>" href="">删除</a>
+          </td>
+        </tr>
+        <% } %>
+      </table>
+      <% include pagination.ejs %>
+    </div>
+    <div class="col-md-3" style="padding-right: 0">
+      fff
+    </div>
+<% include footer.ejs %>

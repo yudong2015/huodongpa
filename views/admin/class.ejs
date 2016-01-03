@@ -1,0 +1,110 @@
+<% include header.ejs %>
+  <div class="helper-bar">
+    <ol class="breadcrumb">
+      <li><a href="/admin/courses">课程管理</a></li>
+      <li><a href="/admin/classes?course=<%=clas.course.id%>"><%=clas.course.name%>(<%=clas.course.id%>)</a></li>
+      <% if(action == 'edit') {%>
+      <li class="active">编辑班级</li>
+      <% } else {%>
+      <li class="active">新增班级</li>
+      <% } %>
+    </ol>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+    <form class="form-horizontal" method="POST">
+    <% if(action == 'edit') { %>
+    <div class="form-group">
+      <label for="clasID" class="col-sm-2 control-label">班级编号</label>
+      <div class="col-sm-10">
+        <input type="hidden" name="courseId" value="<%=clas.course.id%>">
+        <input required type="text" readonly class="form-control" name="id" placeholder="班级编号" value="<%=clas.id%>">
+      </div>
+    </div>
+    <% } %>
+    <div class="form-group">
+      <label for="clasName" class="col-sm-2 control-label">班级名称</label>
+      <div class="col-sm-10">
+        <input required type="text" class="form-control" name="name" placeholder="班级名称" <%if (action=='edit'){%>value="<%=clas.name%>"<%}%>>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="clasTeacher" class="col-sm-2 control-label">班级主人</label>
+      <div class="col-sm-8">
+        <select required class="form-control" name="teacherId" id="class-teacher"  <%if (action=='edit'){%>data-id="<%=clas.teacherId%>"<%}%>>
+          <% for(var i=0; i<teachers.length; i++) { %>
+          <option value="<%=teachers[i].id%>" <%if(action=='edit' && clas.teacherId==teachers[i].id){%>selected="selected"<%}%> ><%=teachers[i].name%></option>
+          <% } %>
+        </select>
+      </div>
+      <div class="col-sm-2">
+        <a class="btn btn-success" href="/admin/teachers/new">新增主人</a>
+      </div>
+    </div>
+    <div class="form-group" id="register-date">
+      <label for="registerDate" class="col-sm-2 control-label">报名日期</label>
+      <div class="col-sm-10">
+        <div class="input-group date">
+          <input required type="text" class="form-control" name="registerDate" placeholder="报名日期" <%if (action=='edit'){%>value="<%=clas.registerDate%>"<%}%>>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" id="class-dates">
+      <label for="classDates" class="col-sm-2 control-label">上课日期</label>
+      <div class="col-sm-10">
+        <div class="input-group date">
+          <input required type="text" class="form-control" name="classDates" placeholder="上课日期" <%if (action=='edit'){%>value="<%=clas.classDates%>"<%}%>>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="beginTime" class="col-sm-2 control-label">上课时间</label>
+      <div class="col-sm-4">
+        <input required type="time" class="form-control" name="beginTime" placeholder="上课时间" <%if (action=='edit'){%>value="<%=clas.beginTime%>"<%}%>>
+      </div>
+      <label class="col-sm-2 control-label" style="text-align:center">~</label>
+      <div class="col-sm-4">
+        <input type="time" class="form-control" name="endTime" placeholder="下课时间" <%if (action=='edit'){%>value="<%=clas.endTime%>"<%}%>>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="" class="col-sm-2 control-label">上课地点</label>
+      <div required class="col-sm-10">
+        <input type="text" class="form-control" name="address" placeholder="上课地点" <%if (action=='edit'){%>value="<%=clas.address%>"<%}%>>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="" class="col-sm-2 control-label">学费</label>
+      <div class="col-sm-10">
+        <input required type="number" class="form-control" name="tuition" placeholder="学费" <%if (action=='edit'){%>value="<%=clas.tuition%>"<%}%>>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="" class="col-sm-2 control-label">课时</label>
+      <div class="col-sm-10">
+        <input required type="number" class="form-control" name="period" placeholder="课时" <%if (action=='edit'){%>value="<%=clas.period%>"<%}%>>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="" class="col-sm-2 control-label">人数限制</label>
+      <div class="col-sm-4">
+        <input required type="number" class="form-control" name="minStudentsNumber" placeholder="最少" <%if (action=='edit'){%>value="<%=clas.minStudentsNumber%>"<%}%>>
+      </div>
+      <label class="col-sm-2 control-label" style="text-align:center">~</label>
+      <div class="col-sm-4">
+        <input required type="number" class="form-control" name="maxStudentsNumber" placeholder="最多" <%if (action=='edit'){%>value="<%=clas.maxStudentsNumber%>"<%}%>>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+    </form>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+<% include footer.ejs %>

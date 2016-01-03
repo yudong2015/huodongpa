@@ -15,7 +15,11 @@
 
     <!-- Custom styles for this template -->
     <link href="/admin/base.css" rel="stylesheet">
-    <link href="/admin/<%=nav%>.css" rel="stylesheet">
+    <% if(stylesheets) { %>
+    <% for( var i=0; i<stylesheets.length; i++) { %>
+    <link href="<%=stylesheets[i]%>" rel="stylesheet">
+    <% } %>
+    <% } %>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

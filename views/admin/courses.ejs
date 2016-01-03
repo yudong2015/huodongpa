@@ -3,7 +3,7 @@
     <div class="pull-left search">
       <form class="form-inline">
       <div class="form-group">
-        <input type="text" class="form-control" name="search" placeholder="请输入课程名查询">
+        <input type="text" class="form-control" name="search" placeholder="请输入课程名查询" value='<%=search%>'>
       </div>
       <button type="submit" class="btn btn-primary">查询</button>
       </form>
@@ -17,14 +17,19 @@
       <tr><th>课程编号</th><th>课程名称</th><th>课程分类</th><th>授课主人</th><th>课程简介</th><th>总盈利</th><th>操作</th></tr>
       <% for(var i=0; i<courses.rows.length; i++) {%>
       <tr>
-        <td>courses.rows[i].id</td>
-        <td>courses.rows[i].name</td>
-        <td>courses.rows[i].name</td>
-        <td>courses.rows[i].name</td>
-        <td>courses.rows[i].description</td>
-        <td>courses.rows[i].name</td>
+        <td><a href="/admin/classes?course=<%=courses.rows[i].id%>"><%=courses.rows[i].id%></a></td>
+        <td><%=courses.rows[i].name%></td>
+        <td><%=courses.rows[i].category.name%></td>
+        <td>暂无</td>
+        <td><%=courses.rows[i].description%></td>
+        <td>暂无</td>
+        <td>
+          <a href="/admin/courses/edit?id=<%=courses.rows[i].id%>">编辑</a><br>
+          <a class="text-danger" data-id="<%=courses.rows[i].id%>" href="">删除</a>
+        </td>
       </tr>
       <% } %>
     </table>
+    <% include pagination.ejs%>
   </div>
 <% include footer.ejs %>

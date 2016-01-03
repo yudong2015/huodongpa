@@ -1,0 +1,29 @@
+<% include header.ejs %>
+  <div class="helper-bar">
+    <div class="pull-left search">
+      <form class="form-inline">
+      <div class="form-group">
+        <input type="text" class="form-control" name="search" placeholder="输入萌宠名称或电话" value='<%=search%>'>
+      </div>
+      <button type="submit" class="btn btn-primary">查询</button>
+      </form>
+    </div>
+  </div>
+  <div>
+    <table class="table table-striped">
+      <tr><th>账号（联系电话）</th><th>萌宠名称</th><th>萌宠头像</th><th>紧急联系电话</th><th>住址</th><th>总盈利</th><th>收款二维码</th></tr>
+      <% for(var i=0; i<users.rows.length; i++) {%>
+      <tr>
+        <td><a href="/admin/users/detail?id=<%=users.rows[i].id%>"><%=users.rows[i].username%></a></td>
+        <td><%=users.rows[i].name%></td>
+        <td><%=users.rows[i].avatar%></td>
+        <td><%=users.rows[i].emergencyPhone%></td>
+        <td><%=users.rows[i].address%></td>
+        <td>暂无</td>
+        <td><a href="<%=users.rows[i].gatheringQrcode%>"><%=users.rows[i].gatheringQrcode%></a></td>
+      </tr>
+      <% } %>
+    </table>
+    <% include pagination.ejs%>
+  </div>
+<% include footer.ejs %>

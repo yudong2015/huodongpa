@@ -1,0 +1,39 @@
+<% include header.ejs %>
+  <div class="helper-bar">
+    <ol class="breadcrumb">
+      <li><a href="/admin/teachers">主人管理</a></li>
+      <li class="active"><%=teacher.name%> 详情</li>
+    </ol>
+  </div>
+  <div class="col-md-9" style="padding-left: 0">
+    <table class="table table-striped">
+      <tr><th>课程编号</th><th>课程名称</th><th>课程分类</th><th>课程简介</tr>
+      <% for(var courseid in courses) {%>
+      <tr>
+        <td><a href="/admin/classes?course=<%=courses[courseid].id%>"><%=courses[courseid].id%></a></td>
+        <td><%=courses[courseid].name%></td>
+        <td><%=courses[courseid].category.name%></td>
+        <td><%=courses[courseid].description%></td>
+      </tr>
+      <% } %>
+    </table>
+  </div>
+  <div class="col-md-3" style="padding-right: 0">
+    <div class="teacher-desc">
+      <div class="title">主人介绍</div>
+      <div class="info">
+        <h5>头像</h5>
+        <div class="teacher-avatar" style="background: url(<%=teacher.avatar%>)">
+        </div>
+      </div>
+      <div class="info">
+        <h5>类型</h5>
+        <span><% for(var cate in categories) { %><%= cate%>,<%}%></span>
+      </div>
+      <div class="info">
+        <h5>简介</h5>
+        <span><%=teacher.description%></span>
+      </div>
+    </div>
+  </div>
+<% include footer.ejs %>

@@ -11,8 +11,14 @@ $(function(){
     $.post("/admin/courses/category",
       category,
       function(data, status, xhr){
-        alert("添加分类成功");
-        updateCategories();
+        if(data.code == 0) {
+          alert("添加分类成功");
+          $("#course-categories").data("id", data.data);
+          updateCategories();
+        } else {
+          console.log(data.message);
+          alert("添加分类失败，请重试");
+        }
       }
     );
   });
@@ -23,7 +29,10 @@ $(function(){
       if(result.code == 0 && result.data){
         var opts = result.data;
         for( var i=0; i<opts.length; i++){
-          sel.append("<option value="+opts[i].id+">"+opts[i].name+"</option>")
+          sel.append("<option value="+opts[i].id+">"+opts[i].name+"</option>");
+        }
+        if(sel.data("id")){
+          sel.val(sel.data("id"));
         }
       }
     });

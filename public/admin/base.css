@@ -1,5 +1,4 @@
 body {
-  min-height: 2000px;
 }
 
 .navbar-static-top {
@@ -7,5 +6,31 @@ body {
 }
 
 .helper-bar {
-  margin-bottom: 45px;
+  height: 45px;
+}
+
+.teacher-desc {
+  border: solid #ccc 1px;
+  border-radius: 4px;
+}
+
+.teacher-desc .title {
+  background-color: #f5f5f5;
+  margin: 0;
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+  font-size: 20px;
+  padding-left: 10px;
+}
+
+.teacher-desc .info {
+  padding: 10px;
+}
+
+.teacher-desc .teacher-avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
 }
