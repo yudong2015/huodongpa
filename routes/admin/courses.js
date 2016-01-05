@@ -3,6 +3,10 @@ var router = express.Router();
 
 var Course = require('../../models').Course;
 var Category = require('../../models').Category;
+var Class = require('../../models').Class;
+var Teacher = require('../../models').Teacher;
+
+var lib = require('../../lib');
 
 // course management
 router.get('/', function(req, res, next) {
@@ -15,7 +19,14 @@ router.get('/', function(req, res, next) {
   var conditions = {
     offset: curpage * perpage,
     limit: perpage,
-    include: [Category],
+    include: [
+      Category, 
+      { 
+        model: Class, 
+        as: 'Classes', 
+        include: [Teacher] 
+      }
+    ],
     order: [['id', 'DESC']]
   };
   if (search) {
@@ -25,8 +36,15 @@ router.get('/', function(req, res, next) {
       }
     }
   }
+  
+  Course.findAndCountAll(conditions).then(function(result){ 
 
-  Course.findAndCountAll(conditions).then(function(result){  
+    // no repeat teachers
+    for(var i=0; i<result.rows.length; i++) {
+      result.rows[i].teachers = lib.findNoRepeatTeachersOfCouse(result.rows[i]);
+    }
+
+
     res.render('admin/courses', {
       nav: 'courses',
       courses: result,
@@ -43,10 +61,7 @@ router.get('/', function(req, res, next) {
     });
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
-    });
+    next(error);
   });
 });
 
@@ -66,10 +81,7 @@ router.post('/new', function(req, res, next) {
     res.redirect('/admin/courses');
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
-    });
+    next(error);
   });
 });
 
@@ -85,10 +97,7 @@ router.get('/edit', function(req, res, next) {
     });
   }).catch(function(error) {
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
-    });
+    next(error);
   });
 });
 
@@ -99,9 +108,23 @@ router.post('/edit', function(req, res, next) {
     res.redirect('/admin/courses');
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
+    next(error);
+  });
+});
+
+// course delete
+router.post('/delete', function(req, res, next) {
+  Course.destroy({ where: {id : req.body.id}
+  }).then(function(){
+    res.json({
+      code: 0,
+      message: "ok"
+    });
+  }).catch(function(error){
+    console.log(error);
+    res.json({
+      code: -1,
+      message: error
     });
   });
 });

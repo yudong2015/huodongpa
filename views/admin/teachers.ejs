@@ -20,23 +20,26 @@
         <td><a href="/admin/teachers/detail?id=<%=teachers.rows[i].id%>"><%=teachers.rows[i].id%></a></td>
         <td><%=teachers.rows[i].name%></td>
         <td><% if(teachers.rows[i].avatar != ''){%><a class="image-popover" href="javascript:void" data-href="<%=teachers.rows[i].avatar%>">查看</a><% } %></td>
-        <td>
+        <td width=100>
           <%
             var categories = {};
             for(var j=0; j<teachers.rows[i].Classes.length; j++) {
-              categories[teachers.rows[i].Classes[j].course.name] = true;
-              categories[teachers.rows[i].Classes[j].course.category.name] = true;
+              console.log(JSON.stringify(teachers.rows[i].Classes[j]));
+              if(teachers.rows[i].Classes[j].course){
+                categories[teachers.rows[i].Classes[j].course.name] = true;
+                categories[teachers.rows[i].Classes[j].course.category.name] = true;
+              }
             }
           %>
           <% for(var cate in categories) { %>
           <%= cate%>,
           <%}%>
         </td>
-        <td><%=teachers.rows[i].description%></td>
+        <td width="40%"><%=teachers.rows[i].description%></td>
         <td>暂无</td>
         <td>
           <a href="/admin/teachers/edit?id=<%=teachers.rows[i].id%>">编辑</a><br>
-          <a class="text-danger" data-id="<%=teachers.rows[i].id%>" href="">删除</a>
+          <a class="text-danger delete-action" data-url="/admin/teachers/delete" data-id="<%=teachers.rows[i].id%>" href="javascript:void">删除</a>
         </td>
       </tr>
       <% } %>

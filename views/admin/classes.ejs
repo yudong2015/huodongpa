@@ -1,6 +1,6 @@
 <% include header.ejs %>
   <div class="helper-bar">
-    <div class="pull-left">
+    <div>
       <ol class="breadcrumb">
       <li><a href="/admin/courses">课程管理</a></li>
       <li class="active"><%=course.name%>(<%=course.id%>)</li>
@@ -14,8 +14,9 @@
         </ul>
       </div>
       <div class="col-md-3 text-right" style="padding-right:0">
-        <a type="submit" class="btn btn-success" href="/admin/classes/new">新增班级</a>
+        <a type="submit" class="btn btn-success" href="/admin/classes/new?course=<%=course.id%>">新增班级</a>
       </div>
+      <div>
       <table class="table table-striped">
         <tr>
           <th>班级编号</th>
@@ -38,12 +39,13 @@
           <td><%=classes.rows[i].minStudentsNumber%>~<%=classes.rows[i].maxStudentsNumber%></td>
           <td>
             <a href="/admin/classes/edit?id=<%=classes.rows[i].id%>">编辑</a><br>
-            <a class="text-danger" data-id="<%=classes.rows[i].id%>" href="">删除</a>
+            <a class="text-danger delete-action" data-url="/admin/classes/delete" data-id="<%=classes.rows[i].id%>" href="javacript:void">删除</a>
           </td>
         </tr>
         <% } %>
       </table>
       <% include pagination.ejs %>
+      </div>
     </div>
     <div class="col-md-3" style="padding-right: 0">
       <div class="course-desc">
@@ -58,9 +60,15 @@
         </div>
         <div class="info">
           <h5>授课主人</h5>
-          <div class="teacher-avatar" style="background: url(); background-size: cover"></div>
+          <div>
+            <% for (var id in course.teachers) {%>
+            <div style="margin-bottom: 5px;">
+              <div class="teacher-avatar" style="background: url(<%=course.teachers[id].avatar%>); background-size: cover; display: inline-block"></div>
+              <div class="teacher-name" style="display: inline-block"><%=course.teachers[id].name%></div>
+            </div>
+            <%}%>
+          </div>
         </div>
       </div>
-      
     </div>
 <% include footer.ejs %>

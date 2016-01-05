@@ -20,12 +20,12 @@
         <td><a href="/admin/classes?course=<%=courses.rows[i].id%>"><%=courses.rows[i].id%></a></td>
         <td><%=courses.rows[i].name%></td>
         <td><%=courses.rows[i].category.name%></td>
-        <td>暂无</td>
-        <td><%=courses.rows[i].description%></td>
+        <td><%for(var id in courses.rows[i].teachers){%><%= courses.rows[i].teachers[id].name%>,<%}%></td>
+        <td width="40%"><%=courses.rows[i].description%></td>
         <td>暂无</td>
         <td>
           <a href="/admin/courses/edit?id=<%=courses.rows[i].id%>">编辑</a><br>
-          <a class="text-danger" data-id="<%=courses.rows[i].id%>" href="">删除</a>
+          <a class="text-danger delete-action" data-url="/admin/courses/delete" data-id="<%=courses.rows[i].id%>" href="javacript:void">删除</a>
         </td>
       </tr>
       <% } %>

@@ -16,6 +16,23 @@ router.get('/', function(req, res, next) {
     order: [['id', 'DESC']]
   };
 
+  if (req.query.search) {
+    var number = new RegExp("^[0-9]*$");
+    if(number.test(search)) {
+      conditions.where = {
+        username : {
+          $eq: search
+        }
+      }
+    } else {
+      conditions.where = {
+        name : {
+          $like: '%' + search + '%'
+        }
+      }
+    }
+  }
+
   User.findAndCountAll(conditions).then(function(users) {
     res.render('admin/users', {
       nav: 'users',

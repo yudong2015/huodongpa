@@ -33,5 +33,12 @@ body {
   width: 50px;
   border-radius: 25px;
   border: 1px solid #ccc;
+  vertical-align:top; 
+}
+
+.course-desc .teacher-name {
+  height: 50px;
+  line-height: 50px;
+  vertical-align:top; 
 }
 

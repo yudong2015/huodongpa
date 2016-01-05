@@ -40,6 +40,7 @@ $(function(){
                //    "key": "gogopher.jpg"
                //  }
                // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+               alert("上传成功")
                var domain = up.getOption('domain');
                var res = JSON.parse(info);
                var sourceLink = domain + res.key; //获取上传成功后的文件的Url
@@ -63,4 +64,8 @@ $(function(){
   });
 // domain 为七牛空间（bucket)对应的域名，选择某个空间后，可通过"空间设置->基本设置->域名设置"查看获取
 // uploader 为一个plupload对象，继承了所有plupload的方法，参考http://plupload.com/docs
+// 
+// 
+
+  
 });

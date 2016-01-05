@@ -1,0 +1,9 @@
+<% include header.ejs %>
+
+<div class="text-center text-danger" >
+<h1>~~~~(>_<)~~~~ </h1>
+<h3><%= error.status %>: <%= message %></h1>
+<pre class="text-left bg-warning"><%= error.stack %></pre>
+</div>
+
+<% include footer.ejs %>

@@ -49,4 +49,25 @@ router.get('/logout', function(req, res, next) {
   res.redirect('admin/login');
 });
 
+
+// catch 404 and forward to error handler
+router.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handler
+router.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  console.log(err);
+  res.render('admin/error', {
+    message: err.message,
+    error: err,
+    stylesheets: [],
+    javascripts: [],
+    nav: ''
+  });
+});
+
 module.exports = router;

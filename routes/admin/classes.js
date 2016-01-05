@@ -8,6 +8,8 @@ var Course = require('../../models').Course;
 var Category = require('../../models').Category;
 var Teacher = require('../../models').Teacher;
 
+var lib = require('../../lib');
+
 // classes list
 router.get('/', function(req, res, next) {
   var courseId = req.query.course;
@@ -25,7 +27,18 @@ router.get('/', function(req, res, next) {
     order: [['id', 'DESC']]
   };
 
-  Course.findById(courseId, {include: Category}).then(function(course){
+  Course.findById(courseId, {include: [
+      Category, 
+      { 
+        model: Class, 
+        as: 'Classes', 
+        include: [Teacher] 
+      }
+    ]}).then(function(course){
+
+    // no repeat teachers
+    course.teachers = lib.findNoRepeatTeachersOfCouse(course);
+
     return Class.findAndCountAll(conditions).then(function(classes){
       res.render('admin/classes', {
         nav: 'courses',
@@ -44,10 +57,7 @@ router.get('/', function(req, res, next) {
     })
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
-    });
+    next(error);
   });
 });
 
@@ -68,10 +78,7 @@ router.get('/new', function(req, res, next) {
     });
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
-    });
+    next(error);
   });
 });
 
@@ -84,10 +91,7 @@ router.post('/new', function(req, res, next) {
     res.redirect('/admin/classes?course='+courseId);
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
-    });
+    next(error);
   });
 });
 
@@ -108,27 +112,34 @@ router.get('/edit', function(req, res, next) {
     });
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
-    });
+    next(error);
   });
 });
 
 // class create form action
 router.post('/edit', function(req, res, next) {
   var clas = req.body;
-  Class.findById(clas.id).then(function(clas){
-    return clas.save().then(function(){
-      res.redirect('/admin/classes?course='+clas.courseId);
+  Class.upsert(clas).then(function(){
+    res.redirect('/admin/classes?course='+clas.courseId);
+  }).catch(function(error){
+    console.log(error);
+    next(error);
+  });
+});
+
+// class delete
+router.post('/delete', function(req, res, next) {
+  Class.destroy({ where: {id : req.body.id}
+  }).then(function(){
+    res.json({
+      code: 0,
+      message: "ok"
     });
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
-    });
+    next(error);
   });
 });
+
 
 module.exports = router;

@@ -31,6 +31,23 @@ router.get('/', function(req, res, next) {
     order: [['id', 'DESC']]
   };
 
+  if (req.query.search) {
+    var number = new RegExp("^[0-9]*$");
+    if(number.test(search)) {
+      conditions.where = {
+        id : {
+          $eq: search
+        }
+      }
+    } else {
+      conditions.where = {
+        name : {
+          $like: '%' + search + '%'
+        }
+      }
+    }
+  }
+
   Teacher.findAndCountAll(conditions).then(function(teachers){
     res.render('admin/teachers', {
       nav: 'teachers',
@@ -48,10 +65,7 @@ router.get('/', function(req, res, next) {
     });
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
-    });
+    next(error);
   });
 });
 
@@ -72,10 +86,7 @@ router.post('/new', function(req, res, next) {
     res.redirect('/admin/teachers');
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
-    });
+    next(error);
   });
 });
 
@@ -99,9 +110,23 @@ router.post('/edit', function(req, res, next) {
     res.redirect('/admin/teachers');
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
+    next(error);
+  });
+});
+
+// class delete
+router.post('/delete', function(req, res, next) {
+  Teacher.destroy({ where: {id : req.body.id}
+  }).then(function(){
+    res.json({
+      code: 0,
+      message: "ok"
+    });
+  }).catch(function(error){
+    console.log(error);
+    res.json({
+      code: -1,
+      message: error
     });
   });
 });
@@ -125,10 +150,12 @@ router.get('/detail', function(req, res, next) {
     var courses = {};
     var categories = {};
     for (var i=0; i<teacher.Classes.length; i++) {
-      courses[teacher.Classes[i].course.id] = teacher.Classes[i].course;
+      if(teacher.Classes[i].course){
+        courses[teacher.Classes[i].course.id] = teacher.Classes[i].course;
 
-      categories[teacher.Classes[i].course.name] = true;
-      categories[teacher.Classes[i].course.category.name] = true;
+        categories[teacher.Classes[i].course.name] = true;
+        categories[teacher.Classes[i].course.category.name] = true;
+      }
     }
     res.render('admin/teacher-detail', {
       nav: 'teachers',
@@ -140,10 +167,7 @@ router.get('/detail', function(req, res, next) {
     });
   }).catch(function(error){
     console.log(error);
-    res.render('error', {
-      message: error,
-      error: {}
-    });
+    next(error);
   });
 });
 
