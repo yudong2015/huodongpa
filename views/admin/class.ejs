@@ -2,8 +2,8 @@
   <div class="helper-bar">
     <ol class="breadcrumb">
       <li><a href="/admin/courses">课程管理</a></li>
-      <li><a href="/admin/classes?course=<%=clas.course.id%>"><%=clas.course.name%>(<%=clas.course.id%>)</a></li>
       <% if(action == 'edit') {%>
+      <li><a href="/admin/classes?course=<%=clas.course.id%>"><%=clas.course.name%>(<%=clas.course.id%>)</a></li>
       <li class="active">编辑班级</li>
       <% } else {%>
       <li class="active">新增班级</li>
@@ -38,7 +38,7 @@
           <% } %>
         </select>
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-2 text-right">
         <a class="btn btn-success" href="/admin/teachers/new">新增主人</a>
       </div>
     </div>

@@ -6,6 +6,10 @@ var Class = require('../../models').Class;
 var Course = require('../../models').Course;
 var Category = require('../../models').Category;
 
+var path = require('path');
+var jsonfile = require('jsonfile');
+
+var conf = jsonfile.readFileSync(path.join(__dirname,"../../config.json"));
 
 // teachers list
 router.get('/', function(req, res, next) {
@@ -55,15 +59,43 @@ router.get('/', function(req, res, next) {
 router.get('/new', function(req, res, next) {
   res.render('admin/teacher', {
     nav: 'teachers',
-    javascripts: [],
+    javascripts: ['/thirdparty/pupload/plupload.full.min.js', '/thirdparty/qiniu/qiniu.min.js', '/admin/teacher.js'],
     stylesheets: [],
-    action: 'new'
+    action: 'new',
+    qiniuDomain: conf.qiniu.url
   });
 });
 
 // teacher create form action
 router.post('/new', function(req, res, next) {
   Teacher.create(req.body).then(function() {
+    res.redirect('/admin/teachers');
+  }).catch(function(error){
+    console.log(error);
+    res.render('error', {
+      message: error,
+      error: {}
+    });
+  });
+});
+
+// teacher create
+router.get('/edit', function(req, res, next) {
+  Teacher.findById(req.query.id).then(function(teacher){
+    res.render('admin/teacher', {
+      nav: 'teachers',
+      javascripts: ['/thirdparty/pupload/plupload.full.min.js', '/thirdparty/qiniu/qiniu.min.js', '/admin/teacher.js'],
+      stylesheets: [],
+      action: 'edit',
+      teacher: teacher,
+      qiniuDomain: conf.qiniu.url
+    });
+  });
+});
+
+// teacher create form action
+router.post('/edit', function(req, res, next) {
+  Teacher.upsert(req.body).then(function() {
     res.redirect('/admin/teachers');
   }).catch(function(error){
     console.log(error);

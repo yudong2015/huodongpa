@@ -9,12 +9,12 @@ body {
   height: 45px;
 }
 
-.teacher-desc {
+.teacher-desc, .course-desc {
   border: solid #ccc 1px;
   border-radius: 4px;
 }
 
-.teacher-desc .title {
+.teacher-desc .title, .course-desc .title {
   background-color: #f5f5f5;
   margin: 0;
   height: 40px;
@@ -24,13 +24,14 @@ body {
   padding-left: 10px;
 }
 
-.teacher-desc .info {
+.teacher-desc .info,  .course-desc .info{
   padding: 10px;
 }
 
-.teacher-desc .teacher-avatar {
+.teacher-desc .teacher-avatar, .course-desc .teacher-avatar {
   height: 50px;
   width: 50px;
   border-radius: 25px;
   border: 1px solid #ccc;
 }
+

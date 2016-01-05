@@ -8,7 +8,14 @@
     </div>
   </div>
     <div class="col-md-9" style="padding-left: 0">
-      
+      <div class="col-md-9" style="padding-left: 0">
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="#">全部</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 text-right" style="padding-right:0">
+        <a type="submit" class="btn btn-success" href="/admin/classes/new">新增班级</a>
+      </div>
       <table class="table table-striped">
         <tr>
           <th>班级编号</th>
@@ -39,6 +46,21 @@
       <% include pagination.ejs %>
     </div>
     <div class="col-md-3" style="padding-right: 0">
-      fff
+      <div class="course-desc">
+        <div class="title">课程简介</div>
+        <div class="info">
+          <h5>类型</h5>
+          <span><%=course.category.name%></span>
+        </div>
+        <div class="info">
+          <h5>简介</h5>
+          <span><%=course.description%></span>
+        </div>
+        <div class="info">
+          <h5>授课主人</h5>
+          <div class="teacher-avatar" style="background: url(); background-size: cover"></div>
+        </div>
+      </div>
+      
     </div>
 <% include footer.ejs %>

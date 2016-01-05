@@ -23,6 +23,7 @@ router.use('/courses', require('./courses'));
 router.use('/classes', require('./classes'));
 router.use('/teachers', require('./teachers'));
 router.use('/users', require('./users'));
+router.use('/qiniu', require('./qiniu'));
 
 // default admin index, redirect to courses.
 router.get('/', function(req, res, next) {

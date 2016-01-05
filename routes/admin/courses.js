@@ -95,18 +95,13 @@ router.get('/edit', function(req, res, next) {
 
 // course edit
 router.post('/edit', function(req, res, next) {
-  Course.findById(req.query.id).then(function(course){
-    course.name = req.body.name;
-    course.categoryId = req.body.categoryId;
-    course.description = req.body.description;
-    course.save().then(function() {
-      res.redirect('/admin/courses');
-    }).catch(function(error){
-      console.log(error);
-      res.render('error', {
-        message: error,
-        error: {}
-      });
+  Course.upsert(req.body).then(function(course){
+    res.redirect('/admin/courses');
+  }).catch(function(error){
+    console.log(error);
+    res.render('error', {
+      message: error,
+      error: {}
     });
   });
 });
