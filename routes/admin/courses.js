@@ -41,7 +41,7 @@ router.get('/', function(req, res, next) {
 
     // no repeat teachers
     for(var i=0; i<result.rows.length; i++) {
-      result.rows[i].teachers = lib.findNoRepeatTeachersOfCouse(result.rows[i]);
+      result.rows[i].teachers = lib.findNoRepeatTeachersOfCourse(result.rows[i]);
     }
 
 

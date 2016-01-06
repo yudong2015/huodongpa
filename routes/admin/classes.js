@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
     ]}).then(function(course){
 
     // no repeat teachers
-    course.teachers = lib.findNoRepeatTeachersOfCouse(course);
+    course.teachers = lib.findNoRepeatTeachersOfCourse(course);
 
     return Class.findAndCountAll(conditions).then(function(classes){
       res.render('admin/classes', {
