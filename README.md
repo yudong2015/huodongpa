@@ -13,3 +13,5 @@
 5. 新建`config.json`,参照`config.example.json`配置
 6. 初始化数据库: `node ./tools/migrate.js`
 7. node ./bin/www，或安装pm2后`pm2 start ./bin/www --name xueshupa -l xueshupa.log`
+
+# 
