@@ -39,7 +39,9 @@
         <td>暂无</td>
         <td>
           <a href="/admin/teachers/edit?id=<%=teachers.rows[i].id%>">编辑</a><br>
+          <% if(teachers.rows[i].Classes.length == 0){%>
           <a class="text-danger delete-action" data-url="/admin/teachers/delete" data-id="<%=teachers.rows[i].id%>" href="javascript:void">删除</a>
+          <% } %>
         </td>
       </tr>
       <% } %>
