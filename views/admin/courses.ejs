@@ -20,7 +20,14 @@
         <td><a href="/admin/classes?course=<%=courses.rows[i].id%>"><%=courses.rows[i].id%></a></td>
         <td><%=courses.rows[i].name%></td>
         <td><%=courses.rows[i].category.name%></td>
-        <td><%for(var id in courses.rows[i].teachers){%><%= courses.rows[i].teachers[id].name%>,<%}%></td>
+        <td><%var teachers = '';
+          for(var id in courses.rows[i].teachers){
+            teachers += courses.rows[i].teachers[id].name + ',';
+          }
+          if(teachers.length > 0){
+            teachers = teachers.substring(0,teachers.length-1);
+          }
+          %><%= teachers%></td>
         <td width="40%"><%=courses.rows[i].description%></td>
         <td>暂无</td>
         <td>

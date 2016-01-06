@@ -31,9 +31,15 @@
               }
             }
           %>
-          <% for(var cate in categories) { %>
-          <%= cate%>,
-          <%}%>
+          <% var str = ''; 
+            for(var cate in categories) { 
+              str += cate + ',';
+            }
+            if (str.length > 0){
+              str = str.substring(0, str.length-1)
+            }
+          %>
+          <%= str%>
         </td>
         <td width="40%"><%=teachers.rows[i].description%></td>
         <td>暂无</td>
