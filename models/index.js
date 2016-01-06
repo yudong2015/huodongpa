@@ -7,6 +7,8 @@ var Category = orm.define('category', {
   name: { type:Sequelize.STRING, allowNull: false },
   abbreviation: { type:Sequelize.STRING},
   description: { type:Sequelize.TEXT }
+}, {
+  charset: 'utf8'
 });
 
 var Teacher = orm.define('teacher', {
@@ -15,7 +17,8 @@ var Teacher = orm.define('teacher', {
   avatar: { type:Sequelize.STRING, allowNull: false },
   description: { type:Sequelize.TEXT, allowNull: false }
 }, {
-  initialAutoIncrement: 1001
+  initialAutoIncrement: 1001,
+  charset: 'utf8'
 });
 
 var Class = orm.define('class', {
@@ -32,7 +35,8 @@ var Class = orm.define('class', {
   minStudentsNumber: { type: Sequelize.INTEGER, allowNull: false },
   maxStudentsNumber: { type: Sequelize.INTEGER, allowNull: false }
 }, {
-  initialAutoIncrement: 100001
+  initialAutoIncrement: 100001,
+  charset: 'utf8'
 });
 
 var Course = orm.define('course', {
@@ -41,7 +45,8 @@ var Course = orm.define('course', {
   categoryId: { type: Sequelize.INTEGER, allowNull: false},
   description: { type: Sequelize.TEXT }
 }, {
-  initialAutoIncrement: 10001
+  initialAutoIncrement: 10001,
+  charset: 'utf8'
 });
 
 var User = orm.define('user', {
@@ -58,6 +63,8 @@ var User = orm.define('user', {
   school: { type: Sequelize.STRING },
   grade: { type: Sequelize.STRING },
   emergencyPhone: { type: Sequelize.STRING }
+}, {
+  charset: 'utf8'
 });
 
 var Order = orm.define('order', {
@@ -67,7 +74,8 @@ var Order = orm.define('order', {
   tuition: { type: Sequelize.INTEGER },
   status: { type: Sequelize.ENUM('unpaid', 'paid', 'canceled', 'refunded') }
 }, {
-  initialAutoIncrement: 1000001
+  initialAutoIncrement: 1000001,
+  charset: 'utf8'
 });
 
 
