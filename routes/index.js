@@ -7,5 +7,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/register', require('./register'));
+router.use('/qiniu', require('./qiniu'));
 
 module.exports = router;

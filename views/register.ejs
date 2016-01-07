@@ -4,21 +4,26 @@
         <i class="de-avatar"></i>
     </header>
     <div class="content register-ct">
-        <div class="photo-btn">
+        <div class="photo-btn" id="pickfiles">
+            <%if (action == 'show' || form.avatar == '') {%>
             <div class="camera-box">
                 <img src="../img/camera.png" alt="学术葩">
             </div>
+            <%} else {%>
+            <img src="<%=form.avatar%>">
+            <% } %>
         </div>
         <form id="register-form" method="POST">
         <p class="photo-tips">请上传属于自己的头像</p>
-        <input type="hidden" name="avatar">
+        <input type="hidden" id="avatar-url" name="avatar" <%if (action == 'reform') {%>value="<%=form.avatar%>"<%}%>>
+        <input type="hidden" id="qiniu-domain" value="<%=qiniuDomain%>">
         <div class="form-panel">
             <div class="input-panel">
                 <div class="form-group">
-                    <input required type="text" placeholder="手机号" name="username" id="user-phone">
+                    <input required type="text" placeholder="手机号" name="username" id="user-phone" <%if (action == 'reform') {%>value="<%=form.username%>"<%}%>>
                 </div>
                 <div class="form-group">
-                    <input required type="password" placeholder="密码" name="password" >
+                    <input required type="password" placeholder="密码" name="password" <%if (action == 'reform') {%>value="<%=form.password%>"<%}%>>
                 </div>
                 <div class="form-group">
                     <input required type="text" placeholder="验证码" name="code" >
@@ -34,5 +39,7 @@
         </form>
     </div>
     <script src="/thirdparty/validate/validate.min.js"></script>
+    <script src="/thirdparty/pupload/plupload.full.min.js"></script>
+    <script src="/thirdparty/qiniu/qiniu.min.js"></script>
     <script src="/js/register.js"></script>
 <% include footer.ejs %>

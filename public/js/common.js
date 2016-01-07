@@ -5,4 +5,8 @@ $(function(){
       $(".tips-dialog").addClass("hidden");
     }, 1000);
   }
+
+  if( $(".tips-dialog").find("p").text() != "" ) {
+    $.tips($(".tips-dialog").find("p").text());
+  }
 });
