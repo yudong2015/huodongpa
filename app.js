@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 
-var routes = require('./routes/index');
+var routes = require('./routes');
 var admin = require('./routes/admin');
 
 // load config file

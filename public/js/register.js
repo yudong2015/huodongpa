@@ -11,24 +11,28 @@ $(function(){
     if(codeSent) {
       return
     }
-    codeSent = true;
     var phone = $("#user-phone").val();
     if(phone == "") {
       $.tips("请填写电话号码");
       return;
     }
-    $.post("/register/code", { phone: phone }, function(){
-      $.tips("发送成功");
-      var count = 60;
-      var timer = setInterval(function(){
-        $("#send-code").text(count + 's');
-        count--;
-        if (count == 0){
-          clearInterval(timer);
-          $("#send-code").text("发送");
-          codeSent = false;
-        }
-      }, 1000);
+    $.post("/register/code", { phone: phone }, function(ret){
+      if ( ret.code == 0 ) {
+        codeSent = true;
+        $.tips("发送成功");
+        var count = 60;
+        var timer = setInterval(function(){
+          $("#send-code").text(count + 's');
+          count--;
+          if (count == 0){
+            clearInterval(timer);
+            $("#send-code").text("发送");
+            codeSent = false;
+          }
+        }, 1000);
+      } else {
+        $.tips(ret.message);
+      }
     })
   });
 

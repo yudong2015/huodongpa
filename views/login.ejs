@@ -1,0 +1,39 @@
+<% include header.ejs %>
+    <header class="header">
+        <h1>登录</h1>
+        <i class="de-avatar"></i>
+    </header>
+    <div class="content login-ct">
+        <div class="logo-box">
+            <img src="../img/logo.jpg" alt="学术葩">
+        </div>
+        <form class="form-panel" id="login-form" method="POST">
+            <div class="input-panel">
+                <div class="form-group">
+                    <input type="text" placeholder="手机号" name="username" <%if (action == 'reform') {%>value="<%=form.username%>"<%}%>>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="密码" name="password" >
+                </div>
+            </div>
+            <div class="y-lar-btn">
+                <div class="m-bg">
+                    <div class="btn-box" id="login-form-submit">登录</div>
+                </div>
+            </div>
+            <div class="form-tips">
+                <a href="/reset/step1">忘记密码</a>
+                <label class="checkbox-label" for="checkInput">
+                    <input class="check-input" id="checkInput" type="checkbox" name="reme">
+                    <span class="check-box"></span>
+                    记住我
+                </label>
+            </div>
+        </form>
+    </div>
+    <footer class="footer">
+        <a class="go-register" href="/register">立即注册</a>
+    </footer>
+    <script src="/thirdparty/validate/validate.min.js"></script>
+    <script src="/js/login.js"></script>
+<% include footer.ejs %>

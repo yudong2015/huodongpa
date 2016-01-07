@@ -13,11 +13,10 @@
             <img src="<%=form.avatar%>">
             <% } %>
         </div>
-        <form id="register-form" method="POST">
         <p class="photo-tips">请上传属于自己的头像</p>
-        <input type="hidden" id="avatar-url" name="avatar" <%if (action == 'reform') {%>value="<%=form.avatar%>"<%}%>>
         <input type="hidden" id="qiniu-domain" value="<%=qiniuDomain%>">
-        <div class="form-panel">
+        <form class="form-panel" id="register-form" method="POST">
+            <input type="hidden" id="avatar-url" name="avatar" <%if (action == 'reform') {%>value="<%=form.avatar%>"<%}%>>
             <div class="input-panel">
                 <div class="form-group">
                     <input required type="text" placeholder="手机号" name="username" id="user-phone" <%if (action == 'reform') {%>value="<%=form.username%>"<%}%>>
@@ -35,7 +34,6 @@
                     <div class="btn-box" id="register-form-submit">注册</div>
                 </div>
             </div>
-        </div>
         </form>
     </div>
     <script src="/thirdparty/validate/validate.min.js"></script>

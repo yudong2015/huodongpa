@@ -15,7 +15,10 @@ var User = require('../models').User;
 var renderConf = {
   qiniuDomain: conf.qiniu.url,
   tips: '',
-  action: 'show'
+  action: 'show',
+  title: '注册-学术葩',
+  style: 'login',
+  page: 'register'
 }
 
 router.get('/', function(req, res, next) {
@@ -32,10 +35,11 @@ router.post('/', function(req, res, next) {
     } 
 
     var user = _.clone(req.body);
+    var md5 = crypto.createHash('md5');
     user.password = md5.update(user.password).digest('base64');
 
     User.create(user).then(function(){
-      return res.redirect('/');
+      return res.redirect('/login');
     }).catch(function(error){
       console.log(error);
       data.tips = '注册失败';

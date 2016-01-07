@@ -1,0 +1,27 @@
+<% include header.ejs %>
+  <header class="header">
+        <h1>重置密码</h1>
+        <i class="de-avatar"></i>
+    </header>
+    <div class="content reset-ct">
+        <form class="form-panel" id="reset-form" method="POST">
+            <div class="input-panel" >
+                <div class="form-group">
+                    <input required type="text" placeholder="手机号" name="phone" id="user-phone" <%if (action == 'reform') {%>value="<%=form.phone%>"<%}%>>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="验证码" name="code" >
+                    <div class="send-btn" id="send-code">发送</div>
+                </div>
+            </div>
+            <div class="y-lar-btn">
+                <div class="m-bg">
+                    <div class="btn-box" id="reset-form-submit">下一步</div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="/thirdparty/validate/validate.min.js"></script>
+    <script src="/js/reset.js"></script>
+<% include footer.ejs %>
