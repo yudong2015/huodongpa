@@ -1,43 +1,7 @@
 @import "reset";
+@import "variate";
+@import "common";
 
-$gray-color: #bcc2ca;
-
-.clearfix:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    overflow: hidden;
-}
-.hidden {
-    display: none;
-}
-.visi-hidden {
-    visibility: hidden;
-}
-
-.header {
-    position: relative;
-    line-height: 53px;
-    height: 53px;
-    background-color: #524070;
-    text-align: center;
-    color: #fff;
-    h1 {
-        font-size: 17px;
-    }
-    .de-avatar {position: absolute;
-        right: 15px;
-        top: 11px;
-        height: 28px;
-        width: 28px;
-        border: 1px solid #392657;
-        -webkit-border-radius: 100%;
-        border-radius: 100%;background-repeat: no-repeat;}
-}
-::-webkit-input-placeholder {
-    color: $gray-color;
-}
 .form-panel {
     margin: 0 30px;
     .form-group {
@@ -115,7 +79,10 @@ $gray-color: #bcc2ca;
     font-size: 12px;
     .check-input {
         display: none;
-        &:checked + .check-box {background-repeat: no-repeat;}
+        &:checked + .check-box {
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3NpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo4NjM2MDg1Ny0wMDdjLTRlNzctYmMzNy03YTMyODVmYjU3ZGIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RTQ3RjREQzVCMTM5MTFFNUE1OTdGRUFBNjE3MDI4QUQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RTQ3RjREQzRCMTM5MTFFNUE1OTdGRUFBNjE3MDI4QUQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDU3YWI1NzEtMTkxNC00MDg5LTk1MTQtN2Y1OWE4OWU5NjUzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjg2MzYwODU3LTAwN2MtNGU3Ny1iYzM3LTdhMzI4NWZiNTdkYiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkRWKX0AAACTSURBVHjaYvz//z8DNQATA5XA4DOIBZnT2NhIlKZLBz6AHPB/7f7+/2S7CGgIM5BaBsSpZHsNashSIOYD4oU4DQIqZAdiPiIMCdRzEPiJz0XxQLwLqImfFEOwGTQbiE8C8Q6YYcQYgmEQUBEoFgqA+BTUMCFiDMEa2GiG3SPGEJyxhmRYKTGGgADjaKaln0EAAQYA8oBEC5gay8YAAAAASUVORK5CYII=) no-repeat scroll 0 0 #d2d6db;
+            background-size: cover;
+        }
     }
     .check-box {
         position: relative;
@@ -236,17 +203,4 @@ $gray-color: #bcc2ca;
 //重置密码
 .reset-ct {
     padding-top: 35px;
-}
-
-.de-avatar{
-    background-position:0px 0px;
-}
-display: none;
-        &:checked + .check-box{
-    background-position:-36px 0px;
-}
-.de-avatar,display: none;
-        &:checked + .check-box{
-    background-size: 53px 28px;
-    background-image: url(../img/login.png)
 }

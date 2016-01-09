@@ -1,0 +1,65 @@
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+}
+.hidden {
+    display: none;
+}
+.visi-hidden {
+    visibility: hidden;
+}
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ellipsis-two {
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 199;
+}
+
+.header {
+    position: relative;
+    line-height: 53px;
+    height: 53px;
+    background-color: #524070;
+    text-align: center;
+    color: #fff;
+    h1 {
+        font-size: 17px;
+        margin: 0 50px;
+    }
+    .de-avatar {
+        position: absolute;
+        right: 15px;
+        top: 11px;
+        height: 28px;
+        width: 28px;
+        border: 1px solid #392657;
+        -webkit-border-radius: 100%;
+        border-radius: 100%;
+        background-color: #392657;
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
+    }
+}
+::-webkit-input-placeholder {
+    color: $gray-color;
+}
