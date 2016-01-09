@@ -103,6 +103,9 @@ header, nav, section, article, footer, figure, figcaption {
 .header h1 {
   font-size: 17px;
   margin: 0 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header .de-avatar {
