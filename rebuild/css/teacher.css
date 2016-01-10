@@ -669,34 +669,36 @@ header, nav, section, article, footer, figure, figcaption {
   color: #f6b01d;
 }
 
-.course-ex-panel {position: fixed;
+.course-ex-panel {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 99;background-repeat: no-repeat;}
+  z-index: 99;
+  background: url(../img/course-mask.png) no-repeat scroll 0 0;
+  background-size: 100% auto;
+}
 
-.course-ex-panel .close-btn {position: fixed;
+.course-ex-panel .close-btn {
+  position: fixed;
   bottom: 50px;
   left: 50%;
   width: 122px;
   height: 42px;
   -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);background-repeat: no-repeat;}
+  transform: translate(-50%, 0);
+  background: url(../img/close-course-mask.png) no-repeat scroll 0 0;
+  background-size: cover;
+}
 
 .header .search-explain:before{
-    background-position:-383px -50px;
-}
-.header.is-search .search-box:before{
-    background-position:-383px -50px;
-}
-.course-ex-panel{
     background-position:0px 0px;
 }
-.course-ex-panel .close-btn{
-    background-position:-383px 0px;
+.header.is-search .search-box:before{
+    background-position:0px 0px;
 }
-.header .search-explain:before,.header.is-search .search-box:before,.course-ex-panel,.course-ex-panel .close-btn{
-    background-size: 513px 700px;
+.header .search-explain:before,.header.is-search .search-box:before{
+    background-size: 24px 18px;
     background-image: url(../img/teacher.png)
 }

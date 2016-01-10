@@ -491,15 +491,19 @@
     right: 0;
     bottom: 0;
     z-index: 99;
-    background: url(../img/course-mask.png?__sprite) no-repeat scroll 0 0;
+    background: url(../img/course-mask.png) no-repeat scroll 0 0;
     background-size: 100% auto;
-    .close-btn {position: fixed;
+    .close-btn {
+        position: fixed;
         bottom: 50px;
         left: 50%;
         width: 122px;
         height: 42px;
         -webkit-transform: translate(-50%, 0);
-        transform: translate(-50%, 0);background-repeat: no-repeat;}
+        transform: translate(-50%, 0);
+        background: url(../img/close-course-mask.png) no-repeat scroll 0 0;
+        background-size: cover;
+    }
 }
 position: absolute;
         left: 50%;
@@ -511,15 +515,10 @@ position: absolute;
         font-size: 12px;
         color: #74688e;
         &:before{
-    background-position:0px -50px;
+    background-position:0px 0px;
 }
 margin: 0 55px 0 15px;
             &:before{
-    background-position:0px -50px;
-}
-course-mask.png?__sprite) no-repeat scroll 0 0;
-    background-size: 100% auto;
-    .close-btn{
     background-position:0px 0px;
 }
 position: absolute;
@@ -532,9 +531,7 @@ position: absolute;
         font-size: 12px;
         color: #74688e;
         &:before,margin: 0 55px 0 15px;
-            &:before,course-mask.png?__sprite) no-repeat scroll 0 0;
-    background-size: 100% auto;
-    .close-btn{
-    background-size: 130px 68px;
+            &:before{
+    background-size: 24px 18px;
     background-image: url(../img/teacher.png)
 }
