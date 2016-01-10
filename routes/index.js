@@ -9,6 +9,8 @@ router.get('/', function(req, res, next) {
 router.use('/register', require('./register'));
 router.use('/login', require('./login'));
 router.use('/reset', require('./reset'));
+router.use('/courses', require('./courses'));
+
 router.use('/qiniu', require('./qiniu'));
 
 module.exports = router;

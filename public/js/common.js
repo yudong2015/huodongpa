@@ -1,4 +1,5 @@
 $(function(){
+  // tips
   $.tips = function(text){
     $(".tips-dialog").removeClass("hidden").find("p").text(text);
     setTimeout(function(){
@@ -9,4 +10,5 @@ $(function(){
   if( $(".tips-dialog").find("p").text() != "" ) {
     $.tips($(".tips-dialog").find("p").text());
   }
+  
 });

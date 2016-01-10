@@ -1,0 +1,62 @@
+<% include header.ejs %>
+    <header class="header">
+        <div class="filter-box"><%=name%></div>
+        <div class="search-box">
+            <div class="search-explain">请输入课程名字</div>
+            <input type="search" name="search" >
+        </div>
+        <i class="de-avatar"><img src="../img/de-avatar.png" alt="avatar" /></i>
+        <div class="cancel-btn">取消</div>
+    </header>
+    <div class="content teachers-ct">
+        <div>
+            <% var group = 'A' %>
+            <% for(var i=0; i<courses.length; i++){ %>
+            <% if(pinyin[i][0] != group){ group = pinyin[i][0] %>
+            <div class="sort-name"><%=group%></div>
+            <% }%>
+            <div class="teacher-panel course-panel" data-href="/classes?course=<%=courses[i].id%>">
+                <div class="m-line">
+                    <div class="name-box">
+                        <% var colors = ['red', 'purple', 'blue', 'green', 'orange'] %>
+                        <span class="tag-box <%=colors[courses[i].category.id%5]%>-tag"><%=courses[i].category.name%></span>
+                        <span class="name"><%=courses[i].name%></span>
+                    </div>
+                    <div class="price-box">
+                        <%  var minTuition; 
+                            for(var j=0; j<courses[i].Classes.length; j++){
+                                if(j == 0 || courses[i].Classes[j].tuition < minTuition){
+                                    minTuition = courses[i].Classes[j].tuition;
+                                }
+                            }
+                        %>
+                        <% if (minTuition){ %>
+                        <span class="price"><i>￥</i><%=minTuition%></span>
+                        <span>起</span>
+                        <% } %>
+                    </div>
+                </div>
+                <p class="des-box"><%=courses[i].description%></p>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <div class="mask hidden"></div>
+    <div class="teacher-select-panel hidden">
+        <form id="category-form">
+        <input type="hidden" name="category" id="category-id">
+        <input type="hidden" name="name" id="category-name">
+        <ul id="category-filter">
+            <li data-id="">全部课程</li>
+            <% for (var i=0; i<categories.length; i++){ %>
+            <li data-id="<%=categories[i].id%>"><%=categories[i].name%></li>
+            <% } %>
+        </ul>
+        </form>
+    </div>
+    <div class="course-ex-panel hidden">
+        <div class="close-btn"></div>
+    </div>
+    <script src="/thirdparty/cookie/cookie.min.js"></script>
+    <script src="/js/courses.js"></script>
+<% include footer.ejs %>
