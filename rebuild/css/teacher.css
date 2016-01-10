@@ -692,6 +692,71 @@ header, nav, section, article, footer, figure, figcaption {
   background-size: cover;
 }
 
+.left-nav-body {
+  height: 800px;
+}
+
+.left-nav-ct {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  background: url(../img/nav-bg.png) no-repeat scroll 0 0;
+  background-size: cover;
+}
+
+.left-nav-ct .user-panel {
+  position: relative;
+  height: 30.3734%;
+}
+
+.left-nav-ct .close-btn {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 40px;
+  height: 40px;
+}
+
+.left-nav-ct .close-btn:after {
+  position: absolute;
+  content: '';
+  right: 0px;
+  top: 23px;
+  width: 0px;
+  height: 0px;
+}
+
+.left-nav-ct .space-d {
+  height: 21.3115%;
+}
+
+.left-nav-ct .avatar-box {
+  height: 70px;
+  width: 70px;
+  margin: 0 auto;
+  border: 4px solid #75679b;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.left-nav-ct .avatar-box img {
+  width: 100%;
+}
+
+.left-nav-ct .user-name {
+  max-width: 80%;
+  margin: 20px auto 0;
+  line-height: 1;
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+}
+
 .header .search-explain:before{
     background-position:0px 0px;
 }
