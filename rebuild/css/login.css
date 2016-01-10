@@ -91,13 +91,72 @@ header, nav, section, article, footer, figure, figcaption {
   z-index: 199;
 }
 
-.header {
+.choose-dialog {
+  position: fixed;
+  top: 50%;
+  left: 52px;
+  right: 52px;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  text-align: center;
+  background-color: #fff;
+  overflow: hidden;
+  z-index: 201;
+}
+
+.choose-dialog .tips-content {
+  padding: 25px 25px;
+  line-height: 1.5;
+  font-size: 15px;
+  color: #524070;
+  border-bottom: 1px solid #dfdee0;
+}
+
+.choose-dialog .btns-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  font-size: 15px;
+  color: #8a919b;
+}
+
+.choose-dialog .btn {
   position: relative;
+  width: 50%;
+  line-height: 45px;
+}
+
+.choose-dialog .btn:active {
+  background-color: #f4f3ee;
+}
+
+.choose-dialog .btn:last-child:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background-color: #dfdee0;
+}
+
+.header-panel {
+  height: 53px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   line-height: 53px;
   height: 53px;
   background-color: #524070;
   text-align: center;
   color: #fff;
+  z-index: 99;
 }
 
 .header h1 {
@@ -123,6 +182,16 @@ header, nav, section, article, footer, figure, figcaption {
 
 .header .de-avatar img {
   width: 100%;
+}
+
+.header .back-cancel-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  padding: 0 5px 0 15px;
+  line-height: 53px;
+  font-size: 14px;
 }
 
 ::-webkit-input-placeholder {
@@ -351,4 +420,15 @@ header, nav, section, article, footer, figure, figcaption {
 
 .reset-ct {
   padding-top: 35px;
+}
+
+.edit-ct {
+  padding-bottom: 20px;
+}
+
+.require-tips {
+  position: absolute;
+  top: 20px;
+  left: 12px;
+  color: #eb4b58 !important;
 }

@@ -10,28 +10,42 @@
 <title>课程详情-学术葩</title>
 <link rel="stylesheet" href="../css/teacher.css">
 </head>
-<body class="course-detail-body">
+<body class="card-body">
     <div class="header-panel">
         <header class="header">
             <h1>安慕斯劳伦斯 老师</h1>
             <i class="de-avatar"><img src="../img/de-avatar.png" alt="avatar" /></i>
         </header>
     </div>
-    <div class="content course-detail-ct">
-        <div class="teacher-class-panel">
-            <div class="m-line">
-                <div class="name-box">
-                    <span class="tag-box orange-tag">A-Level</span>
-                    <span class="name">物理</span>
+    <div class="card-top-panel">
+        <div class="card-fixed-box">
+            <div class="user-center-box">
+                <div class="left-box">
+                    <div class="avatar-pic">
+                        <img src="../img/de-avatar.png" alt="avatar">
+                    </div>
+                    <div class="user-info">
+                        <h3 class="ellipsis">詹姆斯劳伦斯</h3>
+                        <p class="ellipsis">手机号：13602756476</p>
+                    </div>
                 </div>
             </div>
-            <p class="des-box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+            <div class="card-nav">
+                <ul class="card-nav-list">
+                    <li class="active">即将开课</li>
+                    <li>正在上课</li>
+                    <li>课程结束</li>
+                    <li>课程取消</li>
+                </ul>
+            </div>
         </div>
-        <h3 class="title">开设班级</h3>
+    </div>
+    <div class="content course-detail-ct card-ct">
         <div class="teacher-class-panel course-panel">
             <div class="m-line">
                 <div class="name-box">
-                    <span class="name">周六提高班</span>
+                    <span class="tag-box red-tag">AP</span>
+                    <span class="name">物理<span class="gray-name">(<i></i>VIP1班)</span></span>
                 </div>
                 <div class="price-box">
                     <span class="price"><i>￥</i>1400</span>
@@ -73,23 +87,25 @@
                 <div class="f-b">地址：</div>
                 <div class="s-b ellipsis flex-b">中关村新东方总部南校区503教室</div>
             </div>
-            <div class="course-bt-btns">
-                <span class="add-btn">加入购课车</span>
+            <div class="course-bt-btns card-bt-btns">
+                <div class="card-bt-tips">退课截至日期：2015.11.12</div>
+                <div class="card-right-btns">
+                    <span class="gray-btn">退课</span>
+                </div>
             </div>
         </div>
         <div class="teacher-class-panel course-panel">
             <div class="m-line">
                 <div class="name-box">
-                    <span class="name">
-                        周五提高班
-                        <span class="orange-tips">（12.30开始报名）</span>
-                    </span>
+                    <span class="tag-box purple-tag">Seminar</span>
+                    <span class="name">心理学<span class="gray-name">(周五提高班)</span></span>
                 </div>
                 <div class="price-box">
                     <span class="price"><i>￥</i>2800</span>
                     <span>起／12课时</span>
                 </div>
             </div>
+            <div class="cancel-panel">非常抱歉，由于报课人数不足5人，该课程已被取消。建议选 择其它合适课程，或自组VIP班级</div>
             <div class="course-box">
                 <div class="f-b">教师：</div>
                 <div class="s-b">邓超</div>
@@ -124,32 +140,17 @@
                 <div class="f-b">地址：</div>
                 <div class="s-b ellipsis flex-b">中关村新东方总部南校区503教室</div>
             </div>
-        </div>
-    </div>
-    <div class="content course-detail-ct">
-        <h3 class="title">教师简介</h3>
-        <div class="teacher-panel">
-            <div class="m-line">
-                <div class="avatar">
-                    <img src="../slice/teacher-avatar.png" alt="avatar">
-                </div>
-                <div class="name ellipsis">安慕斯劳伦斯莱恩</div>
-                <div class="tags">
-                    <span class="tag-box blue-tag">IB</span>
-                    <span class="tag-box green-tag">SAT II</span>
+            <div class="course-bt-btns card-bt-btns">
+                <div class="card-right-btns">
+                    <span class="gray-btn">自组VIP班级</span>
+                    <span class="gray-btn">其他合适课程</span>
                 </div>
             </div>
-            <p class="des-box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
         </div>
-    </div>
-    <div class="mask hidden"></div>
-    <div class="teacher-select-panel hidden">
-        <ul>
-            <li>SAT II</li>
-            <li>A-Level</li>
-            <li>IB</li>
-            <li>AP</li>
-        </ul>
+        <div class="bot-box">
+            <div class="phone-p ellipsis">180XXXX5678</div>
+            <div class="wx-p ellipsis">180XXXX5678</div>
+        </div>
     </div>
 </body>
 </html>
