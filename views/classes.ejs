@@ -1,0 +1,88 @@
+<% include header.ejs %>
+    <div class="header-panel">
+        <header class="header">
+            <h1><%=course.name%></h1>
+            <i class="de-avatar"><img src="../img/de-avatar.png" alt="avatar" /></i>
+        </header>
+    </div>
+    <div class="content course-detail-ct">
+        <div class="teacher-class-panel">
+            <div class="m-line">
+                <div class="name-box">
+                    <% var colors = ['red', 'purple', 'blue', 'green', 'orange'] %>
+                    <span class="tag-box <%=colors[course.category.id%5]%>-tag"><%=course.category.name%></span>
+                    <span class="name"><%=course.name%></span>
+                </div>
+            </div>
+            <p class="des-box"><%=course.description%></p>
+        </div>
+        <h3 class="title">开设班级</h3>
+        <% var classes = course.Classes %>
+        <% for (var i=0; i<classes.length; i++) { %>
+        <div class="teacher-class-panel course-panel">
+            <div class="m-line">
+                <div class="name-box">
+                    <span class="name"><%=classes[i].name%></span>
+                </div>
+                <div class="price-box">
+                    <span class="price"><i>￥</i><%=classes[i].tuition%></span>
+                    <span>/<%=classes[i].period%>课时</span>
+                </div>
+            </div>
+            <div class="course-box">
+                <div class="f-b">教师：</div>
+                <div class="s-b"><%=classes[i].teacher.name%></div>
+            </div>
+            <div class="course-box">
+                <div class="f-b">人数：</div>
+                <div class="s-b">27/<%=classes[i].maxStudentsNumber%></div>
+                <div class="t-b notice-box">仅剩3席</div>
+            </div>
+            <div class="course-box justify-box">
+                <div class="f-b">
+                    <div class="course-box">
+                        <div class="f-b">日期：</div>
+                        <div class="s-b"><%= dates[i][0].substr(0,10)%> ~ <%= dates[i][dates[i].length-1].substr(0,10)%></div>
+                    </div>
+                </div>
+                <div class="s-b orange-btn show-detail-btn">具体日期</div>
+            </div>
+            <div class="course-time-box hidden">
+                <h3 class="time-title">具体上课日期:</h3>
+                <ul class="clearfix">
+                    <% for(var j=0; j<dates[i].length; j++){ %><% if(!(j%2)) {%><li><%}%><%= dates[i][j]%> <% if((j%2)) {%></li><%}%> <% } %>
+                </ul>
+            </div>
+            <div class="course-box">
+                <div class="f-b">时间：</div>
+                <div class="s-b"><%=classes[i].beginTime%> ~ <%=classes[i].endTime%></div>
+                <div class="t-b notice-box">与现有课程冲突</div>
+            </div>
+            <div class="course-box">
+                <div class="f-b">地址：</div>
+                <div class="s-b ellipsis flex-b"><%=classes[i].address%></div>
+            </div>
+            <div class="course-bt-btns">
+                <span class="add-btn">加入购课车</span>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <div class="content course-detail-ct">
+        <h3 class="title">教师简介</h3>
+        <div class="teacher-panel">
+            <div class="m-line">
+                <div class="avatar">
+                    <img src="../slice/teacher-avatar.png" alt="avatar">
+                </div>
+                <div class="name ellipsis">安慕斯劳伦斯莱恩</div>
+                <div class="tags">
+                    <span class="tag-box blue-tag">IB</span>
+                    <span class="tag-box green-tag">SAT II</span>
+                </div>
+            </div>
+            <p class="des-box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+        </div>
+    </div>
+    <script src="/js/classes.js"></script>
+<% include footer.ejs %>

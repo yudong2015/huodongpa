@@ -25,9 +25,16 @@ $(function(){
     });
   };
 
-
   // jump
   $(".course-panel").click(function(){
     window.location.href = $(this).data("href");
+  });
+
+  // search
+  $(".search-box").click(function(){
+    $(this).find("input").focus();
+    $(".header").addClass("is-search").find(".cancel-btn").click(function(){
+      $(".header").removeClass("is-search")
+    });
   });
 });

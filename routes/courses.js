@@ -43,12 +43,14 @@ router.get('/', function(req, res, next) {
 
   var data = _.extend(req.query, renderConf);
   
-  Promise.join(Course.findAll(conditions), Category.findAll(), function(courses, categories){
-    var pinyin = utils.sortCoursesByPinyin(courses);
-    data.courses = courses;
+  Promise.join(Course.findAndCountAll(conditions), Category.findAll(), function(courses, categories){
+    var pinyin = utils.sortCoursesByPinyin(courses.rows);
+    data.courses = courses.rows;
     data.categories = categories;
+    data.count = courses.count;
     data.name = name;
     data.pinyin = pinyin;
+    data.search = search;
     res.render('courses', data);
   }).catch(function(error){
     console.log(error);

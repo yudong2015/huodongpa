@@ -10,6 +10,7 @@ router.use('/register', require('./register'));
 router.use('/login', require('./login'));
 router.use('/reset', require('./reset'));
 router.use('/courses', require('./courses'));
+router.use('/classes', require('./classes'));
 
 router.use('/qiniu', require('./qiniu'));
 
