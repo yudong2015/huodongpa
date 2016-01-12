@@ -36,7 +36,7 @@
                     <div class="price-box">
                         <%  var minTuition; 
                             for(var j=0; j<courses[i].Classes.length; j++){
-                                if(j == 0 || courses[i].Classes[j].tuition < minTuition){
+                                if(j == 0 || courses[i].Classes[j].tuition < minTuition) {
                                     minTuition = courses[i].Classes[j].tuition;
                                 }
                             }

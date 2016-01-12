@@ -70,19 +70,27 @@
     </div>
     <div class="content course-detail-ct">
         <h3 class="title">教师简介</h3>
+        <% for (var id in teachers) { %>
         <div class="teacher-panel">
             <div class="m-line">
                 <div class="avatar">
-                    <img src="../slice/teacher-avatar.png" alt="avatar">
+                    <% if(teachers[id].avatar == ''){ %>
+                    <img src="../img/teacher-avatar.png" alt="avatar">
+                    <% } else {%>
+                    <img src="<%=teachers[id].avatar%>" alt="avatar">
+                    <% } %>
                 </div>
-                <div class="name ellipsis">安慕斯劳伦斯莱恩</div>
+                <div class="name ellipsis"><%=teachers[id].name%></div>
                 <div class="tags">
-                    <span class="tag-box blue-tag">IB</span>
-                    <span class="tag-box green-tag">SAT II</span>
+                    <% for (var cat in teachers[id].categories) { %>
+                    <% var colors = ['red', 'purple', 'blue', 'green', 'orange'] %>
+                    <span class="tag-box <%=colors[cat%5]%>-tag"><%=teachers[id].categories[cat].name%></span>
+                    <% } %>
                 </div>
             </div>
-            <p class="des-box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+            <p class="des-box"><%=teachers[id].description%></p>
         </div>
+        <% } %>
     </div>
     <script src="/js/classes.js"></script>
 <% include footer.ejs %>

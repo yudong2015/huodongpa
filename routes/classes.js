@@ -29,7 +29,17 @@ router.get('/', function(req, res, next) {
       { 
         model: Class, 
         as: 'Classes',
-        include: Teacher
+        include: [{
+          model: Teacher,
+          include: [{ 
+            model: Class, 
+            as: 'Classes', 
+            include: [{
+              model: Course, 
+              include: [Category]
+            }] 
+          }]
+        }]
       }]
   };
 
@@ -38,9 +48,17 @@ router.get('/', function(req, res, next) {
     for (var i=0; i<course.Classes.length; i++) {
       dates.push(utils.splitClassDates(course.Classes[i].classDates));
     }
-    console.log(dates);
     data.course = course;
     data.dates = dates;
+    data.teachers = utils.findNoRepeatTeachersOfCourse(course);
+    for( var id in data.teachers) {
+      data.teachers[id].categories = {};
+      for (var i=0; i<data.teachers[id].Classes.length; i++) {
+        if(data.teachers[id].Classes[i].course) {
+          data.teachers[id].categories[data.teachers[id].Classes[i].course.category.id] = data.teachers[id].Classes[i].course.category;
+        }
+      }
+    }
     res.render('classes', data);
   });
 
