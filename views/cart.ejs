@@ -1,0 +1,102 @@
+ <% include header.ejs %>
+    <div class="header-panel">
+        <header class="header">
+            <h1>购课车</h1>
+            <i class="de-avatar"><img src="../img/de-avatar.png" alt="avatar" /></i>
+        </header>
+    </div>
+    <% if(cart) {%>
+    <div class="content course-detail-ct car-ct">
+        <% for (var id in cart) { if(cart[id]) {%>
+        <div class="teacher-class-panel course-panel car-panel">
+            <div class="car-top-info overdue">
+                <div class="check-panel"><i></i></div>
+                <div class="info-panel">
+                    <div class="m-line">
+                        <div class="name-box">
+                            <span class="tag-box <%=pickLabelColor(cart[id].course.category.id)%>-tag"><%=cart[id].course.category.name%></span>
+                            <span class="name"><%=cart[id].course.name%>
+                                <span class="gray-name">(<i></i><%=cart[id].name%>)</span>
+                            </span>
+                        </div>
+                        <div class="price-box">
+                            <span class="price" data-tuition="<%=cart[id].tuition%>"><i>￥</i><%=cart[id].tuition%></span>
+                            <span>／<%=cart[id].period%>课时</span>
+                        </div>
+                    </div>
+                    <div class="course-box">
+                        <div class="f-b">教师：</div>
+                        <div class="s-b"><%=cart[id].teacher.name%></div>
+                    </div>
+                    <div class="course-box">
+                        <div class="f-b">人数：</div>
+                        <div class="s-b">27/<%=cart[id].maxStudentsNumber%></div>
+                        <div class="t-b notice-box">仅剩3席</div>
+                    </div>
+                    <% var dates = splitClassDates(cart[id].classDates) %>
+                    <div class="course-box justify-box">
+                        <div class="f-b">
+                            <div class="course-box">
+                                <div class="f-b">日期：</div>
+                                <div class="s-b"><%=dates[0].substr(0,10)%> ~ <%= dates[dates.length-1].substr(0,10)%></div>
+                            </div>
+                        </div>
+                        <div class="s-b orange-btn show-detail-btn">具体日期</div>
+                    </div>
+                    <div class="course-time-box hidden">
+                        <h3 class="time-title">具体上课日期:</h3>
+                        <ul class="clearfix">
+                            <% for(var j=0; j<dates.length; j++){ %><% if(!(j%2)) {%><li><%}%><%= dates[j]%> <% if((j%2)) {%></li><%}%> <% } %>
+                        </ul>
+                    </div>
+                    <div class="course-box">
+                        <div class="f-b">时间：</div>
+                        <div class="s-b"><%=cart[id].beginTime%> ~ <%=cart[id].endTime%></div>
+                        <div class="t-b notice-box">与现有课程冲突</div>
+                    </div>
+                    <div class="course-box">
+                        <div class="f-b">地址：</div>
+                        <div class="s-b ellipsis flex-b"><%=cart[id].address%></div>
+                    </div>
+                </div>
+            </div>
+            <div class="course-bt-btns car-bt-btns">
+                <span class="del-btn gray-btn">删除</span>
+            </div>
+
+            <div class="overdue-panel"></div>
+        </div>
+        <% }} %>
+        <div class="car-clear-btns">
+            <span class="clear-btn gray-btn">清除过期科目</span>
+        </div>
+    </div>
+    <div class="car-pay-panel">
+        <!-- is-checked -->
+        <div class="check-box">
+            全选
+        </div>
+        <div class="pay-btn">微信支付</div>
+        <div class="total-price">合计<span class="orange-f">￥<span class="price">0</span></span></div>
+    </div>
+    <%} else { %>
+    <div class="car-empty-panel">
+        <div class="car-empty-space"></div>
+        <div class="empty-car-img">
+            <img src="../img/empty-car.png" alt="empty-car">
+        </div>
+        <p>购课车空空如也</p>
+        <p>来挑几件好货吧</p>
+    </div>
+    <% } %>
+    <div class="mask hidden">
+        <div class="choose-dialog">
+            <div class="tips-content">确定删除该课程？确定删除该课程？确定删除该课程？确定删除该课程？</div>
+            <div class="btns-box">
+                <div class="btn ok-btn">确定</div>
+                <div class="btn cancel-btn">取消</div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/cart.js"></script>
+<% include footer.ejs %>

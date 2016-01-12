@@ -30,6 +30,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// template helper functions
+app.locals = require('./lib/helpers');
+
 // session setup
 app.use(session({
   resave: false,

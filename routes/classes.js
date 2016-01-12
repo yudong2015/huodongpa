@@ -46,9 +46,7 @@ router.get('/', function(req, res, next) {
   Course.findById(courseid, conditions).then(function(course){
     var dates = [];
     for (var i=0; i<course.Classes.length; i++) {
-      dates.push(utils.splitClassDates(course.Classes[i].classDates));
       // check if class is in cart
-      console.log(req.session)
       if (req.session.cart) {
         if(req.session.cart[course.Classes[i].id]){
           course.Classes[i].inCart = true;
@@ -56,7 +54,6 @@ router.get('/', function(req, res, next) {
       }
     }
     data.course = course;
-    data.dates = dates;
     data.teachers = utils.findNoRepeatTeachersOfCourse(course);
     for( var id in data.teachers) {
       data.teachers[id].categories = {};
