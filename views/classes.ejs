@@ -63,7 +63,7 @@
                 <div class="s-b ellipsis flex-b"><%=classes[i].address%></div>
             </div>
             <div class="course-bt-btns">
-                <span class="add-btn">加入购课车</span>
+                <span class="add-btn" data-id="<%=classes[i].id%>"><%if(classes[i].inCart){%>已<%}%>加入购课车</span>
             </div>
         </div>
         <% } %>

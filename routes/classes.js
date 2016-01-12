@@ -47,6 +47,13 @@ router.get('/', function(req, res, next) {
     var dates = [];
     for (var i=0; i<course.Classes.length; i++) {
       dates.push(utils.splitClassDates(course.Classes[i].classDates));
+      // check if class is in cart
+      console.log(req.session)
+      if (req.session.cart) {
+        if(req.session.cart[course.Classes[i].id]){
+          course.Classes[i].inCart = true;
+        }
+      }
     }
     data.course = course;
     data.dates = dates;
