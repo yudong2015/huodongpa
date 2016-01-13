@@ -5,6 +5,7 @@ var _ = require('underscore');
 
 var crypto = require('crypto');
 var md5 = crypto.createHash('md5');
+var _ = require('underscore');
 
 var errors = require('../lib/errors');
 var code = require('../lib/code');
@@ -22,7 +23,9 @@ var renderConf = {
 }
 
 router.get('/', function(req, res, next) {
-  res.render('register', renderConf);
+  var data = _.clone(renderConf);
+  data.user = req.session.user;
+  res.render('register', data);
 });
 
 router.post('/', function(req, res, next) {

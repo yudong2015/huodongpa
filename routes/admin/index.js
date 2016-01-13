@@ -21,6 +21,7 @@ router.use(function(req, res, next){
 
 router.use('/courses', require('./courses'));
 router.use('/classes', require('./classes'));
+router.use('/orders', require('./orders'));
 router.use('/teachers', require('./teachers'));
 router.use('/users', require('./users'));
 router.use('/qiniu', require('./qiniu'));

@@ -12,3 +12,46 @@
 <script src="/thirdparty/zepto/zepto.min.js"></script>
 </head>
 <body class="<%=page%>-body">
+  <div class="left-nav-ct hidden">
+        <div class="user-panel">
+            <div class="close-btn"></div>
+            <% if (user) {%>
+            <div class="space-d"></div>
+            <div class="avatar-box">
+                <img src="<% if (user.avartar) {%>user.avartar<%}else{%>../img/de-avatar.png<%}%>" alt="avatar" />
+            </div>
+            <h3 class="user-name"><%=user.name%></h3>
+            <% } else {%>
+            <div class="login-space"></div>
+            <div class="login-panel">
+                <a href="/login" class="login-btn nav-btns">登录</a>
+                <a href="/register" class="register-btn nav-btns">注册</a>
+            </div>
+            <% }%>
+
+        </div>
+        <ul class="nav-list">
+            <li class="active">
+                <div class="nav-title">课程导航</div>
+            </li>
+            <li>
+                <div class="nav-title">教师一览</div>
+            </li>
+            <!--
+            <li>
+                <div class="nav-title">够课车</div>
+                <span class="course-num">8</span>
+            </li>
+            -->
+            <li>
+                <div class="nav-title">我的帐号</div>
+            </li>
+            <li>
+                <div class="nav-title">推荐名片</div>
+            </li>
+        </ul>
+        <div class="bot-box">
+            <div class="phone-p ellipsis"><% if (user) {%><%=user.username%><%}%></div>
+            <div class="wx-p ellipsis"><% if (user) {%><%=user.username%><%}%></div>
+        </div>
+    </div>

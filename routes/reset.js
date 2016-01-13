@@ -21,7 +21,9 @@ var renderConf = {
 }
 
 router.get('/step1', function(req, res, next) {
-  res.render('reset1', renderConf);
+  var data = _.clone(renderConf);
+  data.user = req.session.user;
+  res.render('reset1', data);
 });
 
 router.post('/step1', function(req, res, next) {

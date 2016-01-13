@@ -25,6 +25,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var data = _.extend({form: req.body}, renderConf);
   data.action = 'reform';
+  data.user = req.session.user;
 
   User.find({
     where: {

@@ -23,6 +23,8 @@ router.get('/', function(req, res, next) {
 
   var data = _.clone(renderConf);
 
+  data.user = req.session.user;
+
   var conditions = {
     include: [
       Category, 

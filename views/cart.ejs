@@ -16,7 +16,7 @@
                         <div class="name-box">
                             <span class="tag-box <%=pickLabelColor(cart[id].course.category.id)%>-tag"><%=cart[id].course.category.name%></span>
                             <span class="name"><%=cart[id].course.name%>
-                                <span class="gray-name">(<i></i><%=cart[id].name%>)</span>
+                                <span class="gray-name">(<%if(cart[id].name.indexOf("VIP") >=0){%><i></i><%}%><%=cart[id].name%>)</span>
                             </span>
                         </div>
                         <div class="price-box">

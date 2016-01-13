@@ -25,6 +25,7 @@
     "sequelize": "^3.15.1",
     "serve-favicon": "~2.3.0",
     "underscore": "^1.8.3",
+    "wechat-api": "^1.23.0",
     "yunpian-sms-client": "^1.0.3"
   }
 }
