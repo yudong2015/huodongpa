@@ -11,6 +11,7 @@ router.use('/login', require('./login'));
 router.use('/reset', require('./reset'));
 router.use('/courses', require('./courses'));
 router.use('/classes', require('./classes'));
+router.use('/me', require('./me'));
 router.use('/cart', require('./cart'));
 
 router.use('/qiniu', require('./qiniu'));

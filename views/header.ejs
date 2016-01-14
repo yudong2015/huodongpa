@@ -8,7 +8,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <title><%=title%></title>
-<link rel="stylesheet" href="../css/<%=style%>.css">
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../css/teacher.css">
 <script src="/thirdparty/zepto/zepto.min.js"></script>
 </head>
 <body class="<%=page%>-body">
@@ -31,23 +32,23 @@
 
         </div>
         <ul class="nav-list">
-            <li class="active">
-                <div class="nav-title">课程导航</div>
+            <li <% if (page == 'course'){%>class="active"<%}%> >
+                <div class="nav-title" data-href="/courses">课程导航</div>
             </li>
-            <li>
-                <div class="nav-title">教师一览</div>
+            <li <% if (page == 'teacher'){%>class="active"<%}%>>
+                <div class="nav-title" data-href="/teachers">教师一览</div>
             </li>
             <!--
             <li>
-                <div class="nav-title">够课车</div>
+                <div class="nav-title">购课车</div>
                 <span class="course-num">8</span>
             </li>
             -->
-            <li>
-                <div class="nav-title">我的帐号</div>
+            <li <% if (page == 'me'){%>class="active"<%}%>>
+                <div class="nav-title" data-href="/me">我的帐号</div>
             </li>
-            <li>
-                <div class="nav-title">推荐名片</div>
+            <li <% if (page == 'recommend'){%>class="active"<%}%>>
+                <div class="nav-title" data-href="/recommend">推荐名片</div>
             </li>
         </ul>
         <div class="bot-box">

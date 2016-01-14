@@ -15,7 +15,8 @@ var renderConf = {
   action: 'show',
   title: '登录-学术葩',
   style: 'login',
-  page: 'login'
+  page: 'login',
+  user: null
 }
 
 router.get('/', function(req, res, next) {

@@ -2,7 +2,7 @@
     <div class="header-panel">
         <header class="header">
             <h1><%=course.name%></h1>
-            <i class="de-avatar"><img src="../img/de-avatar.png" alt="avatar" /></i>
+            <i class="de-avatar"><img src="<% if (user && user.avartar) {%>user.avartar<%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></i>
         </header>
     </div>
     <div class="content course-detail-ct">

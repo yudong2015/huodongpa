@@ -30,5 +30,9 @@ $(function(){
   $(".header-panel .de-avatar").click(function(){
     $(".left-nav-ct").removeClass("hidden");
   });
+
+  $(".anchor").click(function(){
+    window.location.href = $(this).data("href");
+  });
   
 });

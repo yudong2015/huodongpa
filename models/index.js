@@ -59,7 +59,7 @@ var User = orm.define('user', {
   address: { type: Sequelize.STRING },
   gatheringQrcode: { type: Sequelize.STRING },
   email: { type: Sequelize.STRING },
-  birthday: { type: Sequelize.DATE },
+  birthday: { type: Sequelize.STRING },
   school: { type: Sequelize.STRING },
   grade: { type: Sequelize.STRING },
   emergencyPhone: { type: Sequelize.STRING }

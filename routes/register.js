@@ -19,7 +19,8 @@ var renderConf = {
   action: 'show',
   title: '注册-学术葩',
   style: 'login',
-  page: 'register'
+  page: 'register',
+  user: null
 }
 
 router.get('/', function(req, res, next) {

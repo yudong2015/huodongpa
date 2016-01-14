@@ -20,6 +20,32 @@ var renderConf = {
   page: 'reset'
 }
 
+router.get('/phone', function(req, res, next) {
+  var data = _.clone(renderConf);
+  data.user = req.session.user;
+  res.render('reset-phone', data);
+});
+
+router.post('/phone', function(req, res, next) {
+  var data = _.extend({form: req.body}, renderConf);
+  data.action = 'reform';
+  data.user = req.session.user;
+  code.validateVerifyCode(req.body.phone, req.body.code, function(err) {
+    if (err) {
+      data.tips = '验证码错误';
+      return res.render('reset-phone', data);
+    } 
+    user.username = req.body.phone;
+    user.save().then(function(user){
+      req.session.user = user;
+      return res.redirect('/me');
+    }).catch(function(error){
+      data.tips = '绑定失败，请重试';
+      return res.render('reset-phone', data);
+    });
+  })
+});
+
 router.get('/step1', function(req, res, next) {
   var data = _.clone(renderConf);
   data.user = req.session.user;
@@ -29,6 +55,7 @@ router.get('/step1', function(req, res, next) {
 router.post('/step1', function(req, res, next) {
   var data = _.extend({form: req.body}, renderConf);
   data.action = 'reform';
+  data.user = null;
   code.validateVerifyCode(req.body.phone, req.body.code, function(err) {
     if (err) {
       data.tips = '验证码错误';
@@ -50,7 +77,10 @@ router.post('/step1', function(req, res, next) {
 
 router.use('/step2', require('../lib/middlewares').userAuth);
 router.get('/step2', function(req, res, next) {
-  res.render('reset2', renderConf);
+  var data = _.clone(renderConf);
+  data.user = req.session.user;
+
+  res.render('reset2', data);
 });
 router.post('/step2', function(req, res, next) {
   var data = _.extend({form: req.body}, renderConf);
