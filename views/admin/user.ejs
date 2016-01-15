@@ -1,0 +1,45 @@
+<% include header.ejs %>
+  <div class="helper-bar">
+    <ol class="breadcrumb">
+      <li><a href="/admin/users">萌宠管理</a></li>
+      <li class="active">新增萌宠</li>
+    </ol>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+    <form class="form-horizontal" method="POST">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">联系电话</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" required name="username" placeholder="请输入">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">萌宠姓名</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" required name="name" placeholder="请输入" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">紧急联系电话</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="emergencyPhone" placeholder="请输入" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">住址</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="address" placeholder="请输入" >
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+    </form>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+<% include footer.ejs %>

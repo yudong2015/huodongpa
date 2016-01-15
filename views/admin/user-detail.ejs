@@ -1,0 +1,64 @@
+<% include header.ejs %>
+  <div class="helper-bar">
+    <ol class="breadcrumb">
+      <li><a href="/admin/users">萌宠管理</a></li>
+      <li class="active"><%=user.name%>（<%=user.username%>）</li>
+    </ol>
+  </div>
+  <div class="col-md-9" style="padding-left: 0">
+    <table class="table table-striped">
+      <tr><th>课程编号</th><th>课程名称</th><th>课程分类</th><th>主人编号</th><th>主人名称</th><th>班级编号</th><th>班级名称</th><th>学费</th><th>购课日期</th></tr>
+      <% for(var i=0; i<orders.length; i++) {%>
+      <tr>
+        <td><a href="/admin/classes?course=<%=orders[i].class.course.id%>"><%=orders[i].class.course.id%></a></td>
+        <td><%=orders[i].class.course.name%></td>
+        <td><%=orders[i].class.course.category.name%></td>
+        <td><a href="/admin/teachers/detail?id=<%=orders[i].class.teacher.id%>"><%=orders[i].class.teacher.id%></a></td>
+        <td><%=orders[i].class.teacher.name%></td>
+        <td><a href="/admin/orders?clas=<%=orders[i].class.id%>"><%=orders[i].class.id%></a></td>
+        <td><%=orders[i].class.name%></td>
+        <td><%=orders[i].tuition%></td>
+        <td><%=formatDate(orders[i].updatedAt)%></td>
+      </tr>
+      <% } %>
+    </table>
+  </div>
+  <div class="col-md-3" style="padding-right: 0">
+    <div class="teacher-desc">
+      <div class="title">主人介绍</div>
+      <div class="info">
+        <h5>头像</h5>
+        <div class="teacher-avatar" style="background: url(<%=user.avatar%>); background-size: cover">
+        </div>
+      </div>
+      <div class="info">
+        <h5>联系电话</h5>
+        <span><%=user.username%></span>
+      </div>
+      <div class="info">
+        <h5>紧急联系电话</h5>
+        <span><%=user.emergencyPhone%></span>
+      </div>
+      <div class="info">
+        <h5>住址</h5>
+        <span><%=user.address%></span>
+      </div>
+      <div class="info">
+        <h5>常用邮箱</h5>
+        <span><%=user.email%></span>
+      </div>
+      <div class="info">
+        <h5>生日</h5>
+        <span><%if(user.birthday){%><%=formatDate(user.birthday)%><%}%></span>
+      </div>
+      <div class="info">
+        <h5>学校</h5>
+        <span><%=user.school%></span>
+      </div>
+      <div class="info">
+        <h5>年级</h5>
+        <span><%=user.grade%></span>
+      </div>
+    </div>
+  </div>
+<% include footer.ejs %>

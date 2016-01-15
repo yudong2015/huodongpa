@@ -8,6 +8,9 @@
       <button type="submit" class="btn btn-primary">查询</button>
       </form>
     </div>
+    <div class="pull-right new">
+      <a type="submit" class="btn btn-success" href="/admin/users/new">新增萌宠</a>
+    </div>
   </div>
   <div>
     <table class="table table-striped">
@@ -16,11 +19,17 @@
       <tr>
         <td><a href="/admin/users/detail?id=<%=users.rows[i].id%>"><%=users.rows[i].username%></a></td>
         <td><%=users.rows[i].name%></td>
-        <td><%=users.rows[i].avatar%></td>
+        <td><a  class="image-popover" data-href="<%=users.rows[i].avatar%>">查看</a></td>
         <td><%=users.rows[i].emergencyPhone%></td>
         <td><%=users.rows[i].address%></td>
         <td>暂无</td>
-        <td><a href="<%=users.rows[i].gatheringQrcode%>"><%=users.rows[i].gatheringQrcode%></a></td>
+        <td>
+          <% if(users.rows[i].gatheringQrcode){%>
+          <a class="image-popover" data-href="<%=users.rows[i].gatheringQrcode%>">查看</a>
+          <% } else { %>
+          <a class="btn btn-success btn-xs">上传</a>
+          <% } %>
+        </td>
       </tr>
       <% } %>
     </table>

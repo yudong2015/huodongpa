@@ -28,7 +28,8 @@ router.get('/', function(req, res, next) {
 
   Order.findAll({
     where: {
-      userId: req.session.user.id
+      userId: req.session.user.id,
+      status: 'paid'
     },
     include: [ 
       {

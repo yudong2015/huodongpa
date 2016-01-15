@@ -19,7 +19,7 @@
             <% if (user) {%>
             <div class="space-d"></div>
             <div class="avatar-box">
-                <img src="<% if (user.avartar) {%>user.avartar<%}else{%>../img/de-avatar.png<%}%>" alt="avatar" />
+                <img src="<% if (user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" />
             </div>
             <h3 class="user-name"><%=user.name%></h3>
             <% } else {%>
@@ -33,10 +33,10 @@
         </div>
         <ul class="nav-list">
             <li <% if (page == 'course'){%>class="active"<%}%> >
-                <div class="nav-title" data-href="/courses">课程导航</div>
+                <div class="nav-title  anchor" data-href="/courses">课程导航</div>
             </li>
             <li <% if (page == 'teacher'){%>class="active"<%}%>>
-                <div class="nav-title" data-href="/teachers">教师一览</div>
+                <div class="nav-title  anchor" data-href="/teachers">教师一览</div>
             </li>
             <!--
             <li>
@@ -45,10 +45,10 @@
             </li>
             -->
             <li <% if (page == 'me'){%>class="active"<%}%>>
-                <div class="nav-title" data-href="/me">我的帐号</div>
+                <div class="nav-title anchor" data-href="/me">我的帐号</div>
             </li>
             <li <% if (page == 'recommend'){%>class="active"<%}%>>
-                <div class="nav-title" data-href="/recommend">推荐名片</div>
+                <div class="nav-title anchor" data-href="/recommend">推荐名片</div>
             </li>
         </ul>
         <div class="bot-box">

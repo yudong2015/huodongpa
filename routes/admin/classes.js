@@ -7,12 +7,14 @@ var Class = require('../../models').Class;
 var Course = require('../../models').Course;
 var Category = require('../../models').Category;
 var Teacher = require('../../models').Teacher;
+var Order = require('../../models').Order;
 
 var lib = require('../../lib');
 
 // classes list
 router.get('/', function(req, res, next) {
   var courseId = req.query.course;
+  var scope = req.query.scope || 'preregister';
 
   var curpage = parseInt(req.query.curpage) || 0;
   var perpage = parseInt(req.query.perpage) || 10;
@@ -20,10 +22,11 @@ router.get('/', function(req, res, next) {
   var showpage = 5;
 
   var conditions = {
-    offset: curpage * perpage,
-    limit: perpage,
     where: {courseId: courseId},
-    include: [Teacher],
+    include: [Teacher, {
+      model: Order,
+      as : 'Orders'
+    }],
     order: [['id', 'DESC']]
   };
 
@@ -39,18 +42,26 @@ router.get('/', function(req, res, next) {
     // no repeat teachers
     course.teachers = lib.findNoRepeatTeachersOfCourse(course);
 
-    return Class.findAndCountAll(conditions).then(function(classes){
+    return Class.findAll(conditions).then(function(classes){
+      var scopedClasses = [];
+      for(var i=0; i<classes.length; i++) {
+        if(lib.getClassStatus(classes[i]) == scope){
+          scopedClasses.push(classes[i]);
+        }
+      }
+
       res.render('admin/classes', {
         nav: 'courses',
         course: course,
-        classes: classes,
+        classes: scopedClasses.slice(curpage * perpage, (curpage+1) * perpage),
         stylesheets: [],
         javascripts: [],
+        scope: scope,
         pagination: {
           showpage : showpage,
           curpage: curpage,
           perpage: perpage,
-          count: classes.count,
+          count: scopedClasses.length,
           query: 'course=' + courseId
         }
       });

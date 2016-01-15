@@ -10,7 +10,21 @@
     <div class="col-md-9" style="padding-left: 0">
       <div class="col-md-9" style="padding-left: 0">
         <ul class="nav nav-tabs">
-          <li role="presentation" class="active"><a href="#">全部</a></li>
+          <li role="presentation" <% if (scope=='preregister'){%>class="active"<%}%>>
+            <a href="?course=<%=course.id%>&scope=preregister">即将报名</a>
+          </li>
+          <li role="presentation" <% if (scope=='register'){%>class="active"<%}%>>
+            <a href="?course=<%=course.id%>&scope=register">正在报名</a>
+          </li>
+          <li role="presentation" <% if (scope=='inclass'){%>class="active"<%}%>>
+            <a href="?course=<%=course.id%>&scope=inclass">正在上课</a>
+          </li>
+          <li role="presentation" <% if (scope=='end'){%>class="active"<%}%>>
+            <a href="?course=<%=course.id%>&scope=end">结束</a>
+          </li>
+          <li role="presentation" <% if (scope=='canceled'){%>class="active"<%}%>>
+            <a href="?course=<%=course.id%>&scope=canceled">取消</a>
+          </li>
         </ul>
       </div>
       <div class="col-md-3 text-right" style="padding-right:0">
@@ -22,24 +36,40 @@
           <th>班级编号</th>
           <th>班级名称</th>
           <th>授课主人</th>
+          <% if (scope == 'preregister'){%>
           <th>报名日期</th>
+          <% } else {%>
+          <th>上课日期</th>
+          <th>上课时间</th>
+          <% } %>
           <th>地点</th>
           <th>学费</th>
-          <th>人数</th>
+          <th><% if (scope != 'preregister'){%>报名<%}%>人数</th>
           <th>操作</th>
         </tr>
-        <% for(var i=0; i<classes.rows.length; i++) {%>
+        <% for(var i=0; i<classes.length; i++) {%>
         <tr>
-          <td><a href="/admin/orders?clas=<%=classes.rows[i].id%>"><%=classes.rows[i].id%></a></td>
-          <td><%=classes.rows[i].name%></td>
-          <td><% if(classes.rows[i].teacher){%><%=classes.rows[i].teacher.name%><%}else{%>无<%}%></td>
-          <td><%=classes.rows[i].registerDate%></td>
-          <td><%=classes.rows[i].address%></td>
-          <td><%=classes.rows[i].tuition%></td>
-          <td><%=classes.rows[i].minStudentsNumber%>~<%=classes.rows[i].maxStudentsNumber%></td>
+          <td><a href="/admin/orders?clas=<%=classes[i].id%>"><%=classes[i].id%></a></td>
+          <td><%=classes[i].name%></td>
+          <td><% if(classes[i].teacher){%><%=classes[i].teacher.name%><%}else{%>无<%}%></td>
+          <% if (scope == 'preregister'){%>
+          <td><%=classes[i].registerDate%></td>
+          <% } else {%>
+          <% var dates = splitClassDates(classes[i].classDates) %>
+          <td><%= dates[0].substr(0,10)%> ~ <%= dates[dates.length-1].substr(0,10)%></td>
+          <td><%=classes[i].beginTime%> ~ <%=classes[i].endTime%></td>
+          <% } %>
+          <td><%=classes[i].address%></td>
+          <td><%=classes[i].tuition%></td>
+          <% if (scope == 'preregister'){%>
+          <td><%=classes[i].minStudentsNumber%>~<%=classes[i].maxStudentsNumber%></td>
+          <% } else {%>
+          <% var currentStudentsNumber = countPaidOrders(classes[i].Orders) %>
+          <td><%=currentStudentsNumber%>/<%=classes[i].maxStudentsNumber%></td>
+          <% } %>
           <td>
-            <a href="/admin/classes/edit?id=<%=classes.rows[i].id%>">编辑</a><br>
-            <a class="text-danger delete-action" data-url="/admin/classes/delete" data-id="<%=classes.rows[i].id%>" href="javacript:void">删除</a>
+            <a href="/admin/classes/edit?id=<%=classes[i].id%>">编辑</a><br>
+            <a class="text-danger delete-action" data-url="/admin/classes/delete" data-id="<%=classes[i].id%>" href="javacript:void">删除</a>
           </td>
         </tr>
         <% } %>
