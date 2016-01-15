@@ -42,3 +42,13 @@ body {
   vertical-align:top; 
 }
 
+.order-cancel {
+  background-color: #337ab7;
+  color: white
+}
+
+.order-recover {
+  background-color: #d9534f; 
+  color: white
+}
+

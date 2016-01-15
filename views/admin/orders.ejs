@@ -1,0 +1,139 @@
+<% include header.ejs %>
+  <div class="helper-bar">
+    <div>
+      <ol class="breadcrumb">
+      <li><a href="/admin/courses">课程管理</a></li>
+      <li><a href="/admin/classes?course=<%=clas.course.id%>"><%=clas.course.name%>(<%=clas.course.id%>)</a></li>
+      <li class="active"><%=clas.name%>(<%=clas.id%>)</li>
+      </ol>
+    </div>
+  </div>
+    <div class="col-md-9" style="padding-left: 0">
+      <div class="col-md-9" style="padding-left: 0">
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="#">萌宠列表</a></li>
+        </ul>
+      </div>
+      <div class="col-md-1 text-right" style="padding-right:0">
+        <a type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal">增加成员</a>
+      </div>
+      <div class="col-md-2 text-right" style="padding-right:0">
+        <a class="btn btn-info" href="#">导出excel</a>
+      </div>
+      <div>
+      <table class="table table-striped">
+        <tr>
+          <th>账号(联系电话)</th>
+          <th>萌宠姓名</th>
+          <th>紧急联系电话</th>
+          <th>住址</th>
+          <th>学费</th>
+          <th>购课日期</th>
+          <th>状态</th>
+        </tr>
+        <% for(var i=0; i<orders.rows.length; i++) {%>
+        <tr>
+          <td><%=orders.rows[i].user.username%></td>
+          <td><%=orders.rows[i].user.name%></td>
+          <td><%=orders.rows[i].user.emergencyPhone%></td>
+          <td><%=orders.rows[i].user.address%></td>
+          <td><%=orders.rows[i].tuition%></td>
+          <td><%=formatDate(orders.rows[i].updatedAt)%></td>
+          <td>
+            <% if(orders.rows[i].status == 'paid'){%>
+              <select class="order-cancel order-action" data-id="<%=orders.rows[i].id%>">
+                <option>已付款</option>
+                <option>点此退课</option>
+              </select>
+            <% } else { %>
+              <select  class="order-recover order-action" data-id="<%=orders.rows[i].id%>">
+                <option>已退课</option>
+                <option>点此恢复</option>
+              </select>
+            <% } %>
+          </td>
+        </tr>
+        <% } %>
+      </table>
+      <% include pagination.ejs %>
+      </div>
+    </div>
+    <div class="col-md-3" style="padding-right: 0">
+      <div class="course-desc">
+        <div class="title">班级简介</div>
+        <div class="info">
+          <h5>学费</h5>
+          <span>￥<%=clas.tuition%>/<%=clas.period%>课时</span>
+        </div>
+        <div class="info">
+          <h5>人数</h5>
+          <span><%=countPaidOrders(clas.Orders)%>/<%=clas.maxStudentsNumber%></span>
+        </div>
+        <div class="info">
+          <h5>日期</h5>
+          <% var dates = splitClassDates(clas.classDates) %>
+          <span><%= dates[0].substr(0,10)%> ~ <%= dates[dates.length-1].substr(0,10)%></span>
+        </div>
+        <div class="info">
+          <h5>时间</h5>
+          <span><%=clas.beginTime%> ~ <%=clas.endTime%></span>
+        </div>
+        <div class="info">
+          <h5>地点</h5>
+          <span><%=clas.address%></span>
+        </div>
+        <div class="info">
+          <h5>授课主人</h5>
+          <div>
+            <div style="margin-bottom: 5px;">
+              <div class="teacher-avatar" style="background: url(<%=clas.teacher.avatar%>); background-size: cover; display: inline-block"></div>
+              <div class="teacher-name" style="display: inline-block"><%=clas.teacher.name%></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">新成员</h4>
+      </div>
+      <div class="modal-body">
+        <form id="add-order-form" class="form-horizontal" method="POST" action="orders/add"> 
+        <div class="form-group">
+            <label class="col-xs-2 control-label">在</label>
+            <div class="col-xs-10">
+            <input class="form-control" value="<%=clas.name%>(<%=clas.id%>)" readonly>
+            <input type="hidden" value="<%=clas.id%>" name="classId">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">新增成员</label>
+            <div class="col-xs-10" class="col-xs-8">
+              <select name="userId" class="form-control">
+                <% for (var i=0; i<users.length; i++){%>
+                  <option value="<%=users[i].id%>"><%=users[i].name%>(<%=users[i].username%>)</option>
+                <% } %>
+              </select>
+            </div>
+        </div>
+        <div class="form-group well">
+            <label class="col-xs-8 control-label">若萌宠尚未注册，点此新增</label>
+            <div class="col-xs-4" class="col-xs-8">
+              <a class="btn btn-success" href="/admin/users/new">新增萌宠</a>
+            </div>
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onclick="javacript:$('#add-order-form').submit();">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% include footer.ejs %>

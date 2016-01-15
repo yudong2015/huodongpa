@@ -1,0 +1,156 @@
+<% include header.ejs %>
+    <div class="header-panel">
+        <header class="header">
+            <h1>听课证</h1>
+            <i class="de-avatar"><img src="<%if(user.avatar){%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></i>
+        </header>
+    </div>
+    <div class="card-top-panel">
+        <div class="card-fixed-box">
+            <div class="user-center-box">
+                <div class="left-box">
+                    <div class="avatar-pic">
+                        <img src="<%if(user.avatar){%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar">
+                    </div>
+                    <div class="user-info">
+                        <h3 class="ellipsis"><%=user.name%></h3>
+                        <p class="ellipsis">手机号：<%=user.username%></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-nav">
+                <ul class="card-nav-list">
+                    <li class=" anchor <%if(scope == 'register'){%>active<%}%>" data-href="?scope=register">即将开课</li>
+                    <li class=" anchor <%if(scope == 'inclass'){%>active<%}%>" data-href="?scope=inclass">正在上课</li>
+                    <li class=" anchor <%if(scope == 'end'){%>active<%}%>" data-href="?scope=end">课程结束</li>
+                    <li class=" anchor <%if(scope == 'canceled'){%>active<%}%>" data-href="?scope=canceled">课程取消</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content course-detail-ct card-ct">
+        <% for(var i=0; i<orders.length; i++){%>
+        <% var clas = orders[i].class %>
+        <% if(getClassStatus(clas) == scope){ %>
+        <div class="teacher-class-panel course-panel">
+            <div class="m-line">
+                <div class="name-box">
+                    <span class="tag-box <%=pickLabelColor(clas.course.category.id)%>-tag">AP</span>
+                    <span class="name"><%= clas.name%><span class="gray-name">(<%if(clas.name.indexOf('VIP')>=0){%><i></i><%}%><%=clas.name%>)</span></span>
+                </div>
+                <div class="price-box">
+                    <span class="price"><i>￥</i><%=orders[i].tuition%></span>
+                    <span>／<%=clas.period%>课时</span>
+                </div>
+            </div>
+            <div class="course-box">
+                <div class="f-b">教师：</div>
+                <div class="s-b"><%=clas.teacher.name%></div>
+            </div>
+            <div class="course-box">
+                <div class="f-b">人数：</div>
+                <% var currentStudentsNumber = countPaidOrders(orders[i].class.Orders) %>
+                <div class="s-b"><%=currentStudentsNumber%>/<%=clas.maxStudentsNumber%></div>
+                <% var availableStudentsNumber = clas.maxStudentsNumber - currentStudentsNumber %>
+                <% if(availableStudentsNumber <=5 && availableStudentsNumber > 0) { %>
+                <div class="t-b notice-box">仅剩<%=availableStudentsNumber%>席</div>
+                <% } else if (availableStudentsNumber == 0) {%>
+                <div class="t-b notice-box">人数已满</div>
+                <% } %>
+            </div>
+            <div class="course-box justify-box">
+                <% var dates = splitClassDates(clas.classDates) %>
+                <div class="f-b">
+                    <div class="course-box">
+                        <div class="f-b">日期：</div>
+                        <div class="s-b"><%= dates[0].substr(0,10)%> ~ <%= dates[dates.length-1].substr(0,10)%></div>
+                    </div>
+                </div>
+                <div class="s-b orange-btn show-detail-btn">具体日期</div>
+            </div>
+            <div class="course-time-box hidden">
+                <h3 class="time-title">具体上课日期:</h3>
+                <ul class="clearfix">
+                    <% for(var j=0; j<dates.length; j++){ %><% if(!(j%2)) {%><li><%}%><%= dates[j]%> <% if((j%2)) {%></li><%}%> <% } %>
+                </ul>
+            </div>
+            <div class="course-box">
+                <div class="f-b">时间：</div>
+                <div class="s-b"><%=clas.beginTime%> ~ <%=clas.endTime%></div>
+            </div>
+            <div class="course-box">
+                <div class="f-b">地址：</div>
+                <div class="s-b ellipsis flex-b"><%=clas.address%></div>
+            </div>
+            <!--
+            <div class="course-bt-btns card-bt-btns">
+                <div class="card-bt-tips">退课截至日期：<%=dates[0]%></div>
+                <div class="card-right-btns">
+                    <span class="gray-btn">退课</span>
+                </div>
+            </div>
+            -->
+        </div>
+        <% } %>
+        <% } %>
+        <!--
+        <div class="teacher-class-panel course-panel">
+            <div class="m-line">
+                <div class="name-box">
+                    <span class="tag-box purple-tag">Seminar</span>
+                    <span class="name">心理学<span class="gray-name">(周五提高班)</span></span>
+                </div>
+                <div class="price-box">
+                    <span class="price"><i>￥</i>2800</span>
+                    <span>起／12课时</span>
+                </div>
+            </div>
+            <div class="cancel-panel">非常抱歉，由于报课人数不足5人，该课程已被取消。建议选 择其它合适课程，或自组VIP班级</div>
+            <div class="course-box">
+                <div class="f-b">教师：</div>
+                <div class="s-b">邓超</div>
+            </div>
+            <div class="course-box">
+                <div class="f-b">人数：</div>
+                <div class="s-b">27/30</div>
+                <div class="t-b notice-box">人数已满</div>
+            </div>
+            <div class="course-box justify-box">
+                <div class="f-b">
+                    <div class="course-box">
+                        <div class="f-b">日期：</div>
+                        <div class="s-b">2015.11.12 ~ 2016.1.12</div>
+                    </div>
+                </div>
+                <div class="s-b orange-btn">具体日期</div>
+            </div>
+            <div class="course-time-box hidden">
+                <h3 class="time-title">具体上课日期:</h3>
+                <ul class="clearfix">
+                    <li>2015.12.02（周五） 2015.12.09（周五）</li>
+                    <li>2015.12.16（周五） 2015.12.23（周五）</li>
+                    <li>2015.12.31（周五） 2016.01.07（周五）</li>
+                </ul>
+            </div>
+            <div class="course-box">
+                <div class="f-b">时间：</div>
+                <div class="s-b">16:30 ~ 18:30</div>
+            </div>
+            <div class="course-box">
+                <div class="f-b">地址：</div>
+                <div class="s-b ellipsis flex-b">中关村新东方总部南校区503教室</div>
+            </div>
+            <div class="course-bt-btns card-bt-btns">
+                <div class="card-right-btns">
+                    <span class="gray-btn">自组VIP班级</span>
+                    <span class="gray-btn">其他合适课程</span>
+                </div>
+            </div>
+        </div>
+        <div class="bot-box">
+            <div class="phone-p ellipsis">180XXXX5678</div>
+            <div class="wx-p ellipsis">180XXXX5678</div>
+        </div>
+    </div>
+    -->
+<% include footer.ejs %>

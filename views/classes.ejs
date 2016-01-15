@@ -9,8 +9,7 @@
         <div class="teacher-class-panel">
             <div class="m-line">
                 <div class="name-box">
-                    <% var colors = ['red', 'purple', 'blue', 'green', 'orange'] %>
-                    <span class="tag-box <%=colors[course.category.id%5]%>-tag"><%=course.category.name%></span>
+                    <span class="tag-box <%=pickLabelColor(course.category.id)%>-tag"><%=course.category.name%></span>
                     <span class="name"><%=course.name%></span>
                 </div>
             </div>
@@ -19,6 +18,7 @@
         <h3 class="title">开设班级</h3>
         <% var classes = course.Classes %>
         <% for (var i=0; i<classes.length; i++) { %>
+        <% if(getClassStatus(classes[i]) == 'register'){ %>
         <div class="teacher-class-panel course-panel">
             <div class="m-line">
                 <div class="name-box">
@@ -35,8 +35,14 @@
             </div>
             <div class="course-box">
                 <div class="f-b">人数：</div>
-                <div class="s-b">27/<%=classes[i].maxStudentsNumber%></div>
-                <div class="t-b notice-box">仅剩3席</div>
+                <% var currentStudentsNumber = countPaidOrders(classes[i].Orders) %>
+                <div class="s-b"><%=currentStudentsNumber%>/<%=classes[i].maxStudentsNumber%></div>
+                <% var availableStudentsNumber = classes[i].maxStudentsNumber - currentStudentsNumber %>
+                <% if(availableStudentsNumber <=5 && availableStudentsNumber > 0) { %>
+                <div class="t-b notice-box">仅剩<%=availableStudentsNumber%>席</div>
+                <% } else if (availableStudentsNumber == 0) {%>
+                <div class="t-b notice-box">人数已满</div>
+                <% } %>
             </div>
             <% var dates = splitClassDates(classes[i].classDates) %>
             <div class="course-box justify-box">
@@ -57,7 +63,9 @@
             <div class="course-box">
                 <div class="f-b">时间：</div>
                 <div class="s-b"><%=classes[i].beginTime%> ~ <%=classes[i].endTime%></div>
+                <!--
                 <div class="t-b notice-box">与现有课程冲突</div>
+                -->
             </div>
             <div class="course-box">
                 <div class="f-b">地址：</div>
@@ -67,6 +75,7 @@
                 <span class="add-btn" data-id="<%=classes[i].id%>">加入购课车</span>
             </div>
         </div>
+        <% } %>
         <% } %>
     </div>
     <div class="content course-detail-ct">

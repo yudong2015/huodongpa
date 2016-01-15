@@ -2,6 +2,8 @@ var Sequelize = require("sequelize");
 
 var orm = require("./orm");
 
+var util = require('../lib');
+
 var Category = orm.define('category', {
   id: { type:Sequelize.INTEGER, primaryKey: true, autoIncrement: true, unique: true },
   name: { type:Sequelize.STRING, allowNull: false },
@@ -69,8 +71,8 @@ var User = orm.define('user', {
 
 var Order = orm.define('order', {
   id: { type:Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
-  classId: { type:Sequelize.INTEGER, references: {model: Class, key: 'id'} },
-  UserId: { type: Sequelize.INTEGER, references: {model: User, key: 'id'} },
+  classId: { type:Sequelize.INTEGER, references: {model: Class, key: 'id'}, unique: 'classuser' },
+  userId: { type: Sequelize.INTEGER, references: {model: User, key: 'id'}, unique: 'classuser' },
   tuition: { type: Sequelize.INTEGER },
   status: { type: Sequelize.ENUM('unpaid', 'paid', 'canceled', 'refunded') }
 }, {
@@ -84,6 +86,9 @@ Class.belongsTo(Teacher, {onDelete: 'NO ACTION'});
 Class.belongsTo(Course, {onDelete: 'NO ACTION'});
 Course.belongsTo(Category, {onDelete: 'NO ACTION'});
 Course.hasMany(Class, {as: 'Classes'});
+Order.belongsTo(Class, {onDelete: 'NO ACTION'});
+Order.belongsTo(User, {onDelete: 'NO ACTION'});
+Class.hasMany(Order, {as: 'Orders'});
 
 exports.Category = Category;
 exports.Class= Class;

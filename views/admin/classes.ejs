@@ -30,7 +30,7 @@
         </tr>
         <% for(var i=0; i<classes.rows.length; i++) {%>
         <tr>
-          <td><%=classes.rows[i].id%></td>
+          <td><a href="/admin/orders?clas=<%=classes.rows[i].id%>"><%=classes.rows[i].id%></a></td>
           <td><%=classes.rows[i].name%></td>
           <td><% if(classes.rows[i].teacher){%><%=classes.rows[i].teacher.name%><%}else{%>无<%}%></td>
           <td><%=classes.rows[i].registerDate%></td>
