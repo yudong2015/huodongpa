@@ -370,7 +370,7 @@ header, nav, section, article, footer, figure, figcaption {
 .tag-box {
   display: inline-block;
   height: 14px;
-  line-height: 14px;
+  line-height: 16px;
   padding: 0 4px;
   font-size: 10px;
   border-width: 1px;
@@ -465,6 +465,11 @@ header, nav, section, article, footer, figure, figcaption {
   text-overflow: ellipsis;
 }
 
+.teacher-class-panel .name-box .tag-box, .course-panel .name-box .tag-box {
+  position: relative;
+  top: -1px;
+}
+
 .teacher-class-panel .price-box, .course-panel .price-box {
   display: -webkit-box;
   display: -webkit-flex;
@@ -483,6 +488,8 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .teacher-class-panel .price-box .price, .course-panel .price-box .price {
+  position: relative;
+  top: 2px;
   padding-right: 2px;
   font-size: 20px;
   color: #f6b01d;
@@ -683,7 +690,7 @@ header, nav, section, article, footer, figure, figcaption {
 
 .course-detail-ct .notice-box {
   height: 16px;
-  line-height: 16px;
+  line-height: 17px;
   margin-left: 10px;
   padding: 0 8px;
   -webkit-border-radius: 4px;
@@ -694,13 +701,13 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .course-detail-ct .orange-btn {
-  height: 23px;
-  line-height: 23px;
+  height: 24px;
+  line-height: 24px;
   padding: 0 8px;
   border: 1px solid #f6b01d;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 12px;
   color: #f6b01d;
 }
 
@@ -793,6 +800,7 @@ header, nav, section, article, footer, figure, figcaption {
 .left-nav-ct {
   position: fixed;
   left: 0;
+  /* left: -102%; */
   top: 0;
   width: 100%;
   height: 100%;
@@ -968,28 +976,12 @@ header, nav, section, article, footer, figure, figcaption {
   margin: 0 8px;
   width: 88px;
   height: 37px;
-  line-height: 37px;
+  line-height: 39px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   text-align: center;
   background-color: #302049;
   color: #fff;
-}
-
-@media only screen and (max-width: 360px) {
-  .left-nav-ct .bot-box {
-    left: 50px;
-    right: 50px;
-  }
-}
-
-@media only screen and (max-height: 520px) {
-  .left-nav-ct .user-name {
-    margin: 10px auto 0;
-  }
-  .left-nav-ct .bot-box {
-    bottom: 36px;
-  }
 }
 
 .car-ct {
@@ -1040,6 +1032,11 @@ header, nav, section, article, footer, figure, figcaption {
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 0;
   flex: 1 1 0;
+}
+
+.car-ct .name-box .tag-box {
+  position: relative;
+  top: -1px;
 }
 
 .car-ct .car-bt-btns {
@@ -1466,6 +1463,199 @@ header, nav, section, article, footer, figure, figcaption {
   left: 0;
   top: 1px;background-repeat: no-repeat;}
 
+.share-page, .share-body, .share-panel {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.share-panel {
+  background: url(../img/nav-bg.png) no-repeat scroll 0 0 #546493;
+  background-size: cover;
+}
+
+.share-panel .share-title {
+  position: relative;
+  line-height: 30px;
+  margin: 23px 0 36px;
+  text-align: center;
+}
+
+.share-panel .share-title h1 {
+  position: relative;
+  display: inline-block;
+  font-size: 17px;
+  color: #fff;
+}
+
+.share-panel .share-title h1:before {
+  position: absolute;
+  content: '';
+  top: 13px;
+  left: -37px;
+  width: 28px;
+  height: 1px;
+  background-color: #fff;
+}
+
+.share-panel .share-title h1:after {
+  position: absolute;
+  content: '';
+  top: 13px;
+  right: -37px;
+  width: 28px;
+  height: 1px;
+  background-color: #fff;
+}
+
+.share-panel .avatar-box {
+  position: absolute;
+  right: 15px;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  border: 1px solid #392657;
+  background-color: #392657;
+  overflow: hidden;
+}
+
+.share-panel .avatar-box img {
+  display: block;
+  width: 100%;
+}
+
+.share-panel .share-content {
+  width: 268px;
+  margin: 0 auto;
+  line-height: 1.5;
+  font-size: 14px;
+  color: #fff;
+}
+
+.share-panel .share-code {
+  width: 249px;
+  margin: 40px auto 0;
+  padding: 35px 0 20px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.share-panel .share-code p {
+  margin: 20px 0 10px;
+  line-height: 1;
+  font-size: 13px;
+  color: #8a919b;
+}
+
+.share-panel .share-code h1 {
+  line-height: 1;
+  font-size: 17px;
+  color: #524070;
+}
+
+.share-panel .code-img {
+  width: 159px;
+  height: 159px;
+  margin: 0 auto;
+}
+
+.share-panel .code-img img {
+  display: block;
+  width: 100%;
+}
+
+.share-panel .bot-box {
+  position: absolute;
+  left: 70px;
+  right: 70px;
+  bottom: 53px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  line-height: 1;
+  color: #88a8c1;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.share-panel .bot-box .phone-p {
+  position: relative;
+  float: left;
+  padding-left: 20px;
+  max-width: 35%;
+}
+
+.share-panel .bot-box .phone-p:before {position: absolute;
+  content: '';
+  width: 10px;
+  height: 11px;
+  left: 5px;
+  top: 0;background-repeat: no-repeat;}
+
+.share-panel .bot-box .wx-p {
+  position: relative;
+  float: right;
+  padding-left: 18px;
+  padding-right: 5px;
+  max-width: 35%;
+}
+
+.share-panel .bot-box .wx-p:before {position: absolute;
+  content: '';
+  width: 13px;
+  height: 11px;
+  left: 0;
+  top: 1px;background-repeat: no-repeat;}
+
+@media only screen and (max-width: 360px) {
+  .left-nav-ct .bot-box {
+    left: 40px;
+    right: 40px;
+  }
+  .share-panel .share-title {
+    margin: 23px 0 26px;
+  }
+  .share-panel .share-code {
+    margin: 30px auto 0;
+  }
+  .share-panel .bot-box {
+    bottom: 33px;
+    left: 40px;
+    right: 40px;
+  }
+}
+
+@media only screen and (min-width: 400px) {
+  .share-panel .bot-box {
+    left: 90px;
+    right: 90px;
+  }
+}
+
+@media only screen and (max-height: 520px) {
+  .left-nav-ct .user-name {
+    margin: 10px auto 0;
+  }
+  .left-nav-ct .bot-box {
+    bottom: 36px;
+  }
+}
+
+@media only screen and (min-height: 640px) {
+  .share-panel .share-title {
+    margin: 33px 0 46px;
+  }
+  .share-panel .share-code {
+    margin: 50px auto 0;
+  }
+  .share-panel .bot-box {
+    bottom: 63px;
+  }
+}
+
 .header .search-explain:before{
     background-position:-54px -27px;
 }
@@ -1496,7 +1686,13 @@ header, nav, section, article, footer, figure, figcaption {
 .left-nav-ct .bot-box .phone-p:before{
     background-position:-77px -78px;
 }
+.share-panel .bot-box .phone-p:before{
+    background-position:-77px -78px;
+}
 .left-nav-ct .bot-box .wx-p:before{
+    background-position:-81px -41px;
+}
+.share-panel .bot-box .wx-p:before{
     background-position:-81px -41px;
 }
 .car-ct .car-top-info .check-panel i:after{
@@ -1526,7 +1722,7 @@ header, nav, section, article, footer, figure, figcaption {
 .card-ct .bot-box .wx-p:before{
     background-position:-38px -78px;
 }
-.header .search-explain:before,.header.is-search .search-box:before,.left-nav-ct .close-btn:after,.left-nav-ct .nav-list li:after,.left-nav-ct .nav-list li:nth-child(2) .nav-title:before,.left-nav-ct .nav-list li:nth-child(3) .nav-title:before,.left-nav-ct .nav-list li:nth-child(4) .nav-title:before,.left-nav-ct .nav-list li:nth-child(5) .nav-title:before,.left-nav-ct .nav-list .nav-title:before,.left-nav-ct .bot-box .phone-p:before,.left-nav-ct .bot-box .wx-p:before,.car-ct .car-top-info .check-panel i:after,.car-pay-panel .check-box:before,.car-ct .car-top-info .check-panel i.is-checked:after,.car-pay-panel .check-box.is-checked:before,.gray-name i,.user-ct .user-list .next-l:after,.user-center-box .right-box:after,.card-ct .bot-box .phone-p:before,.card-ct .bot-box .wx-p:before{
+.header .search-explain:before,.header.is-search .search-box:before,.left-nav-ct .close-btn:after,.left-nav-ct .nav-list li:after,.left-nav-ct .nav-list li:nth-child(2) .nav-title:before,.left-nav-ct .nav-list li:nth-child(3) .nav-title:before,.left-nav-ct .nav-list li:nth-child(4) .nav-title:before,.left-nav-ct .nav-list li:nth-child(5) .nav-title:before,.left-nav-ct .nav-list .nav-title:before,.left-nav-ct .bot-box .phone-p:before,.share-panel .bot-box .phone-p:before,.left-nav-ct .bot-box .wx-p:before,.share-panel .bot-box .wx-p:before,.car-ct .car-top-info .check-panel i:after,.car-pay-panel .check-box:before,.car-ct .car-top-info .check-panel i.is-checked:after,.car-pay-panel .check-box.is-checked:before,.gray-name i,.user-ct .user-list .next-l:after,.user-center-box .right-box:after,.card-ct .bot-box .phone-p:before,.card-ct .bot-box .wx-p:before{
     background-size: 103px 92px;
     background-image: url(../img/teacher.png)
 }
