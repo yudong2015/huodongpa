@@ -46,7 +46,7 @@ router.get('/', function(req, res, next) {
   data.user = req.session.user;
   
   Promise.join(Course.findAndCountAll(conditions), Category.findAll(), function(courses, categories){
-    var pinyin = utils.sortCoursesByPinyin(courses.rows);
+    var pinyin = utils.sortNameByPinyin(courses.rows);
     data.courses = courses.rows;
     data.categories = categories;
     data.count = courses.count;

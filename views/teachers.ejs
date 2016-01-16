@@ -1,0 +1,63 @@
+<% include header.ejs %>    
+    <div class="header-panel">
+        <header class="header">
+            <div class="filter-box"><%=name%></div>
+            <div class="search-box">
+                <div class="search-explain">请输入教师名字</div>
+                <form id="search-form">
+                <input type="text" name="search" >
+                </form>
+            </div>
+            <i class="de-avatar"><img src="<% if (user && user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></i>
+            <div class="cancel-btn">取消</div>
+        </header>
+    </div>
+    <% if (search != '') { %>
+    <div class="content teachers-ct search-num-ct">
+        关键词“<%=search%>”共搜到<%=count%>个老师
+    </div>
+    <% } %>
+    <div class="content teachers-ct">
+        <div>
+            <% var group = 'A' %>
+            <% for(var i=0; i<teachers.length; i++){ %>
+            <% var categoriesMap = findCategoriesOfTeacher(teachers[i]) %>
+            <% if (!category ||  categoriesMap[category]){ %>
+            <% if(pinyin[i][0] != group){ group = pinyin[i][0] %>
+            <% if (search == '') { %>
+            <div class="sort-name"><%=group%></div>
+            <% } %>
+            <% } %>
+            <div class="teacher-panel">
+                <div class="m-line">
+                    <div class="avatar">
+                        <img src="<% if(teachers[i].avatar){%><%=teachers[i].avatar%><%}else{%>../img/teacher-avatar.png<%}%>" alt="avatar">
+                    </div>
+                    <div class="name ellipsis"><%=teachers[i].name%></div>
+                    <div class="tags">
+                        <% for (var id in categoriesMap){ %>
+                        <span class="tag-box <%=pickLabelColor(id)%>-tag"><%=categoriesMap[id].name%></span>
+                        <% } %>
+                    </div>
+                </div>
+                <p class="des-box"><%=teachers[i].description%></p>
+            </div>
+            <% } %>
+            <% } %>
+        </div>
+    </div>
+    <div class="mask hidden"></div>
+    <div class="teacher-select-panel hidden">
+        <form id="category-form">
+        <input type="hidden" name="category" id="category-id">
+        <input type="hidden" name="name" id="category-name">
+        <ul id="category-filter">
+            <li data-id="">全部老师</li>
+            <% for (var i=0; i<categories.length; i++){ %>
+            <li data-id="<%=categories[i].id%>"><%=categories[i].name%></li>
+            <% } %>
+        </ul>
+        </form>
+    </div>
+    <script src="/js/teachers.js"></script>
+<% include footer.ejs %> 

@@ -8,7 +8,7 @@
             <input type="search" name="search">
             </form>
         </div>
-        <i class="de-avatar"><img src="<% if (user && user.avartar) {%>user.avartar<%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></i>
+        <i class="de-avatar"><img src="<% if (user && user.avatar) {%>user.avatar<%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></i>
         <div class="cancel-btn">取消</div>
     </header>
     </div>
@@ -29,8 +29,7 @@
             <div class="teacher-panel course-panel" data-href="/classes?course=<%=courses[i].id%>">
                 <div class="m-line">
                     <div class="name-box">
-                        <% var colors = ['red', 'purple', 'blue', 'green', 'orange'] %>
-                        <span class="tag-box <%=colors[courses[i].category.id%5]%>-tag"><%=courses[i].category.name%></span>
+                        <span class="tag-box <%=pickTagColor(courses[i].category.id)%>-tag"><%=courses[i].category.name%></span>
                         <span class="name"><%=courses[i].name%></span>
                     </div>
                     <div class="price-box">
