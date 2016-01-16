@@ -1,0 +1,52 @@
+<% include header.ejs %>
+    <div class="header-panel">
+        <header class="header">
+            <h1><%=teacher.name%> 老师</h1>
+            <div class="de-avatar"><img src="<% if (user && user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>
+        </header>
+    </div>
+    <div class="content teacher-detail-ct">
+        <h3 class="title">教师简介</h3>
+        <div class="teacher-panel">
+            <div class="m-line">
+                <div class="avatar">
+                    <img src="<% if (teacher && teacher.avatar) {%><%=teacher.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" />
+                </div>
+                <div class="name ellipsis"><%=teacher.name%></div>
+                <div class="tags">
+                    <% var categories = findCategoriesOfTeacher(teacher) %>
+                    <% for (var id in categories){%>
+                    <span class="tag-box <%=pickLabelColor(id)%>-tag"><%=categories[id].name%></span>
+                    <% } %>
+                </div>
+            </div>
+            <p class="des-box"><%=teacher.description%></p>
+        </div>
+        <h3 class="title">所授课程</h3>
+        <% var courses = findCoursesOfTeacher(teacher) %>
+        <% for (var cid in courses){%>
+        <div class="teacher-class-panel anchor" data-href="/classes?course=<%=courses[cid].id%>">
+            <div class="m-line">
+                <div class="name-box">
+                    <span class="tag-box <%=pickLabelColor(courses[cid].category.id)%>-tag"><%=courses[cid].category.name%></span>
+                    <span class="name"><%=courses[cid].name%></span>
+                </div>
+                <div class="price-box">
+                    <%  var minTuition; 
+                            for(var j=0; j<courses[cid].Classes.length; j++){
+                                if(j == 0 || courses[cid].Classes[j].tuition < minTuition) {
+                                    minTuition = courses[cid].Classes[j].tuition;
+                                }
+                            }
+                    %>
+                    <% if (minTuition){ %>
+                    <span class="price"><i>￥</i><%=minTuition%></span>
+                    <span>起</span>
+                    <% } %>
+                </div>
+            </div>
+            <p class="des-box"><%=courses[cid].description%></p>
+        </div>
+        <% } %>
+    </div>
+<% include footer.ejs %>

@@ -8,7 +8,7 @@
                 <input type="text" name="search" >
                 </form>
             </div>
-            <i class="de-avatar"><img src="<% if (user && user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></i>
+            <div class="de-avatar"><img src="<% if (user && user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>
             <div class="cancel-btn">取消</div>
         </header>
     </div>
@@ -28,7 +28,7 @@
             <div class="sort-name"><%=group%></div>
             <% } %>
             <% } %>
-            <div class="teacher-panel">
+            <div class="teacher-panel anchor" data-href="/teachers/detail?id=<%=teachers[i].id%>">
                 <div class="m-line">
                     <div class="avatar">
                         <img src="<% if(teachers[i].avatar){%><%=teachers[i].avatar%><%}else{%>../img/teacher-avatar.png<%}%>" alt="avatar">

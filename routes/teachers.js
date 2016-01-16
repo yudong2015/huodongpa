@@ -64,4 +64,35 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/detail', function(req, res, next) {
+  var data = _.extend(req.query, renderConf);
+  data.user = req.session.user;
+
+  Teacher
+    .findById(req.query.id, {
+      include: {
+        model: Class,
+        as: "Classes",
+        include : {
+          model: Course,
+          include: [
+            Category,
+            {
+              model: Class,
+              as : 'Classes'
+            }
+          ]
+        }
+      }
+    })
+    .then(function(teacher){
+      data.teacher = teacher;
+      res.render('teacher', data);
+    })
+    .catch(function(err) {
+      console.log(error);
+      next(error);
+    });
+});
+
 module.exports = router;
