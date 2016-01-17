@@ -47,7 +47,6 @@ router.get('/', function(req, res, next) {
       ]
     }]
   }).then(function(orders) {
-    console.log(JSON.stringify(orders));
     data.orders = orders;
     res.render('cards', data);
   }).catch(function(err){

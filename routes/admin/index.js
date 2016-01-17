@@ -24,6 +24,7 @@ router.use('/classes', require('./classes'));
 router.use('/orders', require('./orders'));
 router.use('/teachers', require('./teachers'));
 router.use('/users', require('./users'));
+router.use('/profit', require('./profit'));
 router.use('/qiniu', require('./qiniu'));
 
 // default admin index, redirect to courses.

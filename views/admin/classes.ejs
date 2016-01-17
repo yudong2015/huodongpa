@@ -1,10 +1,35 @@
 <% include header.ejs %>
+  <div id="course-id" style="display:hidden"><%= course.id%></div>
   <div class="helper-bar">
-    <div>
-      <ol class="breadcrumb">
+    <div class = "col-md-6" style="padding-left: 0;">
+      <ol class="breadcrumb" style="background-color: white">
       <li><a href="/admin/courses">课程管理</a></li>
       <li class="active"><%=course.name%>(<%=course.id%>)</li>
       </ol>
+    </div>
+    <div class="pull-right">
+      <form class="form-inline">
+      <% var thisyear = (new Date()).getFullYear() %>
+      <select class="profit-select form-control profit-year">
+        <option value="<%=thisyear%>"><%=thisyear%></option>
+        <option value="<%=thisyear-1%>"><%=thisyear-1%></option>
+        <option value="<%=thisyear-2%>"><%=thisyear-2%></option>
+      </select>
+      <span>季度</span>
+      <select class="profit-select form-control  profit-quarter">
+        <option value="65535">全部</option>
+        <option value="0">第一季度</option>
+        <option value="1">第二季度</option>
+        <option value="2">第三季度</option>
+        <option value="3">第四季度</option>
+      </select>
+      <span>季度</span>
+      <span>科目盈利</span>
+      <strong>
+      ￥
+      <span class="profit-sum">11</span>
+      </strong>
+      </form>
     </div>
   </div>
     <div class="col-md-9" style="padding-left: 0">

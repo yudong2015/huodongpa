@@ -55,7 +55,7 @@ router.get('/', function(req, res, next) {
         course: course,
         classes: scopedClasses.slice(curpage * perpage, (curpage+1) * perpage),
         stylesheets: [],
-        javascripts: [],
+        javascripts: ['/admin/classes.js'],
         scope: scope,
         pagination: {
           showpage : showpage,

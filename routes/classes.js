@@ -5,6 +5,9 @@ var Course = require('../models').Course;
 var Category = require('../models').Category;
 var Class = require('../models').Class;
 var Teacher = require('../models').Teacher;
+var Order = require('../models').Order;
+
+var errors = require('../lib/errors')
 
 var _ = require('underscore');
 var Promise = require('bluebird');
@@ -68,7 +71,33 @@ router.get('/', function(req, res, next) {
     res.render('classes', data);
   });
 
+});
 
+router.get('/mine', function(req, res, next) {
+  if (!req.session.user) {
+    return res.json({
+      code: 0,
+      message: '',
+      data : []
+    });
+  }
+
+  Order.findAll({
+    where: {
+      userId: req.session.user.id,
+      status: 'paid'
+    },
+    include: Class 
+  }).then(function(classes){
+    res.json({
+      code: 0,
+      message: '',
+      data : classes
+    })
+  }).catch(function(err) {
+    console.log(err);
+    res.json(errors.ERR_WRONGARG)
+  });
 });
 
 module.exports = router;
