@@ -1,5 +1,6 @@
 <% include header.ejs %>
   <div id="course-id" style="display:none"><%= course.id%></div>
+  <div id="scope" style="display:none"><%= scope%></div>
   <div class="helper-bar">
     <div class = "col-md-6" style="padding-left: 0;">
       <ol class="breadcrumb" style="background-color: white">
@@ -73,7 +74,7 @@
           <th>操作</th>
         </tr>
         <% for(var i=0; i<classes.length; i++) {%>
-        <tr>
+        <tr data-id="<%=classes[i].id%>" data-name="<%=classes[i].name%>">
           <td><a href="/admin/orders?clas=<%=classes[i].id%>"><%=classes[i].id%></a></td>
           <td><%=classes[i].name%></td>
           <td><% if(classes[i].teacher){%><%=classes[i].teacher.name%><%}else{%>无<%}%></td>
@@ -93,8 +94,25 @@
           <td><%=currentStudentsNumber%>/<%=classes[i].maxStudentsNumber%></td>
           <% } %>
           <td>
-            <a href="/admin/classes/edit?id=<%=classes[i].id%>">编辑</a><br>
+            <% if (scope == "preregister" || scope == "register" || scope == "inclass" ) {%>
+            <a class="edit-action" href="/admin/classes/edit?id=<%=classes[i].id%>">编辑</a><br>
+            <% } %>
+            <% if (scope == "preregister"){%>
             <a class="text-danger delete-action" data-url="/admin/classes/delete" data-id="<%=classes[i].id%>" href="javacript:void">删除</a>
+            <% } %>
+            <% if (
+              (scope == "register" 
+              && currentStudentsNumber<classes[i].minStudentsNumber 
+              && compareDateWithToday(getDate(dates[0]))<3)
+              || (scope == "inclass"
+              && currentStudentsNumber<5
+              && compareDateWithToday(getDate(dates[0]))<0
+              && compareDateWithToday(getDate(dates[0]))>-1)
+              ){
+            %>
+            <a class="combine-action" href="javascript:void" data-id="<%=classes[i].id%>">合班</a><br>
+            <a class="text-danger cancel-action" data-id="<%=classes[i].id%>" href="javacript:void">取消</a>
+            <% } %>
           </td>
         </tr>
         <% } %>
@@ -126,4 +144,59 @@
         </div>
       </div>
     </div>
+    <!-- Modal -->
+<div class="modal fade" id="class-combine-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">合并班级</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" method="POST" > 
+        <div class="form-group">
+            <label class="col-xs-2 control-label">将</label>
+            <div class="col-xs-10">
+            <input class="form-control" id="combine-class-src" value="" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">合并到</label>
+            <div class="col-xs-10" class="col-xs-8">
+              <select id="combine-class-dest" class="form-control">
+                <% for(var i=0; i<classes.length; i++) {%>
+                  <option value="<%=classes[i].id%>"><%=classes[i].name%></option>
+                <% }%>
+              </select>
+            </div>
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="class-combine-submit">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Modal -->
+<div class="modal fade" id="class-confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2">确认修改班级信息</h4>
+      </div>
+      <div class="modal-body">
+        <span>请线下与该班级所有学生确认班级信息修改，如已确认请输入"EDIT"</span><br>
+        <input class="form-control" id="class-confirm-edit" value="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="class-confirm-submit">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
 <% include footer.ejs %>

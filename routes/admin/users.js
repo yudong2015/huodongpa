@@ -50,7 +50,7 @@ router.get('/', function(req, res, next) {
     res.render('admin/users', {
       nav: 'users',
       stylesheets: [],
-      javascripts: [],
+      javascripts: ['/admin/users.js'],
       users: users,
       search: search,
       pagination: {

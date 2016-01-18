@@ -2,12 +2,15 @@ var express = require('express');
 var router = express.Router();
 
 var Promise = require('bluebird');
+var Sequelize = require("sequelize");
 
 var Class = require('../../models').Class;
 var Course = require('../../models').Course;
 var Category = require('../../models').Category;
 var Teacher = require('../../models').Teacher;
 var Order = require('../../models').Order;
+
+var orm = require('../../models/orm');
 
 var lib = require('../../lib');
 
@@ -149,6 +152,104 @@ router.post('/delete', function(req, res, next) {
   }).catch(function(error){
     console.log(error);
     next(error);
+  });
+});
+
+// class combine operation
+router.post('/combine', function(req, res, next) {
+  var src = req.body.source;
+  var des = req.body.dest;
+
+  Promise
+  .all([
+  Order.findAll({
+    where: {
+      classId: src
+    }
+  }), 
+  Class.findById(des)
+  ]).then(function(result) {
+    var orders = result[0];
+    var clas = result[1];
+    return orm.query("UPDATE orders set classId=?, tuition=? where classId=?", 
+      { 
+        replacements: [des, clas.tuition, src],
+        type: Sequelize.QueryTypes.UPDATE
+      }
+    )
+  }).then(function(){
+    res.json({
+      code: 0
+    });
+  }).catch(function(err) {
+    console.log(err);
+    res.json({
+      code: -1
+    });
+  });
+});
+
+// class combine operation
+router.post('/combine', function(req, res, next) {
+  var src = req.body.source;
+  var des = req.body.dest;
+
+  Promise
+  .all([
+  Order.findAll({
+    where: {
+      classId: src
+    }
+  }), 
+  Class.findById(des)
+  ]).then(function(result) {
+    var orders = result[0];
+    var clas = result[1];
+    return orm.query("UPDATE orders set classId=?, tuition=? where classId=?", 
+      { 
+        replacements: [des, clas.tuition, src],
+        type: Sequelize.QueryTypes.UPDATE
+      }
+    )
+  }).then(function(){
+    res.json({
+      code: 0
+    });
+  }).catch(function(err) {
+    console.log(err);
+    res.json({
+      code: -1
+    });
+  });
+});
+
+
+// class combine operation
+router.post('/cancel', function(req, res, next) {
+  var src = req.body.id;
+
+  Class.findById(src)
+  .then(function(clas) {
+    clas.status = 'canceled';
+    return clas.save();
+  }).then(function() {
+    return orm.query("UPDATE orders set status='canceled' where classId=?", 
+      {
+        replacements: [src],
+        type: Sequelize.QueryTypes.UPDATE
+      }
+    )
+  }).then(function(){
+    res.json({
+      code: 0
+    });
+  })
+  .catch(function(err) {
+    console.log(err);
+    res.json({
+      code: -1,
+      message: err
+    });
   });
 });
 

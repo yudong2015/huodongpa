@@ -17,12 +17,12 @@
       <tr><th>账号（联系电话）</th><th>萌宠名称</th><th>萌宠头像</th><th>紧急联系电话</th><th>住址</th><th>总盈利</th><th>收款二维码</th></tr>
       <% for(var i=0; i<users.rows.length; i++) {%>
       <tr>
-        <td><a href="/admin/users/detail?id=<%=users.rows[i].id%>"><%=users.rows[i].username%></a></td>
+        <td><a href="/admin/users/detail?id=<%=users.rows[i].id%>" class="user-id" data-id="<%=users.rows[i].id%>"><%=users.rows[i].username%></a></td>
         <td><%=users.rows[i].name%></td>
         <td><a  class="image-popover" data-href="<%=users.rows[i].avatar%>">查看</a></td>
         <td><%=users.rows[i].emergencyPhone%></td>
         <td><%=users.rows[i].address%></td>
-        <td>暂无</td>
+        <td class="profit-sum">-</td>
         <td>
           <% if(users.rows[i].gatheringQrcode){%>
           <a class="image-popover" data-href="<%=users.rows[i].gatheringQrcode%>">查看</a>
