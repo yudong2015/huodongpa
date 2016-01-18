@@ -82,6 +82,7 @@ var Order = orm.define('order', {
 
 
 Teacher.hasMany(Class, {as: 'Classes'});
+User.hasMany(Order, {as: 'Orders'});
 Class.belongsTo(Teacher, {onDelete: 'NO ACTION'});
 Class.belongsTo(Course, {onDelete: 'NO ACTION'});
 Course.belongsTo(Category, {onDelete: 'NO ACTION'});

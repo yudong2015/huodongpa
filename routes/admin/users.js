@@ -126,7 +126,7 @@ router.get('/detail', function(req, res, next) {
       res.render('admin/user-detail', {
         nav: 'users',
         stylesheets: [],
-        javascripts: [],
+        javascripts: ['/admin/user-detail.js'],
         orders: orderResult.rows,
         user: user,
         pagination: {

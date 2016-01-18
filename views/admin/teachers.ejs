@@ -17,7 +17,7 @@
       <tr><th>主人编号</th><th>主人名称</th><th>主人头像</th><th>主人分类</th><th>主人简介</th><th>总盈利</th><th>操作</th></tr>
       <% for(var i=0; i<teachers.rows.length; i++) {%>
       <tr>
-        <td><a href="/admin/teachers/detail?id=<%=teachers.rows[i].id%>"><%=teachers.rows[i].id%></a></td>
+        <td><a href="/admin/teachers/detail?id=<%=teachers.rows[i].id%>" class="teacher-id" data-id="<%=teachers.rows[i].id%>"><%=teachers.rows[i].id%></a></td>
         <td><%=teachers.rows[i].name%></td>
         <td><% if(teachers.rows[i].avatar != ''){%><a class="image-popover" href="javascript:void" data-href="<%=teachers.rows[i].avatar%>">查看</a><% } %></td>
         <td width=100>
@@ -42,7 +42,7 @@
           <%= str%>
         </td>
         <td width="40%"><%=teachers.rows[i].description%></td>
-        <td>暂无</td>
+        <td class="profit-sum">-</td>
         <td>
           <a href="/admin/teachers/edit?id=<%=teachers.rows[i].id%>">编辑</a><br>
           <% if(teachers.rows[i].Classes.length == 0){%>

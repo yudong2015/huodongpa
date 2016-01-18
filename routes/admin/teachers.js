@@ -53,7 +53,7 @@ router.get('/', function(req, res, next) {
       nav: 'teachers',
       teachers: teachers,
       stylesheets: [],
-      javascripts: [],
+      javascripts: ['/admin/teachers.js'],
       search: search,
       pagination: {
         showpage : showpage,
@@ -160,7 +160,7 @@ router.get('/detail', function(req, res, next) {
     res.render('admin/teacher-detail', {
       nav: 'teachers',
       stylesheets: [],
-      javascripts: [],
+      javascripts: ['/admin/teacher-detail.js'],
       courses: courses,
       teacher: teacher,
       categories: categories
