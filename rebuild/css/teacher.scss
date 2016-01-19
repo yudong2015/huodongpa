@@ -424,6 +424,13 @@
         -webkit-justify-content: space-between;
         justify-content: space-between;
     }
+    .break-box {
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+        align-items: flex-start;
+        line-height: 20px;
+        padding: 7px 0;
+    }
     .f-b {
         color: #8a919b;
     }
@@ -662,9 +669,12 @@
         color: rgba(255, 255, 255, 0.2);
         .phone-p {
             position: relative;
+            display: block;
             float: left;
             padding-left: 20px;
             max-width: 35%;
+            color: #88a8c1;
+            color: rgba(255, 255, 255, 0.2);
             &:before {position: absolute;
                 content: '';
                 width: 10px;
@@ -674,10 +684,13 @@
         }
         .wx-p {
             position: relative;
+            display: block;
             float: right;
             padding-left: 18px;
             padding-right: 5px;
             max-width: 35%;
+            color: #88a8c1;
+            color: rgba(255, 255, 255, 0.2);
             &:before {position: absolute;
                 content: '';
                 width: 13px;
@@ -1100,7 +1113,7 @@
         padding: 6px 0 12px;
         text-align: center;
         line-height: 14px;
-        div {
+        a {
             display: inline-block;
             font-size: 12px;
             color: #8a919b;
@@ -1237,9 +1250,12 @@
         color: rgba(255, 255, 255, 0.2);
         .phone-p {
             position: relative;
+            display: block;
             float: left;
             padding-left: 20px;
             max-width: 35%;
+            color: #88a8c1;
+            color: rgba(255, 255, 255, 0.2);
             &:before {position: absolute;
                 content: '';
                 width: 10px;
@@ -1249,10 +1265,13 @@
         }
         .wx-p {
             position: relative;
+            display: block;
             float: right;
             padding-left: 18px;
             padding-right: 5px;
             max-width: 35%;
+            color: #88a8c1;
+            color: rgba(255, 255, 255, 0.2);
             &:before {position: absolute;
                 content: '';
                 width: 13px;
@@ -1362,32 +1381,44 @@ position: relative;
     background-position:0px 0px;
 }
 position: relative;
+            display: block;
             float: left;
             padding-left: 20px;
             max-width: 35%;
+            color: #88a8c1;
+            color: rgba(255, 255, 255, 0.2);
             &:before{
     background-position:-77px -78px;
 }
 position: relative;
+            display: block;
             float: left;
             padding-left: 20px;
             max-width: 35%;
+            color: #88a8c1;
+            color: rgba(255, 255, 255, 0.2);
             &:before{
     background-position:-77px -78px;
 }
 position: relative;
+            display: block;
             float: right;
             padding-left: 18px;
             padding-right: 5px;
             max-width: 35%;
+            color: #88a8c1;
+            color: rgba(255, 255, 255, 0.2);
             &:before{
     background-position:-81px -41px;
 }
 position: relative;
+            display: block;
             float: right;
             padding-left: 18px;
             padding-right: 5px;
             max-width: 35%;
+            color: #88a8c1;
+            color: rgba(255, 255, 255, 0.2);
             &:before{
     background-position:-81px -41px;
 }
@@ -1463,15 +1494,20 @@ position: absolute;
         &:after,&:after,.nav-title:before,position: relative;
             padding-left: 35px;
             &:before,position: relative;
+            display: block;
             float: left;
             padding-left: 20px;
             max-width: 35%;
+            color: #88a8c1;
+            color: rgba(255, 255, 0.2);
             &:before,position: relative;
+            display: block;
             float: right;
             padding-left: 18px;
             padding-right: 5px;
             max-width: 35%;
-            &:before,position: absolute;
+            color: #88a8c1;
+            color: rgba(255,position: absolute;
                 top: 76px;
                 left: -6px;
                 width: 100%;
