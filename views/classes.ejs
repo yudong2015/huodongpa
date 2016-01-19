@@ -2,7 +2,7 @@
     <div class="header-panel">
         <header class="header">
             <h1><%=course.name%></h1>
-            <div class="de-avatar"><img src="<% if (user && user.avartar) {%>user.avartar<%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>
+            <div class="de-avatar"><img src="<% if (user && user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>
         </header>
     </div>
     <div class="content course-detail-ct">
@@ -18,11 +18,15 @@
         <h3 class="title">开设班级</h3>
         <% var classes = course.Classes %>
         <% for (var i=0; i<classes.length; i++) { %>
-        <% if(getClassStatus(classes[i]) == 'register'){ %>
+        <% var classStatus = getClassStatus(classes[i]) %>
+        <% if( classStatus == 'register' || classStatus == 'preregister'){ %>
         <div class="teacher-class-panel course-panel">
             <div class="m-line">
                 <div class="name-box">
-                    <span class="name"><%=classes[i].name%></span>
+                    <span class="name"><%=classes[i].name%>
+                        <% var registerDateStr = classes[i].registerDate + '' %>
+                        <%if(classStatus == 'preregister'){%><span class="orange-tips">（<%=registerDateStr.substr(4,2) + '.' + registerDateStr.substr(6,2) %>开始报名）</span><%}%>
+                    </span>
                 </div>
                 <div class="price-box">
                     <span class="price"><i>￥</i><%=classes[i].tuition%></span>
@@ -67,9 +71,9 @@
                 <div class="t-b notice-box">与现有课程冲突</div>
                 -->
             </div>
-            <div class="course-box">
+            <div class="course-box  break-box">
                 <div class="f-b">地址：</div>
-                <div class="s-b ellipsis flex-b"><%=classes[i].address%></div>
+                <div class="s-b flex-b"><%=classes[i].address%></div>
             </div>
             <div class="course-bt-btns">
                 <span class="add-btn" data-id="<%=classes[i].id%>">加入购课车</span>

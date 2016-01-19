@@ -43,6 +43,9 @@
                     <span>／<%=clas.period%>课时</span>
                 </div>
             </div>
+            <% if (scope == "canceled"){%>
+            <div class="cancel-panel">非常抱歉，由于报课人数不足5人，该课程已被取消。建议选 择其它合适课程，或自组VIP班级</div>
+            <%} %>
             <div class="course-box">
                 <div class="f-b">教师：</div>
                 <div class="s-b"><%=clas.teacher.name%></div>
@@ -78,9 +81,9 @@
                 <div class="f-b">时间：</div>
                 <div class="s-b"><%=clas.beginTime%> ~ <%=clas.endTime%></div>
             </div>
-            <div class="course-box">
+            <div class="course-box  break-box">
                 <div class="f-b">地址：</div>
-                <div class="s-b ellipsis flex-b"><%=clas.address%></div>
+                <div class="s-b flex-b"><%=clas.address%></div>
             </div>
             <!--
             <div class="course-bt-btns card-bt-btns">
@@ -149,8 +152,8 @@
         </div>   
         -->
         <div class="bot-box">
-            <div class="phone-p ellipsis">15201106243</div>
-            <div class="wx-p ellipsis">chenyuankaiabc</div>
+            <a class="phone-p" href="tel:15201106243">15201106243</a>
+            <a class="wx-p">chenyuankaiabc</a>
         </div>
     </div>
 <% include footer.ejs %>

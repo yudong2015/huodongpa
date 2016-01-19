@@ -29,7 +29,7 @@
           }
           %><%= teachers%></td>
         <td width="40%"><%=courses.rows[i].description%></td>
-        <td>暂无</td>
+        <td class="profit-sum">-</td>
         <td>
           <a href="/admin/courses/edit?id=<%=courses.rows[i].id%>">编辑</a><br>
           <%if(courses.rows[i].Classes.length == 0){%>

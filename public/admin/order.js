@@ -1,7 +1,6 @@
 $(function(){
   $(".order-action").change(function(){
     if($(this).hasClass("order-cancel")){
-      if (confirm("确定退课？")) {
         $.post("/admin/orders/cancel",
           {id: $(this).data("id")},
           function(data, status, xhr){
@@ -13,9 +12,7 @@ $(function(){
               alert("退课失败，请重试");
             }
           });
-      }
     } else {
-      if (confirm("确定恢复？")) {
         $.post("/admin/orders/recover",
           {id: $(this).data("id")},
           function(data, status, xhr){
@@ -27,7 +24,6 @@ $(function(){
               alert("恢复失败，请重试");
             }
           });
-      }
     }
   });
 });

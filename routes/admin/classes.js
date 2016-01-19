@@ -167,50 +167,25 @@ router.post('/combine', function(req, res, next) {
       classId: src
     }
   }), 
-  Class.findById(des)
+  Class.findById(des),
+  Class.findById(src)
   ]).then(function(result) {
     var orders = result[0];
     var clas = result[1];
-    return orm.query("UPDATE orders set classId=?, tuition=? where classId=?", 
-      { 
-        replacements: [des, clas.tuition, src],
-        type: Sequelize.QueryTypes.UPDATE
-      }
-    )
-  }).then(function(){
-    res.json({
-      code: 0
+    var srcClas = result[2];
+    return orm.transaction(function (t){
+      return orm.query("UPDATE orders set classId=?, tuition=? where classId=?", 
+        { 
+          replacements: [des, clas.tuition, src],
+          type: Sequelize.QueryTypes.UPDATE,
+          transaction: t
+        }
+      ).then(function(){
+        srcClas.status = 'canceled';
+        return srcClas.save()
+      })
     });
-  }).catch(function(err) {
-    console.log(err);
-    res.json({
-      code: -1
-    });
-  });
-});
-
-// class combine operation
-router.post('/combine', function(req, res, next) {
-  var src = req.body.source;
-  var des = req.body.dest;
-
-  Promise
-  .all([
-  Order.findAll({
-    where: {
-      classId: src
-    }
-  }), 
-  Class.findById(des)
-  ]).then(function(result) {
-    var orders = result[0];
-    var clas = result[1];
-    return orm.query("UPDATE orders set classId=?, tuition=? where classId=?", 
-      { 
-        replacements: [des, clas.tuition, src],
-        type: Sequelize.QueryTypes.UPDATE
-      }
-    )
+    
   }).then(function(){
     res.json({
       code: 0

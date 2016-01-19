@@ -44,6 +44,9 @@ router.get('/', function(req, res, next) {
               include: [Category]
             }] 
           }]
+        },{
+          model: Order,
+          as : 'Orders'
         }]
       }]
   };
