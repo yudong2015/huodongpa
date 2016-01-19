@@ -49,7 +49,7 @@ router.get('/', function(req, res, next) {
       nav: 'courses',
       courses: result,
       stylesheets: [],
-      javascripts: [],
+      javascripts: ['/admin/courses.js'],
       search: search,
       pagination: {
         showpage : showpage,

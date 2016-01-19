@@ -14,9 +14,10 @@
   </div>
   <div>
     <table class="table table-striped">
-      <tr><th>课程编号</th><th>课程名称</th><th>课程分类</th><th>授课主人</th><th>课程简介</th><th>总盈利</th><th>操作</th></tr>
-      <% for(var i=0; i<courses.rows.length; i++) {%>
       <tr>
+        <th>课程编号</th><th>课程名称</th><th>课程分类</th><th>授课主人</th><th>课程简介</th><th>总盈利</th><th>操作</th></tr>
+      <% for(var i=0; i<courses.rows.length; i++) {%>
+      <tr class="course-row" data-id="<%=courses.rows[i].id%>">
         <td><a href="/admin/classes?course=<%=courses.rows[i].id%>"><%=courses.rows[i].id%></a></td>
         <td><%=courses.rows[i].name%></td>
         <td><%=courses.rows[i].category.name%></td>
