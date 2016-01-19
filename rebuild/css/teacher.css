@@ -935,9 +935,12 @@ header, nav, section, article, footer, figure, figcaption {
 
 .left-nav-ct .bot-box .phone-p {
   position: relative;
+  display: block;
   float: left;
   padding-left: 20px;
   max-width: 35%;
+  color: #88a8c1;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .left-nav-ct .bot-box .phone-p:before {position: absolute;
@@ -949,10 +952,13 @@ header, nav, section, article, footer, figure, figcaption {
 
 .left-nav-ct .bot-box .wx-p {
   position: relative;
+  display: block;
   float: right;
   padding-left: 18px;
   padding-right: 5px;
   max-width: 35%;
+  color: #88a8c1;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .left-nav-ct .bot-box .wx-p:before {position: absolute;
@@ -1429,7 +1435,7 @@ header, nav, section, article, footer, figure, figcaption {
   line-height: 14px;
 }
 
-.card-ct .bot-box div {
+.card-ct .bot-box a {
   display: inline-block;
   font-size: 12px;
   color: #8a919b;
@@ -1583,9 +1589,12 @@ header, nav, section, article, footer, figure, figcaption {
 
 .share-panel .bot-box .phone-p {
   position: relative;
+  display: block;
   float: left;
   padding-left: 20px;
   max-width: 35%;
+  color: #88a8c1;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .share-panel .bot-box .phone-p:before {position: absolute;
@@ -1597,10 +1606,13 @@ header, nav, section, article, footer, figure, figcaption {
 
 .share-panel .bot-box .wx-p {
   position: relative;
+  display: block;
   float: right;
   padding-left: 18px;
   padding-right: 5px;
   max-width: 35%;
+  color: #88a8c1;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .share-panel .bot-box .wx-p:before {position: absolute;
