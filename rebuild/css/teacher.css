@@ -674,6 +674,14 @@ header, nav, section, article, footer, figure, figcaption {
   justify-content: space-between;
 }
 
+.course-detail-ct .break-box {
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  line-height: 20px;
+  padding: 7px 0;
+}
+
 .course-detail-ct .f-b {
   color: #8a919b;
 }

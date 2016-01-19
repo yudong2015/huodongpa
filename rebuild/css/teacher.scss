@@ -424,6 +424,13 @@
         -webkit-justify-content: space-between;
         justify-content: space-between;
     }
+    .break-box {
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+        align-items: flex-start;
+        line-height: 20px;
+        padding: 7px 0;
+    }
     .f-b {
         color: #8a919b;
     }
