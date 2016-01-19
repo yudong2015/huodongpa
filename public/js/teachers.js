@@ -17,9 +17,11 @@ $(function(){
 
   // search
   $(".search-box").click(function(){
+    var inp = $(this).find("input");
     $(this).find("input").focus();
     $(".header").addClass("is-search").find(".cancel-btn").click(function(){
-      $(".header").removeClass("is-search")
+      inp.val("");
+      $(".header").removeClass("is-search");
     });
   });
 });
