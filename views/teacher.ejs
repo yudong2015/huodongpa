@@ -20,7 +20,7 @@
                     <% } %>
                 </div>
             </div>
-            <p class="des-box"><%=teacher.description%></p>
+            <pre class="des-box"><%=teacher.description%></pre>
         </div>
         <h3 class="title">所授课程</h3>
         <% var courses = findCoursesOfTeacher(teacher) %>
@@ -45,7 +45,7 @@
                     <% } %>
                 </div>
             </div>
-            <p class="des-box"><%=courses[cid].description%></p>
+            <p class="des-box"><span class="description-ellipsis"><%=courses[cid].description%></span></p>
         </div>
         <% } %>
     </div>

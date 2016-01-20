@@ -41,7 +41,7 @@
           %>
           <%= str%>
         </td>
-        <td width="40%"><%=teachers.rows[i].description%></td>
+        <td width="40%"><%=teachers.rows[i].description.substr(0,70)%>...</td>
         <td class="profit-sum">-</td>
         <td>
           <a href="/admin/teachers/edit?id=<%=teachers.rows[i].id%>">编辑</a><br>

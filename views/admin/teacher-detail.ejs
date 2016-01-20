@@ -55,11 +55,13 @@
       </div>
       <div class="info">
         <h5>类型</h5>
-        <span><% for(var cate in categories) { %><%= cate%>,<%}%></span>
+        <% var cate = ""%>
+        <% for(var c in categories) cate += c + "," %>
+        <pre><%= cate.substr(0, cate.length-1)%></pre>
       </div>
       <div class="info">
         <h5>简介</h5>
-        <span><%=teacher.description%></span>
+        <pre><%=teacher.description%></pre>
       </div>
     </div>
   </div>
