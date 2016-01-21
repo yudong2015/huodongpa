@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html class="<%=page%>-page">
 <head>
 <meta charset="utf-8">
 <meta name="format-detection" content="telephone=no" />
@@ -47,11 +47,9 @@
             <li <% if (page == 'me'){%>class="active"<%}%>>
                 <div class="nav-title anchor" data-href="/me">我的帐号</div>
             </li>
-            <!--
             <li <% if (page == 'recommend'){%>class="active"<%}%>>
-                <div class="nav-title anchor" data-href="/recommend">推荐名片</div>
+                <div class="nav-title <%if(user){%>anchor<%}%>" <%if(user){%>data-href="/recommend?user=<%=user.id%>"<%}%>>推荐名片</div>
             </li>
-            -->
         </ul>
         <div class="bot-box">
             <a class="phone-p ellipsis" href="tel:15201106243">15201106243</a>

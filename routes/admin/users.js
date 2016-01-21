@@ -97,6 +97,7 @@ router.get('/detail', function(req, res, next) {
   var curpage = parseInt(req.query.curpage) || 0;
   var perpage = parseInt(req.query.perpage) || 10;
   var showpage = 5;
+  var subnav = req.query.sub || 'history';
 
   var conditions = {
     offset: curpage * perpage,
@@ -129,6 +130,7 @@ router.get('/detail', function(req, res, next) {
         javascripts: ['/admin/user-detail.js'],
         orders: orderResult.rows,
         user: user,
+        sub: subnav,
         pagination: {
           showpage : showpage,
           curpage: curpage,

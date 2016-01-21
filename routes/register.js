@@ -12,6 +12,7 @@ var code = require('../lib/code');
 var conf = require('../lib/config');
 
 var User = require('../models').User;
+var Recommend = require('../models').Recommend;
 
 var renderConf = {
   qiniuDomain: conf.qiniu.url,
@@ -42,7 +43,14 @@ router.post('/', function(req, res, next) {
     var md5 = crypto.createHash('md5');
     user.password = md5.update(user.password).digest('base64');
 
-    User.create(user).then(function(){
+    User.create(user).then(function(created){
+      if(req.query.user) {
+        Recommend.create({
+          userId: req.query.user,
+          recommended: created.id
+        })
+      }
+
       return res.redirect('/login');
     }).catch(function(error){
       console.log(error);

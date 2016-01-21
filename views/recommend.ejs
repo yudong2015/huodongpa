@@ -1,0 +1,30 @@
+<% include header.ejs %>
+    <div class="share-panel">
+        <div class="share-title">
+            <%if(user && (user.id == userid)){%>
+            <h1>分享二维码</h1>
+            <% } else {%>
+            <h1>加入学术葩</h1>
+            <% } %>
+            <div class="avatar-box">
+                <img src="<% if (user && user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" />
+            </div>
+        </div>
+        <%if(user && (user.id == userid)){%>
+        <div class="share-content">点击右上角「...」菜单，将「学术葩」分享给好友或者分享到朋友圈，并将个人账户名称改为真实姓名，推荐报课成功，就能获得推荐奖励~</div>
+        <% } else {%>
+        <div class="share-content">长按图片，识别图中二维码，加入「学术葩」 大家族，可以了解相关课程和教师信息，或许 有你想要报的课哟~</div>
+        <% } %>
+        <div class="share-code">
+            <div class="code-img">
+                <img src="http://qr.topscan.com/api.php?text=<%=registerurl%>">
+            </div>
+            <p>扫描二维码了解更多关于</p>
+            <h1>学术葩！</h1>
+        </div>
+        <div class="bot-box">
+            <a class="phone-p ellipsis" href="tel:">15201106243</a>
+            <a class="wx-p" href="#">chenyuankaiabc</a>
+        </div>
+    </div>
+<% include footer.ejs %>

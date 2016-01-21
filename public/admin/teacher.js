@@ -31,6 +31,7 @@ $(function(){
         },
         'UploadProgress': function(up, file) {
                // 每个文件上传时,处理相关的事情
+               $("#pickfiles").find("span").text("上传中...");
         },
         'FileUploaded': function(up, file, info) {
                // 每个文件上传成功后,处理相关的事情
@@ -41,6 +42,7 @@ $(function(){
                //  }
                // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
                alert("上传成功")
+               $("#pickfiles").find("span").text("上传头像");
                var domain = up.getOption('domain');
                var res = JSON.parse(info);
                var sourceLink = domain + res.key; //获取上传成功后的文件的Url
@@ -49,6 +51,7 @@ $(function(){
         },
         'Error': function(up, err, errTip) {
                //上传出错时,处理相关的事情
+               alert("上传失败，请重试")
         },
         'UploadComplete': function() {
                //队列文件处理完毕后,处理相关的事情

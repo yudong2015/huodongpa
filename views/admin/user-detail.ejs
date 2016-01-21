@@ -2,7 +2,7 @@
   <div class="hidden" id="user-id"><%=user.id%></div>
   <div class="helper-bar">
     <div class = "col-md-6" style="padding-left: 0;">
-    <ol class="breadcrumb" style="padding-left: 0;">
+    <ol class="breadcrumb" style="padding-left: 0; background-color:transparent">
       <li><a href="/admin/users">萌宠管理</a></li>
       <li class="active"><%=user.name%>（<%=user.username%>）</li>
     </ol>
@@ -33,6 +33,15 @@
     </div>
   </div>
   <div class="col-md-9" style="padding-left: 0">
+    <ul class="nav nav-tabs">
+          <li role="presentation" <% if (sub == 'history'){%>class="active"<%}%>>
+            <a href="?id=<%=user.id%>&sub=history">历史购课</a>
+          </li>
+          <li role="presentation" <% if (sub == 'recommended'){%>class="active"<%}%>>
+            <a href="?id=<%=user.id%>&sub=recommended">已推荐</a>
+          </li>
+        </ul>
+    <% if (sub == 'history'){%>
     <table class="table table-striped">
       <tr><th>课程编号</th><th>课程名称</th><th>课程分类</th><th>主人编号</th><th>主人名称</th><th>班级编号</th><th>班级名称</th><th>学费</th><th>购课日期</th></tr>
       <% for(var i=0; i<orders.length; i++) {%>
@@ -49,6 +58,7 @@
       </tr>
       <% } %>
     </table>
+    <% }%>
   </div>
   <div class="col-md-3" style="padding-right: 0">
     <div class="teacher-desc">

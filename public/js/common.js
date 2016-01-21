@@ -27,7 +27,7 @@ $(function(){
     $(".left-nav-ct").addClass("hidden");
   });
 
-  $(".header-panel .de-avatar").click(function(){
+  $(".header-panel .de-avatar, .share-title .avatar-box").click(function(){
     $(".left-nav-ct").removeClass("hidden");
   });
 

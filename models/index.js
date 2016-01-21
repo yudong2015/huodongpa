@@ -80,6 +80,15 @@ var Order = orm.define('order', {
   charset: 'utf8'
 });
 
+var Recommend = orm.define('recommend', {
+  id: { type:Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+  userId: { type:Sequelize.INTEGER, references: {model: User, key: 'id'}, unique: 'recommend' },
+  recommended: { type:Sequelize.INTEGER, references: {model: User, key: 'id'}, unique: 'recommend' },
+  rewarded: { type:Sequelize.INTEGER, defaultValue: 0}
+}, {
+  charset: 'utf8'
+});
+
 
 Teacher.hasMany(Class, {as: 'Classes'});
 User.hasMany(Order, {as: 'Orders'});
@@ -90,6 +99,8 @@ Course.hasMany(Class, {as: 'Classes'});
 Order.belongsTo(Class, {onDelete: 'NO ACTION'});
 Order.belongsTo(User, {onDelete: 'NO ACTION'});
 Class.hasMany(Order, {as: 'Orders'});
+User.hasMany(Recommend, {as: 'Recommends'});
+
 
 exports.Category = Category;
 exports.Class= Class;
@@ -97,5 +108,6 @@ exports.Course = Course;
 exports.Teacher= Teacher;
 exports.Order= Order;
 exports.User = User;
+exports.Recommend = Recommend;
 
 exports.Sequelize = orm;
