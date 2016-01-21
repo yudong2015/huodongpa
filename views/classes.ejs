@@ -85,7 +85,7 @@
     <div class="content course-detail-ct">
         <h3 class="title">教师简介</h3>
         <% for (var id in teachers) { %>
-        <div class="teacher-panel">
+        <div class="teacher-panel anchor" data-href="/teachers/detail?id=<%=id%>">
             <div class="m-line">
                 <div class="avatar">
                     <% if(teachers[id].avatar == ''){ %>
