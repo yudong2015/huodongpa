@@ -128,7 +128,7 @@ router.get('/user', function(req, res, next) {
     }
   }).then(function(user){
 
-    console.log(JSON.stringify(user))
+    console.log(JSON.stringify(user));
     var total = 0;
 
     if(user){

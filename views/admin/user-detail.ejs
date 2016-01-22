@@ -35,10 +35,10 @@
   <div class="col-md-9" style="padding-left: 0">
     <ul class="nav nav-tabs">
           <li role="presentation" <% if (sub == 'history'){%>class="active"<%}%>>
-            <a href="?id=<%=user.id%>&sub=history">历史购课</a>
+            <a href="/admin/users/detail?id=<%=user.id%>&sub=history">历史购课</a>
           </li>
           <li role="presentation" <% if (sub == 'recommended'){%>class="active"<%}%>>
-            <a href="?id=<%=user.id%>&sub=recommended">已推荐</a>
+            <a href="/admin/users/recommends?id=<%=user.id%>&sub=recommended">已推荐</a>
           </li>
         </ul>
     <% if (sub == 'history'){%>
@@ -58,7 +58,21 @@
       </tr>
       <% } %>
     </table>
-    <% }%>
+    <% } else if(sub == 'recommended'){%>
+    <table class="table table-striped">
+      <tr><th>账号（联系电话）</th><th>萌宠姓名</th><th>购课总额</th><th>已返利金额</th><th>未返利金额</th><th>操作</th></tr>
+      <% for(var i=0; i<recommends.length; i++) {%>
+      <tr class="recommended-user" data-id="<%=recommends[i].recommended%>">
+        <td class="recommended-accout"></td>
+        <td class="recommended-name"></td>
+        <td class="recommended-tuition"></td>
+        <td class="recommended-rewarded"><%=recommends[i].rewarded%></td>
+        <td class="recommended-unrewarded"></td>
+        <td class="recommended-action"  data-id="<%=recommends[i].id%>"><a href="javacript:void">返现</a></td>
+      </tr>
+      <% } %>
+    </table>
+    <% } %>
   </div>
   <div class="col-md-3" style="padding-right: 0">
     <div class="teacher-desc">
@@ -98,4 +112,26 @@
       </div>
     </div>
   </div>
+
+      <!-- Modal -->
+<div class="modal fade" id="reward-confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-target="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2"><%=user.name%>的收款二维码</h4>
+      </div>
+      <div class="modal-body" >
+        <div>
+          <img style="display:block;margin:auto" width="300" height="300" src="<%=user.gatheringQrcode%>">
+        </div>
+        <div class="well">打开微信，扫描图中二维码，输入返现金额，即可完成返现，若支付失败或学院未上传收款二维码，请自行联系学员</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">支付失败</button>
+        <button type="button" class="btn btn-primary" id="reward-confirm-submit">支付成功</button>
+      </div>
+    </div>
+  </div>
+</div>
 <% include footer.ejs %>
