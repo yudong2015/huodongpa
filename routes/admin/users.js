@@ -14,6 +14,7 @@ var Category = require('../../models').Category;
 var Recommend = require('../../models').Recommend;
 
 var Promise = require('bluebird');
+var utils = require('../../lib');
 
 var DEFAULT_PASSWORD = "woaixueshupa";
 
@@ -204,14 +205,19 @@ router.get('/info', function(req, res, next) {
     return Order.findAll({
       where: {
         userId: user.id
-      }
+      },
+      include: Class
     });
 
   }).then(function(orders){
     var total = 0;
     if(orders){
+
+
       for(var i=0; i<orders.length; i++) {
+        if((utils.getClassStatus(orders[i]['class']) == 'inclass') || (getClassStatus(orders[i]['class']) == 'end')){
           total += orders[i].tuition;
+        }
       }
     }
 
