@@ -342,7 +342,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .teacher-panel .name {
-  line-height: 1;
+  line-height: 1.2;
   font-size: 15px;
   font-weight: bold;
   color: #524070;
@@ -361,7 +361,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .teacher-panel .des-box {
-  padding: 12px 0 10px;
+  margin: 12px 0 10px;
   line-height: 1.5;
   font-size: 14px;
   color: #8a919b;
@@ -631,10 +631,14 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .course-detail-ct .title {
-  line-height: 30px;
-  padding: 0 15px;
+  line-height: 28px;
+  padding: 1px 15px 0;
   font-size: 12px;
   color: #8a919b;
+}
+
+.course-detail-ct .teacher-panel {
+  margin-top: 1px;
 }
 
 .course-detail-ct .teacher-class-panel {
@@ -861,12 +865,15 @@ header, nav, section, article, footer, figure, figcaption {
 
 .left-nav-ct .user-name {
   max-width: 80%;
-  margin: 20px auto 0;
-  line-height: 1;
+  margin: 19px auto 0;
+  line-height: 1.2;
   font-size: 15px;
   text-align: center;
   font-weight: bold;
   color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .left-nav-ct .nav-list {
@@ -1329,14 +1336,14 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .user-center-box .user-info h3 {
-  line-height: 1;
-  margin-bottom: 10px;
+  line-height: 1.2;
+  margin-bottom: 7px;
   font-size: 15px;
   color: #524070;
 }
 
 .user-center-box .user-info p {
-  line-height: 1;
+  line-height: 1.2;
   font-size: 14px;
   color: #8a919b;
 }
@@ -1476,6 +1483,28 @@ header, nav, section, article, footer, figure, figcaption {
   height: 11px;
   left: 0;
   top: 1px;background-repeat: no-repeat;}
+
+.card-ct .empty-card-box {
+  padding-top: 68px;
+  font-size: 15px;
+  text-align: center;
+  color: #8a919b;
+}
+
+.card-ct .empty-card-box .empty-pic {
+  width: 76px;
+  height: 71px;
+  margin: 0 auto 8px;
+}
+
+.card-ct .empty-card-box .empty-pic img {
+  display: block;
+  width: 100%;
+}
+
+.card-ct .empty-card-box p {
+  line-height: 22px;
+}
 
 .share-page, .share-body, .share-panel {
   width: 100%;

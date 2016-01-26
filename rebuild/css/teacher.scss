@@ -130,7 +130,7 @@
         }
     }
     .name {
-        line-height: 1;
+        line-height: 1.2;
         font-size: 15px;
         font-weight: bold;
         color: #524070;
@@ -146,7 +146,7 @@
         }
     }
     .des-box {
-        padding: 12px 0 10px;
+        margin: 12px 0 10px;
         line-height: 1.5;
         font-size: 14px;
         color: #8a919b;
@@ -389,10 +389,13 @@
 
 .course-detail-ct {
     .title {
-        line-height: 30px;
-        padding: 0 15px;
+        line-height: 28px;
+        padding: 1px 15px 0;
         font-size: 12px;
         color: #8a919b;
+    }
+    .teacher-panel {
+        margin-top: 1px;
     }
     .teacher-class-panel {
         margin-bottom: 0;
@@ -593,12 +596,15 @@
     }
     .user-name {
         max-width: 80%;
-        margin: 20px auto 0;
-        line-height: 1;
+        margin: 19px auto 0;
+        line-height: 1.2;
         font-size: 15px;
         text-align: center;
         font-weight: bold;
         color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .nav-list {
         font-size: 14px;
@@ -1010,13 +1016,13 @@
         -webkit-flex: 1 1 0;
         flex: 1 1 0;
         h3 {
-            line-height: 1;
-            margin-bottom: 10px;
+            line-height: 1.2;
+            margin-bottom: 7px;
             font-size: 15px;
             color: #524070;
         }
         p {
-            line-height: 1;
+            line-height: 1.2;
             font-size: 14px;
             color: #8a919b;
         }
@@ -1141,6 +1147,24 @@
                 height: 11px;
                 left: 0;
                 top: 1px;background-repeat: no-repeat;}
+        }
+    }
+    .empty-card-box {
+        padding-top: 68px;
+        font-size: 15px;
+        text-align: center;
+        color: #8a919b;
+        .empty-pic {
+            width: 76px;
+            height: 71px;
+            margin: 0 auto 8px;
+            img {
+                display: block;
+                width: 100%;
+            }
+        }
+        p {
+            line-height: 22px;
         }
     }
 }

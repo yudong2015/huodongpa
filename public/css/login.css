@@ -433,15 +433,8 @@ header, nav, section, article, footer, figure, figcaption {
   color: #eb4b58 !important;
 }
 
-.description-ellipsis{
-    overflow:hidden;
-    text-overflow:ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp:2;
-    -webkit-box-orient: vertical;
-}
-
 pre {
 white-space: pre-wrap;
 word-wrap: break-word;
 }
+

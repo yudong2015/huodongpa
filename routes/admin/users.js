@@ -16,6 +16,11 @@ var Recommend = require('../../models').Recommend;
 var Promise = require('bluebird');
 var utils = require('../../lib');
 
+var path = require('path');
+var jsonfile = require('jsonfile');
+
+var conf = jsonfile.readFileSync(path.join(__dirname,"../../config.json"));
+
 var DEFAULT_PASSWORD = "woaixueshupa";
 
 router.get('/', function(req, res, next) {
@@ -52,9 +57,10 @@ router.get('/', function(req, res, next) {
     res.render('admin/users', {
       nav: 'users',
       stylesheets: [],
-      javascripts: ['/admin/users.js'],
+      javascripts: ['/thirdparty/pupload/plupload.full.min.js', '/thirdparty/qiniu/qiniu.min.js','/admin/users.js'],
       users: users,
       search: search,
+      qiniuDomain: conf.qiniu.url,
       pagination: {
         showpage : showpage,
         curpage: curpage,
@@ -246,6 +252,25 @@ router.post('/recommend', function(req, res, next) {
     res.json({
       code: 0
     })
+  }).catch(function(error){
+    console.log(error);
+    res.json({
+      code: -1,
+      message: error
+    });
+  });
+});
+
+router.post('/qrcode', function(req, res, next) {
+  var id = req.query.id;
+
+  User.findById(id).then(function(user){
+    user.gatheringQrcode = req.body.qrcode;
+    return user.save();
+  }).then(function(){
+    res.json({
+      code: 0
+    });
   }).catch(function(error){
     console.log(error);
     res.json({
