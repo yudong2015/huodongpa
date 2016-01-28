@@ -1307,6 +1307,163 @@
 }
 
 
+//课程表
+.syllabus-html {
+    min-height: 100%;
+    background-color: #fcfcfc;
+}
+.syllabus-body {
+    .date-panel-space {
+        height: 304px;
+    }
+    .date-panel {
+        position: fixed;
+        top: 53px;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        -webkit-box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
+        z-index: 11;
+    }
+    .date-mouth-box {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        line-height: 53px;
+        font-size: 0;
+        div {
+            padding: 0 20px;
+            font-size: 22px;
+            color: #524070;
+        }
+        .left-btn {
+            position: relative;
+            width: 6px;
+            height: 53px;
+            &:after {position: absolute;
+                content: '';
+                left: 50%;
+                top: 50%;
+                margin: -6px 0 0 -3px;
+                width: 6px;
+                height: 11px;background-repeat: no-repeat;}
+        }
+        .right-btn {
+            position: relative;
+            width: 6px;
+            height: 53px;
+            &:after {position: absolute;
+                content: '';
+                left: 50%;
+                top: 50%;
+                margin: -6px 0 0 -3px;
+                width: 6px;
+                height: 11px;background-repeat: no-repeat;}
+        }
+    }
+    .week-box {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        line-height: 25px;
+        padding: 0 14px;
+        font-size: 12px;
+        text-align: center;
+        color: #2b3136;
+        background-color: #f5f5f5;
+        li {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            width: 14.28572%;
+        }
+    }
+    .day-box {
+        padding: 7px 14px;
+    }
+    .day-list {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        line-height: 25px;
+        font-size: 17px;
+        text-align: center;
+        color: #8a919b;
+        li {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            width: 14.28572%;
+            line-height: 40px;
+            padding: 1px 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            div {
+                width: 40px;
+                margin: 0 auto;
+            }
+        }
+        .un {
+            color: #d5dae0;
+        }
+        .has { 
+            div {
+                border: 1px solid #f6b01d;
+                -webkit-border-radius: 100%;
+                border-radius: 100%;
+            }
+        }
+        .active {
+            div {
+                color: #fff;
+                background-color: #f6b01d;
+                -webkit-border-radius: 100%;
+                border-radius: 100%;
+            }
+        }
+    }
+}
+.syll-list-panel {
+    li {
+        line-height: 20px;
+        padding: 20px 20px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        border-bottom: 1px solid #dfdee0;
+        font-size: 12px;
+    }
+    .time {
+        width: 86px;
+        color: #2b3136;
+    }
+    .detail {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 1 0;
+        flex: 1 1 0;
+        h3 {
+            font-size: 14px;
+            color: #524070;
+        }
+        p {
+            position: relative;
+            padding-left: 13px;
+            color: #8a919b;
+            &:before {position: absolute;
+                content: '';
+                left: 0;
+                top: 5px;
+                width: 8px;
+                height: 10px;background-repeat: no-repeat;}
+        }
+    }
+}
+
+
 
 @media only screen and (max-width: 360px) {
     .left-nav-ct {
@@ -1385,10 +1542,10 @@ position: absolute;
     background-position:-25px -54px;
 }
 &:after{
-    background-position:-81px -22px;
+    background-position:-32px -78px;
 }
 .nav-title:before{
-    background-position:-54px 0px;
+    background-position:0px 0px;
 }
 .nav-title:before{
     background-position:-27px 0px;
@@ -1402,7 +1559,7 @@ position: absolute;
 position: relative;
             padding-left: 35px;
             &:before{
-    background-position:0px 0px;
+    background-position:-54px 0px;
 }
 position: relative;
             display: block;
@@ -1412,7 +1569,7 @@ position: relative;
             color: #88a8c1;
             color: rgba(255, 255, 255, 0.2);
             &:before{
-    background-position:-77px -78px;
+    background-position:0px -78px;
 }
 position: relative;
             display: block;
@@ -1422,7 +1579,7 @@ position: relative;
             color: #88a8c1;
             color: rgba(255, 255, 255, 0.2);
             &:before{
-    background-position:-77px -78px;
+    background-position:0px -78px;
 }
 position: relative;
             display: block;
@@ -1433,7 +1590,7 @@ position: relative;
             color: #88a8c1;
             color: rgba(255, 255, 255, 0.2);
             &:before{
-    background-position:-81px -41px;
+    background-position:-81px -44px;
 }
 position: relative;
             display: block;
@@ -1444,7 +1601,7 @@ position: relative;
             color: #88a8c1;
             color: rgba(255, 255, 255, 0.2);
             &:before{
-    background-position:-81px -41px;
+    background-position:-81px -44px;
 }
 position: absolute;
                 top: 76px;
@@ -1452,7 +1609,7 @@ position: absolute;
                 width: 100%;
                 height: 40px;
                 &:after{
-    background-position:-48px -54px;
+    background-position:-81px -22px;
 }
 float: left;
         position: relative;
@@ -1462,7 +1619,7 @@ float: left;
         font-size: 14px;
         color: #524070;
         &:before{
-    background-position:-48px -54px;
+    background-position:-81px -22px;
 }
 &.is-checked:after{
     background-position:-81px 0px;
@@ -1474,10 +1631,10 @@ font-size: 12px;
     font-weight: normal;
     color: #8a919b;
     i{
-    background-position:0px -78px;
+    background-position:-48px -54px;
 }
 &:after{
-    background-position:-24px -78px;
+    background-position:-18px -78px;
 }
 position: relative;
         left: 6px;
@@ -1491,14 +1648,32 @@ position: relative;
             max-width: 35%;
             margin-right: 30px;
             &:before{
-    background-position:-59px -78px;
+    background-position:-46px -78px;
 }
 position: relative;
             padding-left: 18px;
             padding-right: 5px;
             max-width: 35%;
             &:before{
-    background-position:-38px -78px;
+    background-position:-64px -78px;
+}
+position: relative;
+            width: 6px;
+            height: 53px;
+            &:after{
+    background-position:-85px -78px;
+}
+position: relative;
+            width: 6px;
+            height: 53px;
+            &:after{
+    background-position:-103px 0px;
+}
+position: relative;
+            padding-left: 13px;
+            color: #8a919b;
+            &:before{
+    background-position:0px -97px;
 }
 position: absolute;
         left: 50%;
@@ -1558,7 +1733,13 @@ position: absolute;
             padding-left: 18px;
             padding-right: 5px;
             max-width: 35%;
+            &:before,position: relative;
+            width: 6px;
+            height: 53px;
+            &:after,position: relative;
+            padding-left: 13px;
+            color: #8a919b;
             &:before{
-    background-size: 103px 92px;
+    background-size: 117px 107px;
     background-image: url(../img/teacher.png)
 }

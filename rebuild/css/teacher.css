@@ -1659,6 +1659,176 @@ header, nav, section, article, footer, figure, figcaption {
   left: 0;
   top: 1px;background-repeat: no-repeat;}
 
+.syllabus-html {
+  min-height: 100%;
+  background-color: #fcfcfc;
+}
+
+.syllabus-body .date-panel-space {
+  height: 304px;
+}
+
+.syllabus-body .date-panel {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
+  z-index: 11;
+}
+
+.syllabus-body .date-mouth-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  line-height: 53px;
+  font-size: 0;
+}
+
+.syllabus-body .date-mouth-box div {
+  padding: 0 20px;
+  font-size: 22px;
+  color: #524070;
+}
+
+.syllabus-body .date-mouth-box .left-btn {
+  position: relative;
+  width: 6px;
+  height: 53px;
+}
+
+.syllabus-body .date-mouth-box .left-btn:after {position: absolute;
+  content: '';
+  left: 50%;
+  top: 50%;
+  margin: -6px 0 0 -3px;
+  width: 6px;
+  height: 11px;background-repeat: no-repeat;}
+
+.syllabus-body .date-mouth-box .right-btn {
+  position: relative;
+  width: 6px;
+  height: 53px;
+}
+
+.syllabus-body .date-mouth-box .right-btn:after {position: absolute;
+  content: '';
+  left: 50%;
+  top: 50%;
+  margin: -6px 0 0 -3px;
+  width: 6px;
+  height: 11px;background-repeat: no-repeat;}
+
+.syllabus-body .week-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  line-height: 25px;
+  padding: 0 14px;
+  font-size: 12px;
+  text-align: center;
+  color: #2b3136;
+  background-color: #f5f5f5;
+}
+
+.syllabus-body .week-box li {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  width: 14.28572%;
+}
+
+.syllabus-body .day-box {
+  padding: 7px 14px;
+}
+
+.syllabus-body .day-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  line-height: 25px;
+  font-size: 17px;
+  text-align: center;
+  color: #8a919b;
+}
+
+.syllabus-body .day-list li {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  width: 14.28572%;
+  line-height: 40px;
+  padding: 1px 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.syllabus-body .day-list li div {
+  width: 40px;
+  margin: 0 auto;
+}
+
+.syllabus-body .day-list .un {
+  color: #d5dae0;
+}
+
+.syllabus-body .day-list .has div {
+  border: 1px solid #f6b01d;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+
+.syllabus-body .day-list .active div {
+  color: #fff;
+  background-color: #f6b01d;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+
+.syll-list-panel li {
+  line-height: 20px;
+  padding: 20px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  border-bottom: 1px solid #dfdee0;
+  font-size: 12px;
+}
+
+.syll-list-panel .time {
+  width: 86px;
+  color: #2b3136;
+}
+
+.syll-list-panel .detail {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 0;
+  flex: 1 1 0;
+}
+
+.syll-list-panel .detail h3 {
+  font-size: 14px;
+  color: #524070;
+}
+
+.syll-list-panel .detail p {
+  position: relative;
+  padding-left: 13px;
+  color: #8a919b;
+}
+
+.syll-list-panel .detail p:before {position: absolute;
+  content: '';
+  left: 0;
+  top: 5px;
+  width: 8px;
+  height: 10px;background-repeat: no-repeat;}
+
 @media only screen and (max-width: 360px) {
   .left-nav-ct .bot-box {
     left: 40px;
@@ -1715,10 +1885,10 @@ header, nav, section, article, footer, figure, figcaption {
     background-position:-25px -54px;
 }
 .left-nav-ct .nav-list li:after{
-    background-position:-81px -22px;
+    background-position:-32px -78px;
 }
 .left-nav-ct .nav-list li:nth-child(2) .nav-title:before{
-    background-position:-54px 0px;
+    background-position:0px 0px;
 }
 .left-nav-ct .nav-list li:nth-child(3) .nav-title:before{
     background-position:-27px 0px;
@@ -1730,25 +1900,25 @@ header, nav, section, article, footer, figure, figcaption {
     background-position:-27px -27px;
 }
 .left-nav-ct .nav-list .nav-title:before{
-    background-position:0px 0px;
+    background-position:-54px 0px;
 }
 .left-nav-ct .bot-box .phone-p:before{
-    background-position:-77px -78px;
+    background-position:0px -78px;
 }
 .share-panel .bot-box .phone-p:before{
-    background-position:-77px -78px;
+    background-position:0px -78px;
 }
 .left-nav-ct .bot-box .wx-p:before{
-    background-position:-81px -41px;
+    background-position:-81px -44px;
 }
 .share-panel .bot-box .wx-p:before{
-    background-position:-81px -41px;
+    background-position:-81px -44px;
 }
 .car-ct .car-top-info .check-panel i:after{
-    background-position:-48px -54px;
+    background-position:-81px -22px;
 }
 .car-pay-panel .check-box:before{
-    background-position:-48px -54px;
+    background-position:-81px -22px;
 }
 .car-ct .car-top-info .check-panel i.is-checked:after{
     background-position:-81px 0px;
@@ -1757,21 +1927,30 @@ header, nav, section, article, footer, figure, figcaption {
     background-position:-81px 0px;
 }
 .gray-name i{
-    background-position:0px -78px;
+    background-position:-48px -54px;
 }
 .user-ct .user-list .next-l:after{
-    background-position:-24px -78px;
+    background-position:-18px -78px;
 }
 .user-center-box .right-box:after{
     background-position:0px -54px;
 }
 .card-ct .bot-box .phone-p:before{
-    background-position:-59px -78px;
+    background-position:-46px -78px;
 }
 .card-ct .bot-box .wx-p:before{
-    background-position:-38px -78px;
+    background-position:-64px -78px;
 }
-.header .search-explain:before,.header.is-search .search-box:before,.left-nav-ct .close-btn:after,.left-nav-ct .nav-list li:after,.left-nav-ct .nav-list li:nth-child(2) .nav-title:before,.left-nav-ct .nav-list li:nth-child(3) .nav-title:before,.left-nav-ct .nav-list li:nth-child(4) .nav-title:before,.left-nav-ct .nav-list li:nth-child(5) .nav-title:before,.left-nav-ct .nav-list .nav-title:before,.left-nav-ct .bot-box .phone-p:before,.share-panel .bot-box .phone-p:before,.left-nav-ct .bot-box .wx-p:before,.share-panel .bot-box .wx-p:before,.car-ct .car-top-info .check-panel i:after,.car-pay-panel .check-box:before,.car-ct .car-top-info .check-panel i.is-checked:after,.car-pay-panel .check-box.is-checked:before,.gray-name i,.user-ct .user-list .next-l:after,.user-center-box .right-box:after,.card-ct .bot-box .phone-p:before,.card-ct .bot-box .wx-p:before{
-    background-size: 103px 92px;
+.syllabus-body .date-mouth-box .left-btn:after{
+    background-position:-85px -78px;
+}
+.syllabus-body .date-mouth-box .right-btn:after{
+    background-position:-103px 0px;
+}
+.syll-list-panel .detail p:before{
+    background-position:0px -97px;
+}
+.header .search-explain:before,.header.is-search .search-box:before,.left-nav-ct .close-btn:after,.left-nav-ct .nav-list li:after,.left-nav-ct .nav-list li:nth-child(2) .nav-title:before,.left-nav-ct .nav-list li:nth-child(3) .nav-title:before,.left-nav-ct .nav-list li:nth-child(4) .nav-title:before,.left-nav-ct .nav-list li:nth-child(5) .nav-title:before,.left-nav-ct .nav-list .nav-title:before,.left-nav-ct .bot-box .phone-p:before,.share-panel .bot-box .phone-p:before,.left-nav-ct .bot-box .wx-p:before,.share-panel .bot-box .wx-p:before,.car-ct .car-top-info .check-panel i:after,.car-pay-panel .check-box:before,.car-ct .car-top-info .check-panel i.is-checked:after,.car-pay-panel .check-box.is-checked:before,.gray-name i,.user-ct .user-list .next-l:after,.user-center-box .right-box:after,.card-ct .bot-box .phone-p:before,.card-ct .bot-box .wx-p:before,.syllabus-body .date-mouth-box .left-btn:after,.syllabus-body .date-mouth-box .right-btn:after,.syll-list-panel .detail p:before{
+    background-size: 117px 107px;
     background-image: url(../img/teacher.png)
 }
