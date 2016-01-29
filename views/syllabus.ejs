@@ -1,0 +1,73 @@
+<% include header.ejs %>    
+    <div class="hidden" id="year"><%=year%></div>
+    <div class="hidden" id="month"><%=parseInt(month)+1%></div>
+    <div class="header-panel">
+        <header class="header">
+            <h1>课程表</h1>
+            <div class="de-avatar"><img src="<%if (user.avatar){%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>
+        </header>
+    </div>
+    <div class="content syllabus-ct">
+
+        <% var prevMonthInfo = getPrevMonthInfo(year, month) %>
+        <% var monthInfo = getMonthInfo(year, month) %>
+        <% var nextMonthInfo = getNextMonthInfo(year, month) %>
+        <div class="date-panel-space">
+            <div class="date-panel">
+                <div class="date-mouth-box">
+                    <div class="left-btn anchor" data-href="?year=<%=prevMonthInfo.year%>&month=<%=prevMonthInfo.month%>"></div>
+                    <div class="mouth-box"><%=year%>.<%=parseInt(month)+1%></div>
+                    <div class="right-btn anchor" data-href="?year=<%=nextMonthInfo.year%>&month=<%=nextMonthInfo.month%>"></div>
+                </div>
+                <ul class="week-box">
+                    <li>Su</li>
+                    <li>Mo</li>
+                    <li>Tu</li>
+                    <li>We</li>
+                    <li>Th</li>
+                    <li>Fr</li>
+                    <li>Sa</li>
+                </ul>
+                <div class="day-box">
+                    <ul class="day-list">
+                    <% var firstDayBefore = parseInt(monthInfo.firstDay.getDay()) %>
+                    <% var daysCounter = 0 %>
+                    <% for(var i=0; i<monthInfo.daysCount; ){ %>
+                    <% if(!(daysCounter % 7) && (daysCounter != 0)) {%>
+                    </ul>
+                    <ul class="day-list">
+                    <% } %>
+                    <% if(daysCounter < firstDayBefore) {%>
+                    <li class="un"><div><%=prevMonthInfo.daysCount-firstDayBefore+daysCounter+1%></div></li>
+                    <% } else { %>
+                    <li class="syll-date" id="date-<%=daysCounter-firstDayBefore+1%>"><div><%=daysCounter-firstDayBefore+1%></div></li>
+                    <% i++ %>
+                    <% } %>
+                    <% daysCounter ++%>
+                    <% } %>
+                    <% for (var j=0; j<7-daysCounter%7; j++){%>
+                    <li class="un"><div><%=j+1%></div></li>
+                    <% } %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="syll-list-panel">
+            <ul class="syll-list">
+            </ul>
+        </div>
+        <div id="class-tpl" class="hidden">
+            <li>
+                <div class="time">
+                    <div class="begin-time">AM 10:20</div>
+                    <div class="end-time">PM 12:10</div>
+                </div>
+                <div class="detail">
+                    <h3 class="ellipsis class-tpl-name">美国大学学分课AP＊Exam化学强化班</h3>
+                    <p class="ellipsis-two class-tpl-address">中关村新东方总部南校区503教室中关村新东方总部南校区503教中关村新东方总部南校区503教室中关村新东方总部南校区503教室室</p>
+                </div>
+            </li>
+        </div>
+    </div>
+    <script src='/js/syllabus.js'></script>
+<% include footer.ejs %>

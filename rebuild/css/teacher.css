@@ -1668,6 +1668,14 @@ header, nav, section, article, footer, figure, figcaption {
   height: 304px;
 }
 
+.syllabus-body .date-panel-space.is-four {
+  height: 262px;
+}
+
+.syllabus-body .date-panel-space.is-six {
+  height: 346px;
+}
+
 .syllabus-body .date-panel {
   position: fixed;
   top: 53px;
