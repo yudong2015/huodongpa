@@ -1315,6 +1315,12 @@
 .syllabus-body {
     .date-panel-space {
         height: 304px;
+        &.is-four {
+            height: 262px;
+        }
+        &.is-six {
+            height: 346px;
+        }
     }
     .date-panel {
         position: fixed;
