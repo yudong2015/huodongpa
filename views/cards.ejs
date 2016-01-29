@@ -35,8 +35,8 @@
         <div class="teacher-class-panel course-panel">
             <div class="m-line">
                 <div class="name-box">
-                    <span class="tag-box <%=pickLabelColor(clas.course.category.id)%>-tag">AP</span>
-                    <span class="name"><%= clas.name%><span class="gray-name">(<%if(clas.name.indexOf('VIP')>=0){%><i></i><%}%><%=clas.name%>)</span></span>
+                    <span class="tag-box <%=pickLabelColor(clas.course.category.id)%>-tag"><%=clas.course.category.name%></span>
+                    <span class="name"><%= clas.course.name%><span class="gray-name">(<%if(clas.name.indexOf('VIP')>=0){%><i></i><%}%><%=clas.name%>)</span></span>
                 </div>
                 <div class="price-box">
                     <span class="price"><i>￥</i><%=orders[i].tuition%></span>
