@@ -23,4 +23,17 @@ $(function(){
   validator.setMessage('required', '请填写%s');
   validator.setMessage('numeric', '%s格式错误');
 
+  // fix android bug
+  var footer = $(".footer");
+  window.onresize = function(){
+    var width = document.documentElement.clientWidth;
+    var height = document.documentElement.clientHeight;
+
+    if(height < width){
+      footer.hide();
+    } else {
+      footer.show();
+    }
+  }
+
 });
