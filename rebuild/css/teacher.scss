@@ -230,12 +230,16 @@
         -webkit-box-flex: 1;
         -webkit-flex: 1 1 0;
         flex: 1 1 0;
+        @include ellipsis;
         > span {
             display: block;
         }
         .name {
             margin-left: 8px;
             line-height: 1rem;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1 1 0;
+            flex: 1 1 0;
             font-size: 15px;
             font-weight: bold;
             color: #524070;
