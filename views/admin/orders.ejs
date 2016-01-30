@@ -32,7 +32,7 @@
           <th>状态</th>
         </tr>
         <% for(var i=0; i<orders.rows.length; i++) {%>
-        <tr>
+        <tr class="class-user-tr" data-id="<%=orders.rows[i].user.id%>">
           <td><%=orders.rows[i].user.username%></td>
           <td><%=orders.rows[i].user.name%></td>
           <td><%=orders.rows[i].user.emergencyPhone%></td>
@@ -114,11 +114,8 @@
         <div class="form-group">
             <label class="col-xs-2 control-label">新增成员</label>
             <div class="col-xs-10" class="col-xs-8">
-              <select name="userId" class="form-control">
-                <% for (var i=0; i<users.length; i++){%>
-                  <option value="<%=users[i].id%>"><%=users[i].name%>(<%=users[i].username%>)</option>
-                <% } %>
-              </select>
+              <input class="form-control typeahead" id="user-typeahead">
+              <input name="userId" type="hidden" id="user-id">
             </div>
         </div>
         <div class="form-group well">

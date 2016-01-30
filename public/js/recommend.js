@@ -27,7 +27,7 @@ $(function(){
       });
   
       wx.error(function(res) {
-          alert('error');
+          alert(JSON.stringify(res));
       });
   });
 });

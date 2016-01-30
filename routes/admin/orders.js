@@ -38,19 +38,16 @@ router.get('/', function(req, res, next){
         as : 'Orders'
       }
     ]}), 
-    Order.findAndCountAll(conditions),
-    User.findAll()
+    Order.findAndCountAll(conditions)
   ]).then(function(result){
     var clas = result[0];
     var orders = result[1];
-    var users = result[2];
     res.render('admin/orders', {
       nav: 'courses',
       clas: clas,
       orders: orders,
-      users: users,
       stylesheets: [],
-      javascripts: ['/admin/order.js'],
+      javascripts: ['/thirdparty/bootstrap-typeahead/typeahead.jquery.min.js','/admin/order.js'],
       pagination: {
         showpage : showpage,
         curpage: curpage,

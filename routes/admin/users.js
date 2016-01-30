@@ -280,4 +280,37 @@ router.post('/qrcode', function(req, res, next) {
   });
 });
 
+router.get('/search', function(req, res, next) {
+  var keyword = req.query.q;
+
+  User.findAll({
+    attributes: ['id', 'username', 'name'],
+    where: {
+      $or: [
+        {
+          username: {
+            $like: '%'+keyword+'%'
+          }
+        },
+        {
+          name: {
+            $like: '%'+keyword+'%'
+          }
+        }
+      ]
+    }
+  }).then(function(users) {
+    res.json({
+      code: 0,
+      data: users
+    })
+  }).catch(function(error){
+    console.log(error);
+    res.json({
+      code: -1,
+      message: error
+    });
+  });
+});
+
 module.exports = router;
