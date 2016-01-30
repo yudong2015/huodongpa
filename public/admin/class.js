@@ -6,7 +6,8 @@ $(function(){
     clearBtn: true,
     todayHighlight: true,
     todayBtn: true,
-    language: "zh-CN"
+    language: "zh-CN",
+    startDate: '-3y'
   });
   $('#register-date .input-group.date').datepicker({
     format: "yyyymmdd",
@@ -15,6 +16,7 @@ $(function(){
     clearBtn: true,
     todayHighlight: true,
     todayBtn: true,
-    language: "zh-CN"
+    language: "zh-CN",
+    startDate: '-3y'
   });
 });

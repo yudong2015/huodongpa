@@ -29,9 +29,11 @@
         </div>
     </div>
     <div class="content course-detail-ct card-ct">
+        <% var isEmpty = true %>
         <% for(var i=0; i<orders.length; i++){%>
         <% var clas = orders[i].class %>
         <% if(getClassStatus(clas) == scope){ %>
+        <% isEmpty = false %>
         <div class="teacher-class-panel course-panel">
             <div class="m-line">
                 <div class="name-box">
@@ -50,17 +52,19 @@
                 <div class="f-b">教师：</div>
                 <div class="s-b"><%=clas.teacher.name%></div>
             </div>
+            <% var currentStudentsNumber = countPaidOrders(orders[i].class.Orders) %>
+            <% var availableStudentsNumber = clas.maxStudentsNumber - currentStudentsNumber %>
+            <% if(availableStudentsNumber <=5){%>
             <div class="course-box">
                 <div class="f-b">人数：</div>
-                <% var currentStudentsNumber = countPaidOrders(orders[i].class.Orders) %>
-                <div class="s-b"><%=currentStudentsNumber%>/<%=clas.maxStudentsNumber%></div>
-                <% var availableStudentsNumber = clas.maxStudentsNumber - currentStudentsNumber %>
+                <div class="s-b"><%=currentStudentsNumber%>/<%=clas.maxStudentsNumber%></div>    
                 <% if(availableStudentsNumber <=5 && availableStudentsNumber > 0) { %>
                 <div class="t-b notice-box">仅剩<%=availableStudentsNumber%>席</div>
                 <% } else if (availableStudentsNumber == 0) {%>
                 <div class="t-b notice-box">人数已满</div>
                 <% } %>
             </div>
+            <%}%>
             <div class="course-box justify-box">
                 <% var dates = splitClassDates(clas.classDates) %>
                 <div class="f-b">
@@ -151,6 +155,15 @@
             </div>
         </div>   
         -->
+        <% if(isEmpty) {%>
+        <div class="empty-card-box">
+            <div class="empty-pic">
+                <img src="../img/empty-card.png" alt="empty">
+            </div>
+            <p>还木有听课证~</p>
+            <p>快去看看有没有喜欢的课程</p>
+        </div>
+        <% } %>
         <div class="bot-box">
             <a class="phone-p" href="tel:15201106243">15201106243</a>
             <a class="wx-p">chenyuankaiabc</a>
