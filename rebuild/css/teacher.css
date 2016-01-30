@@ -378,6 +378,7 @@ header, nav, section, article, footer, figure, figcaption {
   border-color: inherit;
   -webkit-border-radius: 2px;
   border-radius: 2px;
+  white-space: nowrap;
 }
 
 .green-tag {
@@ -448,6 +449,9 @@ header, nav, section, article, footer, figure, figcaption {
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 0;
   flex: 1 1 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .teacher-class-panel .name-box > span, .course-panel .name-box > span {
@@ -457,6 +461,9 @@ header, nav, section, article, footer, figure, figcaption {
 .teacher-class-panel .name-box .name, .course-panel .name-box .name {
   margin-left: 8px;
   line-height: 1rem;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 0;
+  flex: 1 1 0;
   font-size: 15px;
   font-weight: bold;
   color: #524070;
