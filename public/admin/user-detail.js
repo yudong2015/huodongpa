@@ -33,6 +33,9 @@ $(function(){
   });
 
   $(".recommended-action").click(function(){
+    if($(this).html() == ''){
+      return;
+    }
     var that = $(this).closest(".recommended-user");
     var recommendid = $(this).data("id");
     var tuition = parseInt($(this).parent().find(".recommended-tuition").text());
