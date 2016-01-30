@@ -3,7 +3,7 @@ $(function(){
       url: location.href.split('#')[0]
   }, function(data) {
       wx.config({
-          debug: true,
+          debug: false,
           appId: "wx82a5d90838b461ba",
           timestamp: data.config.timestamp,
           nonceStr: data.config.nonceStr,
@@ -27,7 +27,7 @@ $(function(){
       });
   
       wx.error(function(res) {
-          alert(JSON.stringify(res));
+          console.log(JSON.stringify(res));
       });
   });
 });
