@@ -221,7 +221,7 @@ router.get('/info', function(req, res, next) {
 
 
       for(var i=0; i<orders.length; i++) {
-        if((utils.getClassStatus(orders[i]['class']) == 'inclass') || (getClassStatus(orders[i]['class']) == 'end')){
+        if((utils.getClassStatus(orders[i]['class']) == 'inclass') || (utils.getClassStatus(orders[i]['class']) == 'end')){
           total += orders[i].tuition;
         }
       }
