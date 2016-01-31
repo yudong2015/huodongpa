@@ -25,7 +25,11 @@ router.get('/', function(req, res, next) {
     data.logourl = config.domain+'/img/logo.jpg';
     res.render('recommend', data);
   } else {
-    res.redirect('/recommend?user='+req.session.user.id);
+    if( req.session.user ){
+      res.redirect('/recommend?user='+ req.session.user.id);
+    } else {
+      res.redirect('/login');
+    }
   }
 
   
