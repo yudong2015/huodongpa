@@ -18,11 +18,17 @@ var renderConf = {
 router.get('/', function(req, res, next) {
   var data = _.clone(renderConf);
 
-  data.user = req.session.user;
-  data.userid = req.query.user;
-  data.registerurl = config.domain+'/register?user=' + req.query.user;
-  data.logourl = config.domain+'/img/logo.jpg';
-  res.render('recommend', data);
+  if(req.query.user) {
+    data.user = req.session.user;
+    data.userid = req.query.user;
+    data.registerurl = config.domain+'/register?user=' + req.query.user;
+    data.logourl = config.domain+'/img/logo.jpg';
+    res.render('recommend', data);
+  } else {
+    res.redirect('/recommend?user='+req.session.user.id);
+  }
+
+  
 });
 
 module.exports = router;
