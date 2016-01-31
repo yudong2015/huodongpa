@@ -20,7 +20,7 @@ $(function(){
     var that = $(this);
     $.getJSON("/admin/users/info", {id: that.data("id")}, function(result) {
       if(result.code == 0){
-        that.find(".recommended-accout").html("<a href='/admin/users/detail?id='"+ result.data.id+">"+result.data.username+"</a>");
+        that.find(".recommended-accout").html("<a href='/admin/users/detail?id="+ result.data.id+"'>"+result.data.username+"</a>");
         that.find(".recommended-name").text(result.data.name);
         that.find(".recommended-tuition").text(result.data.total);
         var unrewarded = result.data.total - parseInt(that.find(".recommended-rewarded").text());
