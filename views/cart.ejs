@@ -2,14 +2,14 @@
     <div class="header-panel">
         <header class="header">
             <h1>购课车</h1>
-            <div class="de-avatar"><img src="<% if (user.avartar) {%>user.avartar<%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>
+            <div class="de-avatar"><img src="<% if (user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>
         </header>
     </div>
     <% if(cart) {%>
     <div class="content course-detail-ct car-ct">
         <% for (var id in cart) { if(cart[id]) {%>
         <div class="teacher-class-panel course-panel car-panel">
-            <div class="car-top-info overdue">
+            <div class="car-top-info">
                 <div class="check-panel"><i></i></div>
                 <div class="info-panel">
                     <div class="m-line">
@@ -28,11 +28,13 @@
                         <div class="f-b">教师：</div>
                         <div class="s-b"><%=cart[id].teacher.name%></div>
                     </div>
+                    <!--
                     <div class="course-box">
                         <div class="f-b">人数：</div>
                         <div class="s-b">27/<%=cart[id].maxStudentsNumber%></div>
                         <div class="t-b notice-box">仅剩3席</div>
                     </div>
+                    -->
                     <% var dates = splitClassDates(cart[id].classDates) %>
                     <div class="course-box justify-box">
                         <div class="f-b">
@@ -52,7 +54,9 @@
                     <div class="course-box">
                         <div class="f-b">时间：</div>
                         <div class="s-b"><%=cart[id].beginTime%> ~ <%=cart[id].endTime%></div>
+                        <!--
                         <div class="t-b notice-box">与现有课程冲突</div>
+                        -->
                     </div>
                     <div class="course-box">
                         <div class="f-b">地址：</div>
@@ -63,8 +67,10 @@
             <div class="course-bt-btns car-bt-btns">
                 <span class="del-btn gray-btn">删除</span>
             </div>
-
+            <% classOpenDate = dates[0].split('.') %>
+            <% if((new Date()).getTime() > (new Date(parseInt(classOpenDate[0]), parseInt(classOpenDate[1]-1), parseInt(classOpenDate[2]))).getTime()){%>
             <div class="overdue-panel"></div>
+            <% } %>
         </div>
         <% }} %>
         <div class="car-clear-btns">
@@ -91,7 +97,7 @@
     <% } %>
     <div class="mask hidden">
         <div class="choose-dialog">
-            <div class="tips-content">确定删除该课程？确定删除该课程？确定删除该课程？确定删除该课程？</div>
+            <div class="tips-content">确定删除该课程？</div>
             <div class="btns-box">
                 <div class="btn ok-btn">确定</div>
                 <div class="btn cancel-btn">取消</div>

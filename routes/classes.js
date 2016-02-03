@@ -60,6 +60,15 @@ router.get('/', function(req, res, next) {
           course.Classes[i].inCart = true;
         }
       }
+
+      // check if class is paid
+      if(req.session.user) {
+        for(var j=0; j<course.Classes[i].Orders.length; j++) {
+          if(course.Classes[i].Orders[j].userId = req.session.user.id){
+            course.Classes[i].isPaid = true;
+          }
+        }
+      }
     }
     data.course = course;
     data.teachers = utils.findNoRepeatTeachersOfCourse(course);

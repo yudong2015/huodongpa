@@ -16,7 +16,7 @@ router.use('/me', require('./me'));
 router.use('/cards', require('./cards'));
 router.use('/syllabus', require('./syllabus'));
 router.use('/recommend', require('./recommend'));
-//router.use('/cart', require('./cart'));
+router.use('/cart', require('./cart'));
 
 router.use('/qiniu', require('./qiniu'));
 

@@ -38,22 +38,22 @@ word-wrap: break-word;
 
         </div>
         <ul class="nav-list">
-            <li <% if (page == 'course'){%>class="active"<%}%> >
+            <li <% if (page == 'course' || page == 'course-detail'){%>class="active"<%}%> >
                 <div class="nav-title  anchor" data-href="/courses">课程导航</div>
             </li>
-            <li <% if (page == 'teacher'){%>class="active"<%}%>>
+            <li <% if (page == 'teachers'){%>class="active"<%}%>>
                 <div class="nav-title  anchor" data-href="/teachers">教师一览</div>
             </li>
-            <!--
-            <li>
-                <div class="nav-title">购课车</div>
+            <li  <% if (page == 'car'){%>class="active"<%}%>>
+                <div class="nav-title anchor" data-href="/cart">购课车</div>
+                <!--
                 <span class="course-num">8</span>
+                -->
             </li>
-            -->
             <li <% if (page == 'me'){%>class="active"<%}%>>
                 <div class="nav-title anchor" data-href="/me">我的帐号</div>
             </li>
-            <li <% if (page == 'recommend'){%>class="active"<%}%>>
+            <li <% if (page == 'share'){%>class="active"<%}%>>
                 <div class="nav-title <%if(user){%>anchor<%}%>" <%if(user){%>data-href="/recommend?user=<%=user.id%>"<%}%>>推荐名片</div>
             </li>
         </ul>

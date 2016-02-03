@@ -1,15 +1,7 @@
 $(function() {
-  $(".show-detail-btn").click(function() {
-    var detail = $(this).parent().next();
-    if(detail.hasClass("hidden")){
-      detail.removeClass("hidden");
-    } else {
-      detail.addClass("hidden");
-    }
-  });
 
   $(".check-panel").click(function(){
-    if($(this).closest(".car-top-info").hasClass("overdue")){
+    if($(this).closest(".car-panel").find("overdue-panel").size()){
       return false;
     }
 
