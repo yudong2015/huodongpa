@@ -27,6 +27,38 @@ $(function() {
     calcTotalTuition();
   });
 
+  function deleteClass(id) {
+    $.post("/cart/delete", {"id": id}, function(result) {
+      if(result.code == 0){
+        location.href = location.href;
+      } else {
+        $.tips('删除失败，请重试');
+      }
+    });
+  }
+
+  $(".del-btn").click(function(){
+    var classPanel = $(this).closest(".car-panel");
+    if(classPanel.find("overdue-panel").size()){
+      deleteClass(classPanel.data("id"));
+    } else {
+      $.dialog("确认删除？", function(){
+        deleteClass(classPanel.data("id"));
+      });
+    }
+  });
+
+  $(".clear-btn").click(function(){
+    var classes = "";
+    $(".overdue-panel").each(function(){
+      classes = $(this).closest(".car-panel").data("id") + ",";
+    });
+    if(classes){
+      classes = classes.substr(0, classes.length-1);
+      deleteClass(classes);
+    }
+  });
+
   function calcTotalTuition(){
     var total = 0;
     $(".car-top-info").each(function(){

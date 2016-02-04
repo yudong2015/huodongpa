@@ -5,10 +5,10 @@
             <div class="de-avatar"><img src="<% if (user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>
         </header>
     </div>
-    <% if(cart) {%>
+    <% if(!isObjectEmpty(cart)) {%>
     <div class="content course-detail-ct car-ct">
         <% for (var id in cart) { if(cart[id]) {%>
-        <div class="teacher-class-panel course-panel car-panel">
+        <div class="teacher-class-panel course-panel car-panel" data-id="<%=id%>">
             <div class="car-top-info">
                 <div class="check-panel"><i></i></div>
                 <div class="info-panel">
@@ -72,10 +72,11 @@
             <div class="overdue-panel"></div>
             <% } %>
         </div>
-        <% }} %>
+        <% } %>
         <div class="car-clear-btns">
             <span class="clear-btn gray-btn">清除过期科目</span>
         </div>
+        <% } %>
     </div>
     <div class="car-pay-panel">
         <!-- is-checked -->
@@ -92,12 +93,12 @@
             <img src="../img/empty-car.png" alt="empty-car">
         </div>
         <p>购课车空空如也</p>
-        <p>来挑几件好货吧</p>
+        <p>来挑几节好课吧</p>
     </div>
     <% } %>
-    <div class="mask hidden">
+    <div class="mask-help hidden">
         <div class="choose-dialog">
-            <div class="tips-content">确定删除该课程？</div>
+            <div class="tips-content"><img width= src="/img/assistant.jpg"></div>
             <div class="btns-box">
                 <div class="btn ok-btn">确定</div>
                 <div class="btn cancel-btn">取消</div>

@@ -40,6 +40,19 @@ router.post('/add', function(req, res, next) {
   });
 });
 
+router.post('/delete', function(req, res, next) {
+  var classids = req.body.id.split(',');
+  if (req.session.cart) {
+    for(var id in classids){
+      delete req.session.cart[id];
+    }
+  }
+
+  res.json({
+    code : 0
+  })
+});
+
 router.get('/', function(req, res, next) {
   var data = _.clone(renderConf);
 
