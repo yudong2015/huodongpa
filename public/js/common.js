@@ -12,8 +12,8 @@ $(function(){
   }
 
   $.dialog = function(text, confirm, cancel) {
-    $(".dialog").removeClass("hidden").find(".tips-content").text(text);
-    $(".dialog").find(".btn").click(function(){
+    $(".dialog").removeClass("hidden").find(".tips-content").html(text);
+    $(".dialog").find(".btn").unbind("click").click(function(){
       $(".dialog").addClass("hidden");
       if($(this).hasClass("ok-btn")){
         if (confirm)  confirm();

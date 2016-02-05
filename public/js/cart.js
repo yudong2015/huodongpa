@@ -37,7 +37,16 @@ $(function() {
     });
   }
 
-  $(".del-btn").click(function(){
+  function buyClass(id) {
+    $.post("/cart/buy", {"id": id}, function(result) {
+      if(result.code == 0){
+      } else {
+        $.tips('购买失败，请重试');
+      }
+    });
+  }
+
+  $(".del-btn").unbind("click").click(function(){
     var classPanel = $(this).closest(".car-panel");
     if(classPanel.find("overdue-panel").size()){
       deleteClass(classPanel.data("id"));
@@ -48,7 +57,7 @@ $(function() {
     }
   });
 
-  $(".clear-btn").click(function(){
+  $(".clear-btn").unbind("click").click(function(){
     var classes = "";
     $(".overdue-panel").each(function(){
       classes = $(this).closest(".car-panel").data("id") + ",";
@@ -57,6 +66,20 @@ $(function() {
       classes = classes.substr(0, classes.length-1);
       deleteClass(classes);
     }
+  });
+
+  $(".pay-btn").unbind("click").click(function(){
+    var classes = "";
+    $(".check-panel i.is-checked").each(function(){
+      classes = $(this).closest(".car-panel").data("id") + ",";
+    });
+    if(classes){
+      classes = classes.substr(0, classes.length-1);
+      buyClass(classes);
+    }
+    $.dialog($("#pay-help").html(), function(){
+      location.href = location.href;
+    });
   });
 
   function calcTotalTuition(){
