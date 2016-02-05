@@ -120,4 +120,29 @@ router.post('/recover', function(req, res, next) {
   
 });
 
+router.post('/buy', function(req, res, next) {
+  var orderids = req.body.id.split(',');
+
+  Order.update(
+    {status: 'paid'},
+    {
+      where: {
+        id: {
+          $in: orderids
+        }
+      }
+    }
+  ).then(function(){
+    res.json({
+      code : 0
+    })
+  }).catch(function(err) {
+    console.log(err);
+    res.json({
+      code: -1,
+      message: err
+    });
+  });
+});
+
 module.exports = router;

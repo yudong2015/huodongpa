@@ -40,12 +40,21 @@
           <li role="presentation" <% if (sub == 'recommended'){%>class="active"<%}%>>
             <a href="/admin/users/recommends?id=<%=user.id%>&sub=recommended">已推荐</a>
           </li>
+          <li role="presentation" <% if (sub == 'cart'){%>class="active"<%}%>>
+            <a href="/admin/users/detail?id=<%=user.id%>&sub=cart">购物车</a>
+          </li>
         </ul>
-    <% if (sub == 'history'){%>
+    <% if (sub == 'history' || sub == 'cart'){%>
     <table class="table table-striped">
-      <tr><th>课程编号</th><th>课程名称</th><th>课程分类</th><th>主人编号</th><th>主人名称</th><th>班级编号</th><th>班级名称</th><th>学费</th><th>购课日期</th></tr>
+      <tr><th>课程编号</th><th>课程名称</th><th>课程分类</th><th>主人编号</th><th>主人名称</th><th>班级编号</th><th>班级名称</th><th>学费</th>
+        <% if (sub == 'history') {%>
+        <th>购课日期</th>
+        <% }else{ %>
+        <th>全选 <input type="checkbox" id="check-all-in-cart"></th>
+        <% } %>
+      </tr>
       <% for(var i=0; i<orders.length; i++) {%>
-      <tr>
+      <tr class="order-row" data-id="<%=orders[i].id%>">
         <td><a href="/admin/classes?course=<%=orders[i].class.course.id%>"><%=orders[i].class.course.id%></a></td>
         <td><%=orders[i].class.course.name%></td>
         <td><%=orders[i].class.course.category.name%></td>
@@ -54,10 +63,17 @@
         <td><a href="/admin/orders?clas=<%=orders[i].class.id%>"><%=orders[i].class.id%></a></td>
         <td><%=orders[i].class.name%></td>
         <td><%=orders[i].tuition%></td>
+        <% if (sub == 'history') {%>
         <td><%=formatDate(orders[i].updatedAt)%></td>
+        <% }else{ %>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" class="check-class-in-cart"></td>
+        <% } %>
       </tr>
       <% } %>
     </table>
+    <% if (sub == 'cart') {%>
+    <a class="pull-right btn btn-success" id="buy-cart">购买</a>
+    <% } %>
     <% } else if(sub == 'recommended'){%>
     <table class="table table-striped">
       <tr><th>账号（联系电话）</th><th>萌宠姓名</th><th>购课总额</th><th>已返利金额</th><th>未返利金额</th><th>操作</th></tr>

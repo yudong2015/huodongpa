@@ -69,17 +69,20 @@ $(function() {
   });
 
   $(".pay-btn").unbind("click").click(function(){
-    var classes = "";
-    $(".check-panel i.is-checked").each(function(){
-      classes = $(this).closest(".car-panel").data("id") + ",";
+    $.dialog("确认购买所选课程？", function(){
+      var classes = "";
+      $(".check-panel i.is-checked").each(function(){
+        classes = $(this).closest(".car-panel").data("id") + ",";
+      });
+      if(classes){
+        classes = classes.substr(0, classes.length-1);
+        buyClass(classes);
+      }
+      $.dialog($("#pay-help").html(), function(){
+        location.href = location.href;
+      });
     });
-    if(classes){
-      classes = classes.substr(0, classes.length-1);
-      buyClass(classes);
-    }
-    $.dialog($("#pay-help").html(), function(){
-      location.href = location.href;
-    });
+    
   });
 
   function calcTotalTuition(){

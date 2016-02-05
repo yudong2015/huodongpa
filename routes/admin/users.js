@@ -112,7 +112,7 @@ router.get('/detail', function(req, res, next) {
     limit: perpage,
     order: [['id', 'DESC']],
     where: {
-      status: 'paid',
+      status: subnav == 'history' ? 'paid' : 'unpaid',
       userId: req.query.id
     },
     include : [

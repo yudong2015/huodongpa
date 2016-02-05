@@ -52,4 +52,26 @@ $(function(){
       $("#reward-confirm-dialog").modal('hide');
     });
   });
+
+  $("#buy-cart").click(function(){
+    var orders = [];
+    $("input.check-class-in-cart:checked").each(function(){
+      orders.push($(this).closest(".order-row").data("id"));
+    }); 
+
+    if(confirm("确定购买?")){
+      $.post("/admin/orders/buy", {id: orders.join(',')}, function(result){
+        if(result.code == 0) {
+          location.href = location.href;
+        }
+      });
+    }
+  });
+
+  $("input:checkbox#check-all-in-cart").unbind("click").click(function(){
+    var checked = $(this).is(':checked');
+    $("input.check-class-in-cart").each(function(){
+        $(this).attr('checked', checked);
+    })
+  });
 });
