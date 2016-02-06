@@ -160,6 +160,13 @@ router.post('/combine', function(req, res, next) {
   var src = req.body.source;
   var des = req.body.dest;
 
+  if(src == des){
+    return res.json({
+      code: -2,
+      message: 'source and desc cannot be the same.'
+    });
+  }
+
   Promise
   .all([
   Order.findAll({

@@ -3,6 +3,27 @@ $(function(){
     $("#user-profile-form").submit();
   });
 
+  // form validator
+  var validator = new FormValidator('user-profile-form', [{
+    name: 'name',
+    display: '真实姓名',
+    rules: 'required'
+  }, {
+    name: 'emergencyPhone',
+    display: '紧急联系电话',
+    rules: 'required|numeric'
+  }, {
+    name: 'address',
+    display: '住址',
+    rules: 'required'
+  }], function(errors, event) {
+    if (errors.length > 0) {
+        $.tips(errors[0].message);
+    }
+  });
+  validator.setMessage('required', '红星那么显眼你为什么不填> <');
+  validator.setMessage('numeric', '%s格式错误');
+
   if(window.Qiniu){
     // avatar upload
     var uploader = Qiniu.uploader({

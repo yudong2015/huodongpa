@@ -14,11 +14,8 @@
           <li role="presentation" class="active"><a href="#">萌宠列表</a></li>
         </ul>
       </div>
-      <div class="col-md-1 text-right" style="padding-right:0">
+      <div class="col-md-3 text-right" style="padding-right:0">
         <a type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal">增加成员</a>
-      </div>
-      <div class="col-md-2 text-right" style="padding-right:0">
-        <a class="btn btn-info" href="#">导出excel</a>
       </div>
       <div>
       <table class="table table-striped">
@@ -45,6 +42,8 @@
                 <option>已付款</option>
                 <option>点此退课</option>
               </select>
+            <% } else if(orders.rows[i].status == 'unpaid'){%>
+            未支付
             <% } else { %>
               <select  class="order-recover order-action" data-id="<%=orders.rows[i].id%>">
                 <option>已退课</option>

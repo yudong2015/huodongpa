@@ -7,6 +7,7 @@
     </div>
     <% if(!isObjectEmpty(cart)) {%>
     <div class="content course-detail-ct car-ct">
+        <% var hasOverdue = false %>
         <% for (var id in cart) { if(cart[id]) {%>
         <div class="teacher-class-panel course-panel car-panel" data-id="<%=id%>">
             <div class="car-top-info">
@@ -69,10 +70,13 @@
             </div>
             <% classOpenDate = dates[0].split('.') %>
             <% if((new Date()).getTime() > (new Date(parseInt(classOpenDate[0]), parseInt(classOpenDate[1]-1), parseInt(classOpenDate[2]))).getTime()){%>
+            <% hasOverdue = true %>
             <div class="overdue-panel"></div>
             <% } %>
         </div>
         <% } %>
+        <% } %>
+        <% if(hasOverdue){%>
         <div class="car-clear-btns">
             <span class="clear-btn gray-btn">清除过期科目</span>
         </div>

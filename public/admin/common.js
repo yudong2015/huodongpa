@@ -3,7 +3,7 @@ $(function(){
   $(".image-popover").hover(function(){
     $("body").popover({
       content: function(){
-        return $(this).data("href")?("<img width=200 height=200 src='"+$(this).data("href")+"'>"):"暂无";
+        return $(this).data("href")?("<img width=200 src='"+$(this).data("href")+"'>"):"暂无";
       },
       html: true,
       placement: "bottom",
