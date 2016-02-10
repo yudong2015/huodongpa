@@ -89,6 +89,27 @@ router.post('/buy', function(req, res, next) {
   }
 });
 
+router.get('/classes/paid', function(req, res, next) {
+  Order.findAll({
+    where: {
+      userId: req.session.user.id,
+      status: 'paid'
+    },
+    include: Class
+  }).then(function(orders) {
+    res.json({
+      code: 0,
+      data: orders
+    });
+  }).catch(function(err){
+    console.log(err);
+    res.json({
+      code: -1,
+      message: err
+    });
+  });
+});
+
 router.get('/', function(req, res, next) {
   var data = _.clone(renderConf);
 

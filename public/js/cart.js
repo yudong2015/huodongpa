@@ -1,5 +1,15 @@
 $(function() {
 
+  var allClasses = [];
+
+  $.getJSON("/cart/classes/paid", function(result){
+    if(result.code == 0) {
+      allClasses = result.data;
+      findConfictClasses();
+    }
+  });
+
+
   $(".check-panel").click(function(){
     if($(this).closest(".car-panel").find("overdue-panel").size()){
       return false;
@@ -60,7 +70,7 @@ $(function() {
   $(".clear-btn").unbind("click").click(function(){
     var classes = "";
     $(".overdue-panel").each(function(){
-      classes = $(this).closest(".car-panel").data("id") + ",";
+      classes += $(this).closest(".car-panel").data("id") + ",";
     });
     if(classes){
       classes = classes.substr(0, classes.length-1);
@@ -72,12 +82,14 @@ $(function() {
     $.dialog("确认购买所选课程？", function(){
       var classes = "";
       $(".check-panel i.is-checked").each(function(){
-        classes = $(this).closest(".car-panel").data("id") + ",";
+        classes += $(this).closest(".car-panel").data("id") + ",";
       });
       if(classes){
         classes = classes.substr(0, classes.length-1);
         buyClass(classes);
       }
+      $(".dialog .cancel-btn").remove();
+      $(".dialog .btn").css("width", "100%");
       $.dialog($("#pay-help").html(), function(){
         location.href = location.href;
       });
@@ -97,4 +109,37 @@ $(function() {
     });
     $(".total-price .price").text(total);
   }
+
+  function check2ClassConflict(class1, class2){
+    var dates1 = class1.classDates.split(',');
+    var dates2 = class2.classDates.split(',');
+    if(_.intersection(dates1, dates2)){
+      if((class1.endTime < class2.beginTime) || (class2.endTime < class1.beginTime)) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  function findConfictClasses() {
+    $(".car-panel").each(function(){
+      var panel = $(this);
+      var clas = {
+        classDates : panel.data("dates"),
+        beginTime: panel.data("btime"),
+        endTime: panel.data("etime")
+      }
+      for(var i=0; i<allClasses.length; i++) {
+        if(check2ClassConflict(clas, allClasses[i]["class"])){
+          panel.find(".notice-box").show();
+          break;
+        }
+      }
+      allClasses.push({"class": clas});
+    });
+  }
+
 });

@@ -9,7 +9,7 @@
     <div class="content course-detail-ct car-ct">
         <% var hasOverdue = false %>
         <% for (var id in cart) { if(cart[id]) {%>
-        <div class="teacher-class-panel course-panel car-panel" data-id="<%=id%>">
+        <div class="teacher-class-panel course-panel car-panel" data-id="<%=id%>" data-dates='<%=cart[id].classDates%>' data-btime='<%=cart[id].beginTime%>' data-etime='<%=cart[id].endTime%>'>
             <div class="car-top-info">
                 <div class="check-panel"><i></i></div>
                 <div class="info-panel">
@@ -55,9 +55,7 @@
                     <div class="course-box">
                         <div class="f-b">时间：</div>
                         <div class="s-b"><%=cart[id].beginTime%> ~ <%=cart[id].endTime%></div>
-                        <!--
-                        <div class="t-b notice-box">与现有课程冲突</div>
-                        -->
+                        <div class="t-b notice-box hidden">与现有课程冲突</div>
                     </div>
                     <div class="course-box">
                         <div class="f-b">地址：</div>
