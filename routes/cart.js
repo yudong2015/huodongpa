@@ -12,7 +12,7 @@ var Order = require('../models').Order;
 
 var renderConf = {
   tips: '',
-  title: '购物车-学术葩',
+  title: '购课车-学术葩',
   style: 'teacher',
   page: 'car'
 }

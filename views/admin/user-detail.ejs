@@ -41,7 +41,7 @@
             <a href="/admin/users/recommends?id=<%=user.id%>&sub=recommended">已推荐</a>
           </li>
           <li role="presentation" <% if (sub == 'cart'){%>class="active"<%}%>>
-            <a href="/admin/users/detail?id=<%=user.id%>&sub=cart">购物车</a>
+            <a href="/admin/users/detail?id=<%=user.id%>&sub=cart">购课车</a>
           </li>
         </ul>
     <% if (sub == 'history' || sub == 'cart'){%>
@@ -72,7 +72,10 @@
       <% } %>
     </table>
     <% if (sub == 'cart') {%>
-    <a class="pull-right btn btn-success" id="buy-cart">购买</a>
+    <div class="pull-right">
+      <a class="btn btn-danger" id="del-cart">删除</a>
+      <a class="btn btn-success" id="buy-cart">购买</a>
+    </div>
     <% } %>
     <% } else if(sub == 'recommended'){%>
     <table class="table table-striped">
@@ -139,7 +142,7 @@
       </div>
       <div class="modal-body" >
         <div>
-          <img style="display:block;margin:auto" width="300" height="300" src="<%=user.gatheringQrcode%>">
+          <img style="display:block;margin:auto" width="300" src="<%=user.gatheringQrcode%>">
         </div>
         <div class="well">打开微信，扫描图中二维码，输入返现金额，即可完成返现，若支付失败或学院未上传收款二维码，请自行联系学员</div>
       </div>

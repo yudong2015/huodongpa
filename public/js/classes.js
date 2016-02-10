@@ -8,7 +8,7 @@ $(function(){
     btn.text("请稍后...");
     $.post("/cart/add", {"id": $(this).data("id")}, function(result) {
       if(result.code == 0){
-        btn.text("已加入购物车");
+        btn.text("已加入购课车");
       } else {
         btn.text(result.message);
       }

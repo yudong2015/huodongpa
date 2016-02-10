@@ -64,7 +64,7 @@ router.get('/', function(req, res, next) {
       // check if class is paid
       if(req.session.user) {
         for(var j=0; j<course.Classes[i].Orders.length; j++) {
-          if((course.Classes[i].Orders[j].userId = req.session.user.id) && ((course.Classes[i].Orders[j].status == 'unpaid') || (course.Classes[i].Orders[j].status == 'paid'))){
+          if((course.Classes[i].Orders[j].userId == req.session.user.id) && ((course.Classes[i].Orders[j].status == 'unpaid') || (course.Classes[i].Orders[j].status == 'paid'))){
             course.Classes[i].isPaid = true;
             course.Classes[i].tips = (course.Classes[i].Orders[j].status == 'paid')?'已购买':'付款中';
           }

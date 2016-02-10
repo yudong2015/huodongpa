@@ -79,11 +79,11 @@
             </div>
             <div class="course-bt-btns">
                 <% if(classes[i].inCart){ %>
-                <span class="add-btn in-cart" data-id="<%=classes[i].id%>">已加入购物车</span>
+                <span class="add-btn in-cart" data-id="<%=classes[i].id%>">已加入购课车</span>
                 <%} else if(classes[i].isPaid) {%>
                 <span class="add-btn is-paid" data-id="<%=classes[i].id%>"><%=classes[i].tips%></span>
                 <% } else {%>
-                <span class="add-btn" data-id="<%=classes[i].id%>">加入购物车</span>
+                <span class="add-btn" data-id="<%=classes[i].id%>">加入购课车</span>
                 <% } %>
             </div>
         </div>

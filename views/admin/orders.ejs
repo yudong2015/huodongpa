@@ -43,7 +43,7 @@
                 <option>点此退课</option>
               </select>
             <% } else if(orders.rows[i].status == 'unpaid'){%>
-            未支付
+            未付款
             <% } else { %>
               <select  class="order-recover order-action" data-id="<%=orders.rows[i].id%>">
                 <option>已退课</option>

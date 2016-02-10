@@ -163,7 +163,7 @@ router.post('/combine', function(req, res, next) {
   if(src == des){
     return res.json({
       code: -2,
-      message: 'source and desc cannot be the same.'
+      message: '目标班级和源班级不可相同！'
     });
   }
 
