@@ -25,7 +25,7 @@
         <% } %>
         <% if((base + i + 1)*pagination.perpage<pagination.count) {%>
         <li>
-          <a href="?<%=pagination.query%>&perpage=<%=pagination.perpage%>&curpage=<%=base+showpage%>" aria-label="Next">
+          <a href="?<%=pagination.query%>&perpage=<%=pagination.perpage%>&curpage=<%=base+pagination.showpage%>" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
