@@ -113,7 +113,7 @@ $(function() {
   function check2ClassConflict(class1, class2){
     var dates1 = class1.classDates.split(',');
     var dates2 = class2.classDates.split(',');
-    if(_.intersection(dates1, dates2)){
+    if(_.intersection(dates1, dates2).length > 0){
       if((class1.endTime < class2.beginTime) || (class2.endTime < class1.beginTime)) {
         return false;
       } else {
