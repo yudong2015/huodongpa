@@ -40,6 +40,16 @@ $(function(){
     });
   }
 
+  function toggleShowClass(src, isShow) {
+    $.post("/admin/classes/show", {id: src, showInFrontEnd: isShow}, function(result){
+      if(result.code == 0){
+        location.reload();
+      } else {
+        alert(result.message);
+      }
+    });
+  }
+
   var src;
 
   $(".combine-action").click(function() {
@@ -81,6 +91,11 @@ $(function(){
       }
     });
     return false;
+  });
+
+  $(".show-in-frontend").click(function(){
+    var isShow = $(this).is(':checked');
+    toggleShowClass($(this).closest('tr').data('id'), isShow);
   });
 
 });

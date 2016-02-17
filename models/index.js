@@ -35,7 +35,8 @@ var Class = orm.define('class', {
   period: { type: Sequelize.INTEGER, allowNull: false },
   status: { type: Sequelize.ENUM('normal', 'canceled'), defaultValue: 'normal', allowNull: false},
   minStudentsNumber: { type: Sequelize.INTEGER, allowNull: false },
-  maxStudentsNumber: { type: Sequelize.INTEGER, allowNull: false }
+  maxStudentsNumber: { type: Sequelize.INTEGER, allowNull: false },
+  showInFrontEnd: {type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false}
 }, {
   initialAutoIncrement: 100001,
   charset: 'utf8'

@@ -7,6 +7,7 @@
     </div>
     <% if(!isObjectEmpty(cart)) {%>
     <div class="content course-detail-ct car-ct">
+        <h3 class="title">教师简介</h3>
         <% var hasOverdue = false %>
         <% for (var id in cart) { if(cart[id]) {%>
         <div class="teacher-class-panel course-panel car-panel" data-id="<%=id%>" data-dates='<%=cart[id].classDates%>' data-btime='<%=cart[id].beginTime%>' data-etime='<%=cart[id].endTime%>'>

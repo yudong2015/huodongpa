@@ -65,7 +65,7 @@ router.get('/', function(req, res, next) {
           curpage: curpage,
           perpage: perpage,
           count: scopedClasses.length,
-          query: 'course=' + courseId
+          query: 'course=' + courseId + '&scope=' + scope
         }
       });
     })
@@ -151,7 +151,29 @@ router.post('/delete', function(req, res, next) {
     });
   }).catch(function(error){
     console.log(error);
-    next(error);
+    res.json({
+      code: 1,
+      message: "有报名的班级无法删除！"
+    });
+  });
+});
+
+// class show or hide
+router.post('/show', function(req, res, next) {
+  Class.update(
+    { 'showInFrontEnd': req.body.showInFrontEnd},
+    { where: {id : req.body.id}}
+  ).then(function(){
+    res.json({
+      code: 0,
+      message: "ok"
+    });
+  }).catch(function(error){
+    console.log(error);
+    res.json({
+      code: 1,
+      message: "更新展示失败"
+    });
   });
 });
 
@@ -234,6 +256,8 @@ router.post('/cancel', function(req, res, next) {
     });
   });
 });
+
+
 
 
 module.exports = router;

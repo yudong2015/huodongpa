@@ -15,17 +15,47 @@
             </div>
             <pre class="des-box"><%=course.description%></pre>
         </div>
+
+        <div class="content course-detail-ct">
+            <h3 class="title">教师简介</h3>
+            <% for (var id in teachers) { %>
+            <div class="teacher-panel anchor" data-href="/teachers/detail?id=<%=id%>">
+                <div class="m-line">
+                    <div class="avatar">
+                        <% if(teachers[id].avatar == ''){ %>
+                        <img src="../img/teacher-avatar.png" alt="avatar">
+                        <% } else {%>
+                        <img src="<%=teachers[id].avatar%>" alt="avatar">
+                        <% } %>
+                    </div>
+                    <div class="name ellipsis"><%=teachers[id].name%></div>
+                    <div class="tags">
+                        <% for (var cat in teachers[id].categories) { %>
+                        <span class="tag-box <%=pickLabelColor(cat)%>-tag"><%=teachers[id].categories[cat].name%></span>
+                        <% } %>
+                    </div>
+                </div>
+                <p class="des-box ellipsis-two"><%=teachers[id].description%></p>
+            </div>
+            <% } %>
+        </div>
         <h3 class="title">开设班级</h3>
         <% var classes = course.Classes %>
         <% for (var i=0; i<classes.length; i++) { %>
         <% var classStatus = getClassStatus(classes[i]) %>
-        <% if( classStatus == 'register' || classStatus == 'preregister'){ %>
+        <% if( classStatus == 'register' || classStatus == 'preregister' || ((classStatus == 'inclass' || classStatus == 'end') && (classes[i].showInFrontEnd == true))){ %>
         <div class="teacher-class-panel course-panel">
             <div class="m-line">
                 <div class="name-box">
                     <span class="name"><%=classes[i].name%>
-                        <% var registerDateStr = classes[i].registerDate + '' %>
-                        <%if(classStatus == 'preregister'){%><span class="orange-tips">（<%=registerDateStr.substr(4,2) + '.' + registerDateStr.substr(6,2) %>开始报名）</span><%}%>
+                        <%if(classStatus == 'preregister'){%>
+                            <% var registerDateStr = classes[i].registerDate + '' %>
+                            <span class="orange-tips">（<%=registerDateStr.substr(4,2) + '.' + registerDateStr.substr(6,2) %>开始报名）</span>
+                        <%} else if(classStatus == 'inclass'){%>
+                            <span class="orange-tips">（正在上课）</span>
+                        <%} else if(classStatus == 'end'){%>
+                            <span class="orange-tips">（已经结课）</span>
+                        <% } %>
                     </span>
                 </div>
                 <div class="price-box">
@@ -39,7 +69,7 @@
             </div>
             <% var currentStudentsNumber = countPaidOrders(classes[i].Orders) %>
             <% var availableStudentsNumber = classes[i].maxStudentsNumber - currentStudentsNumber %>
-            <% if(availableStudentsNumber <=5){%>
+            <% if(availableStudentsNumber <=5 && classStatus == "register"){%>
             <div class="course-box">
                 <div class="f-b">人数：</div>
                 <div class="s-b"><%=currentStudentsNumber%>/<%=classes[i].maxStudentsNumber%></div>
@@ -78,6 +108,7 @@
                 <div class="s-b flex-b"><%=classes[i].address%></div>
             </div>
             <div class="course-bt-btns">
+                <% if (classStatus == 'register'){%>
                 <% if(classes[i].inCart){ %>
                 <span class="add-btn in-cart" data-id="<%=classes[i].id%>">已加入购课车</span>
                 <%} else if(classes[i].isPaid) {%>
@@ -85,32 +116,12 @@
                 <% } else {%>
                 <span class="add-btn" data-id="<%=classes[i].id%>">加入购课车</span>
                 <% } %>
+                <% } else {%>
+                <span class="add-btn invalid" data-id="<%=classes[i].id%>">无法购买</span>
+                <% } %>
             </div>
         </div>
         <% } %>
-        <% } %>
-    </div>
-    <div class="content course-detail-ct">
-        <h3 class="title">教师简介</h3>
-        <% for (var id in teachers) { %>
-        <div class="teacher-panel anchor" data-href="/teachers/detail?id=<%=id%>">
-            <div class="m-line">
-                <div class="avatar">
-                    <% if(teachers[id].avatar == ''){ %>
-                    <img src="../img/teacher-avatar.png" alt="avatar">
-                    <% } else {%>
-                    <img src="<%=teachers[id].avatar%>" alt="avatar">
-                    <% } %>
-                </div>
-                <div class="name ellipsis"><%=teachers[id].name%></div>
-                <div class="tags">
-                    <% for (var cat in teachers[id].categories) { %>
-                    <span class="tag-box <%=pickLabelColor(cat)%>-tag"><%=teachers[id].categories[cat].name%></span>
-                    <% } %>
-                </div>
-            </div>
-            <p class="des-box ellipsis-two"><%=teachers[id].description%></p>
-        </div>
         <% } %>
     </div>
     <script src="/js/classes.js"></script>

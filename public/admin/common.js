@@ -21,7 +21,7 @@ $(function(){
           window.location.href=window.location.href;
         } else {
           console.log(data.message);
-          alert("删除失败");
+          alert("删除失败：" + data.message);
         }
       });
     }

@@ -72,7 +72,10 @@
           <th>学费</th>
           <%if (scope != 'canceled'){%>
           <th><% if (scope != 'preregister'){%>报名<%}%>人数</th>
+          <%}%>
           <th width="50">操作</th>
+          <% if(scope == "inclass" || scope == "end"){%>
+          <th>是否展示</th>
           <%}%>
         </tr>
         <% for(var i=0; i<classes.length; i++) {%>
@@ -96,27 +99,16 @@
           <% var currentStudentsNumber = countPaidOrders(classes[i].Orders) %>
           <td><%=currentStudentsNumber%>/<%=classes[i].maxStudentsNumber%></td>
           <% } %>
+          <%}%>
           <td>
-            <% if (scope == "preregister" || scope == "register" || scope == "inclass" ) {%>
             <a class="edit-action" href="/admin/classes/edit?id=<%=classes[i].id%>">编辑</a><br>
-            <% } %>
-            <% if (scope == "preregister"){%>
-            <a class="text-danger delete-action" data-url="/admin/classes/delete" data-id="<%=classes[i].id%>" href="javacript:void">删除</a>
-            <% } %>
-            <% if (
-              (scope == "register" 
-              && currentStudentsNumber<classes[i].minStudentsNumber 
-              && compareDateWithToday(getDate(dates[0]))<3)
-              || (scope == "inclass"
-              && currentStudentsNumber<5
-              && compareDateWithToday(getDate(dates[0]))<0
-              && compareDateWithToday(getDate(dates[0]))>-1)
-              ){
-            %>
+            <% if (scope == "register"){%>
             <a class="combine-action" href="javascript:void" data-id="<%=classes[i].id%>">合班</a><br>
-            <a class="text-danger cancel-action" data-id="<%=classes[i].id%>" href="javacript:void">取消</a>
-            <% } %>
+            <%} %>
+            <a class="text-danger delete-action" data-url="/admin/classes/delete" data-id="<%=classes[i].id%>" href="javacript:void">删除</a>
           </td>
+          <% if(scope == "inclass" || scope == "end"){%>
+          <td><input class="show-in-frontend" type="checkbox" <%if(classes[i].showInFrontEnd){%>checked="checked"<%}%>></td>
           <%}%>
         </tr>
         <% } %>

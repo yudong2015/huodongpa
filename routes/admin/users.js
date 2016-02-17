@@ -144,7 +144,7 @@ router.get('/detail', function(req, res, next) {
           curpage: curpage,
           perpage: perpage,
           count: orderResult.count,
-          query: 'id=' + req.query.id
+          query: 'id=' + req.query.id + '&sub=' + subnav
         }
       });
     }).catch(function(error){

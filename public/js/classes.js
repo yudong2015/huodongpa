@@ -2,7 +2,7 @@ $(function(){
 
   $(".add-btn").click(function(){
     var btn = $(this);
-    if (btn.hasClass("in-cart") || btn.hasClass("is-paid")){
+    if (btn.hasClass("in-cart") || btn.hasClass("is-paid") || btn.hasClass("invalid")){
       return false;
     }
     btn.text("请稍后...");

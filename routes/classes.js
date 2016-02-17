@@ -19,7 +19,16 @@ var renderConf = {
   title: '课程详情-学术葩',
   style: 'teacher',
   page: 'course-detail'
-}
+};
+
+var classWeights = {
+  'register': 1,
+  'preregister': 2,
+  'inclass': 3, 
+  'end': 4,
+  'cancel': 5,
+  'unkown': 6
+};
 
 router.get('/', function(req, res, next) {
   var courseid = req.query.course;
@@ -71,6 +80,11 @@ router.get('/', function(req, res, next) {
         }
       }
     }
+    // sort class by status
+    course.Classes.sort(function(a,b) {
+      return classWeights[utils.getClassStatus(a)] - classWeights[utils.getClassStatus(b)]
+    });
+
     data.course = course;
     data.teachers = utils.findNoRepeatTeachersOfCourse(course);
     for( var id in data.teachers) {
