@@ -97,7 +97,7 @@ Class.belongsTo(Teacher, {onDelete: 'NO ACTION'});
 Class.belongsTo(Course, {onDelete: 'NO ACTION'});
 Course.belongsTo(Category, {onDelete: 'NO ACTION'});
 Course.hasMany(Class, {as: 'Classes'});
-Order.belongsTo(Class, {onDelete: 'NO ACTION'});
+Order.belongsTo(Class, {onDelete: 'CASCADE'});
 Order.belongsTo(User, {onDelete: 'NO ACTION'});
 Class.hasMany(Order, {as: 'Orders'});
 User.hasMany(Recommend, {as: 'Recommends'});

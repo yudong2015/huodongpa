@@ -1,1 +1,4 @@
 alter table classes add column showInFrontEnd tinyint default 0 NOT NULL;
+
+ALTER TABLE `orders` DROP FOREIGN KEY `orders_ibfk_1`;
+ALTER TABLE `orders` ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`classId`) REFERENCES `classes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
