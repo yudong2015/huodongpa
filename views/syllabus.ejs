@@ -45,9 +45,11 @@
                     <% } %>
                     <% daysCounter ++%>
                     <% } %>
-                    <% for (var j=0; j<7-daysCounter%7; j++){%>
+                    <% var lastCount = daysCounter%7 %>
+                    <% if(lastCount != 0){%>
+                    <% for (var j=0; j<7-(daysCounter%7); j++){%>
                     <li class="un"><div><%=j+1%></div></li>
-                    <% } %>
+                    <% }} %>
                     </ul>
                 </div>
             </div>
