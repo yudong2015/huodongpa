@@ -38,6 +38,7 @@ $(function() {
       $(".check-panel i").addClass("is-checked");
     }
     $(".overdue i").removeClass("is-checked");
+    $(".disabled i").removeClass("is-checked");
     calcTotalTuition();
   });
 
@@ -84,7 +85,12 @@ $(function() {
   });
 
   $(".contact-btn").unbind("click").click(function() {
-    $.dialog($("#pay-help").html());
+    $(".dialog .cancel-btn").hide();
+    $(".dialog .btn").css("width", "100%");
+    $.dialog($("#pay-help").html(), function() {
+      $(".dialog .btn").css("width", "50%");
+      $(".dialog .cancel-btn").show();
+    });
   });
 
   $(".pay-btn").unbind("click").click(function(){
