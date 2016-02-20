@@ -115,7 +115,26 @@ router.get('/', function(req, res, next) {
 
   data.user = req.session.user;
   data.cart = req.session.cart;
-  res.render('cart', data);
+
+  Order.findAll({
+    where: {
+      userId: req.session.user.id,
+      status: 'unpaid'
+    },
+    include: {
+      model: Class,
+      include: [{
+        model: Course,
+        include : Category
+      }, Teacher]
+    }
+  }).then(function(orders) {
+    data.orders = orders;
+    res.render('cart', data);
+  }).catch(function(err){
+    console.log(err);
+    next(err);
+  });
 });
 
 module.exports = router;

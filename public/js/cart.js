@@ -11,6 +11,10 @@ $(function() {
 
 
   $(".check-panel").click(function(){
+    if($(this).hasClass('disabled')) {
+      return false;
+    }
+
     if($(this).closest(".car-panel").find("overdue-panel").size()){
       return false;
     }
@@ -57,6 +61,7 @@ $(function() {
   }
 
   $(".del-btn").unbind("click").click(function(){
+
     var classPanel = $(this).closest(".car-panel");
     if(classPanel.find("overdue-panel").size()){
       deleteClass(classPanel.data("id"));
@@ -67,7 +72,7 @@ $(function() {
     }
   });
 
-  $(".clear-btn").unbind("click").click(function(){
+  $(".clear-btn").unbind("click").click(function() {
     var classes = "";
     $(".overdue-panel").each(function(){
       classes += $(this).closest(".car-panel").data("id") + ",";
@@ -76,6 +81,10 @@ $(function() {
       classes = classes.substr(0, classes.length-1);
       deleteClass(classes);
     }
+  });
+
+  $(".contact-btn").unbind("click").click(function() {
+    $.dialog($("#pay-help").html());
   });
 
   $(".pay-btn").unbind("click").click(function(){

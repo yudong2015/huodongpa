@@ -5,10 +5,10 @@
             <div class="de-avatar"><img src="<% if (user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>
         </header>
     </div>
-    <% if(!isObjectEmpty(cart)) {%>
+    <% if(!isObjectEmpty(cart) || orders.length > 0) {%>
     <div class="content course-detail-ct car-ct">
-        <h3 class="title">教师简介</h3>
         <% var hasOverdue = false %>
+        <h3 class="title">暂未付款</h3>
         <% for (var id in cart) { if(cart[id]) {%>
         <div class="teacher-class-panel course-panel car-panel" data-id="<%=id%>" data-dates='<%=cart[id].classDates%>' data-btime='<%=cart[id].beginTime%>' data-etime='<%=cart[id].endTime%>'>
             <div class="car-top-info">
@@ -74,6 +74,66 @@
             <% } %>
         </div>
         <% } %>
+        <% } %>
+        <h3 class="title">付款中</h3>
+        <% for (var i = 0; i<orders.length; i++){%>
+        <% var clas = orders[i]['class'] %>
+        <div class="teacher-class-panel course-panel car-panel" data-id="<%=clas.id%>" data-dates='<%=clas.classDates%>' data-btime='<%=clas.beginTime%>' data-etime='<%=clas.endTime%>'>
+            <div class="car-top-info">
+                <div class="check-panel disabled"><i></i></div>
+                <div class="info-panel">
+                    <div class="m-line">
+                        <div class="name-box">
+                            <span class="tag-box <%=pickLabelColor(clas.course.category.id)%>-tag"><%=clas.course.category.name%></span>
+                            <span class="name"><%=clas.course.name%>
+                                <span class="gray-name">(<%if(clas.name.indexOf("VIP") >=0){%><i></i><%}%><%=clas.name%>)</span>
+                            </span>
+                        </div>
+                        <div class="price-box">
+                            <span class="price" data-tuition="<%=clas.tuition%>"><i>￥</i><%=cart[id].tuition%></span>
+                            <span>／<%=clas.period%>课时</span>
+                        </div>
+                    </div>
+                    <div class="course-box">
+                        <div class="f-b">教师：</div>
+                        <div class="s-b"><%=clas.teacher.name%></div>
+                    </div>
+                    <% var dates = splitClassDates(clas.classDates) %>
+                    <div class="course-box justify-box">
+                        <div class="f-b">
+                            <div class="course-box">
+                                <div class="f-b">日期：</div>
+                                <div class="s-b"><%=dates[0].substr(0,10)%> ~ <%= dates[dates.length-1].substr(0,10)%></div>
+                            </div>
+                        </div>
+                        <div class="s-b orange-btn show-detail-btn">具体日期</div>
+                    </div>
+                    <div class="course-time-box hidden">
+                        <h3 class="time-title">具体上课日期:</h3>
+                        <ul class="clearfix">
+                            <% for(var j=0; j<dates.length; j++){ %><% if(!(j%2)) {%><li><%}%><%= dates[j]%> <% if((j%2)) {%></li><%}%> <% } %>
+                        </ul>
+                    </div>
+                    <div class="course-box">
+                        <div class="f-b">时间：</div>
+                        <div class="s-b"><%=clas.beginTime%> ~ <%=clas.endTime%></div>
+                        <div class="t-b notice-box hidden">与现有课程冲突</div>
+                    </div>
+                    <div class="course-box">
+                        <div class="f-b">地址：</div>
+                        <div class="s-b ellipsis flex-b"><%=clas.address%></div>
+                    </div>
+                </div>
+            </div>
+            <div class="course-bt-btns car-bt-btns">
+                <span class="contact-btn gray-btn">联系后台老师线下付款</span>
+            </div>
+            <% classOpenDate = dates[0].split('.') %>
+            <% if((new Date()).getTime() > (new Date(parseInt(classOpenDate[0]), parseInt(classOpenDate[1]-1), parseInt(classOpenDate[2]))).getTime()){%>
+            <% hasOverdue = true %>
+            <div class="overdue-panel"></div>
+            <% } %>
+        </div>
         <% } %>
         <% if(hasOverdue){%>
         <div class="car-clear-btns">
