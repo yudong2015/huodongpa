@@ -8,7 +8,9 @@
     <% if(!isObjectEmpty(cart) || orders.length > 0) {%>
     <div class="content course-detail-ct car-ct">
         <% var hasOverdue = false %>
+        <% if(!isObjectEmpty(cart)) {%>
         <h3 class="title">暂未付款</h3>
+        <% }%>
         <% for (var id in cart) { if(cart[id]) {%>
         <% var isOverdue = false; %>
         <% var dates = splitClassDates(cart[id].classDates) %>
@@ -82,7 +84,9 @@
         </div>
         <% } %>
         <% } %>
+        <% if(orders.length > 0){%>
         <h3 class="title">付款中</h3>
+        <% } %>
         <% for (var i = 0; i<orders.length; i++){%>
         <% var clas = orders[i]['class']  %>
         <% var dates = splitClassDates(clas.classDates); %>
