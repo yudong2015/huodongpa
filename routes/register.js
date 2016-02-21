@@ -54,7 +54,7 @@ router.post('/', function(req, res, next) {
       return res.redirect('/login');
     }).catch(function(error){
       console.log(error);
-      data.tips = '注册失败';
+      data.tips = '该手机号已经注册';
       return res.render('register', data);
     });
   })
