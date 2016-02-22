@@ -10,6 +10,7 @@ var User = require('../../models').User;
 
 var Promise = require('bluebird');
 var _ = require('underscore');
+var json2csv = require('json2csv');
 
 router.get('/', function(req, res, next){
   // res.render('admin/orders');
@@ -168,6 +169,53 @@ router.post('/delete', function(req, res, next) {
       message: err
     });
   });
+});
+
+router.get('/:clasId/download', function(req, res, next) {
+    var clasId = req.params.clasId;
+
+    Order.findAll({
+        where: {classId: clasId},
+        include: [User],
+        order: [['id', 'DESC']]
+    }).then(function(result) {
+        var orders = result;
+        userInfo = _.map(orders, function(item, i){
+            return {
+                '账号': item.user.username,
+                '姓名': item.user.name,
+                '紧急电话': item.user.emergencyPhone,
+                '地址': item.user.address,
+                '学费': item.tuition,
+                '购课日期': item.user.updatedAt,
+                '状态': item['status'] == 'paid' ? '已付款' :  '未付款'
+            };
+        });
+        
+        fieldCsv = ['账号', '姓名', '紧急电话', '地址', '学费', '购课日期', '状态'];
+        userInfoCsv = json2csv({data: userInfo, fields: fieldCsv}, function(err, csv){
+            if (err) {
+                console.log(err);
+                res.send('')
+            }
+
+            // 设置 header 使浏览器下载文件
+            res.setHeader('Content-Description', 'File Transfer');
+            res.setHeader('Content-Type', 'application/csv; charset=utf-8');
+            res.setHeader('Content-Disposition', 'attachment; filename=' + clasId + '.csv');
+            res.setHeader('Expires', '0');
+            res.setHeader('Cache-Control', 'must-revalidate'); 
+            
+            res.send("\uFEFF" + csv);
+        });
+
+    
+    }).catch(function(error) {
+        console.log(error);
+        next(error);
+    
+    });
+    
 });
 
 module.exports = router;
