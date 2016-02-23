@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
     //res.send('logout');
 
     req.session.user = null;
-    res.render('login', renderConf);
+    res.redirect('/login');
 });
 
 

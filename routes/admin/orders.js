@@ -11,6 +11,7 @@ var User = require('../../models').User;
 var Promise = require('bluebird');
 var _ = require('underscore');
 var json2csv = require('json2csv');
+var moment = require('moment');
 
 router.get('/', function(req, res, next){
   // res.render('admin/orders');
@@ -187,7 +188,7 @@ router.get('/:clasId/download', function(req, res, next) {
                 '紧急电话': item.user.emergencyPhone,
                 '地址': item.user.address,
                 '学费': item.tuition,
-                '购课日期': item.user.updatedAt,
+                '购课日期': moment(item.user.updatedAt).format('YYYY-MM-DD'),
                 '状态': item['status'] == 'paid' ? '已付款' :  '未付款'
             };
         });
