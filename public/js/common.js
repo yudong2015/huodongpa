@@ -4,7 +4,7 @@ $(function(){
     $(".tips-dialog").removeClass("hidden").find("p").text(text);
     setTimeout(function(){
       $(".tips-dialog").addClass("hidden");
-    }, 1000);
+    }, 3000);
   }
 
   if( $(".tips-dialog").find("p").text() != "" ) {
