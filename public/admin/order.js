@@ -67,4 +67,18 @@ $(function(){
     console.log('Selection: ' + suggestion);
     $("#user-id").val(indexes[suggestion].id);
   });
+
+    /*
+  $('.download').click(function(){
+    var getQueryString = function (name) { 
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+        var r = window.location.search.substr(1).match(reg); 
+        if (r != null) return unescape(r[2]); return null; 
+    } 
+    
+    var clasId = getQueryString("clas");
+    console.log(clasId);
+    $.get('/admin/orders/' + clasId + '/download');
+  });
+  */
 });

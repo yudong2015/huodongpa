@@ -10,6 +10,7 @@ var RedisStore = require('connect-redis')(session);
 
 var routes = require('./routes');
 var admin = require('./routes/admin');
+var logout = require('./routes/logout');
 
 // load config file
 var jsonfile = require("jsonfile");
@@ -46,6 +47,7 @@ app.use(session({
 }));
 
 app.use('/', routes);
+app.use('/logout', logout);
 app.use('/admin', admin);
 
 // catch 404 and forward to error handler
