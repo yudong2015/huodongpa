@@ -13,6 +13,7 @@ var _ = require('underscore');
 var json2csv = require('json2csv');
 var moment = require('moment');
 
+
 router.get('/', function(req, res, next){
   // res.render('admin/orders');
 
@@ -192,7 +193,10 @@ router.get('/:clasId/download', function(req, res, next) {
                 '状态': item['status'] == 'paid' ? '已付款' :  '未付款'
             };
         });
-        
+      
+        res.xls(clasId + '.xlsx', userInfo);
+
+        /*
         fieldCsv = ['账号', '姓名', '紧急电话', '地址', '学费', '购课日期', '状态'];
         userInfoCsv = json2csv({data: userInfo, fields: fieldCsv}, function(err, csv){
             if (err) {
@@ -209,13 +213,14 @@ router.get('/:clasId/download', function(req, res, next) {
             
             res.send("\uFEFF" + csv);
         });
-
+        */
     
     }).catch(function(error) {
         console.log(error);
         next(error);
     
     });
+
     
 });
 

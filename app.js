@@ -17,6 +17,8 @@ var jsonfile = require("jsonfile");
 var path = require("path")
 var config = jsonfile.readFileSync(path.join(__dirname,"./config.json"));
 
+var json2xls = require('json2xls');
+
 var app = express();
 
 // view engine setup
@@ -46,6 +48,7 @@ app.use(session({
   }
 }));
 
+app.use(json2xls.middleware);
 app.use('/', routes);
 app.use('/logout', logout);
 app.use('/admin', admin);
