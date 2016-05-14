@@ -9,7 +9,8 @@ var Category = require('../../models').Category;
 var path = require('path');
 var jsonfile = require('jsonfile');
 
-var conf = jsonfile.readFileSync(path.join(__dirname,"../../config.json"));
+var config = require('../../config');
+// var conf = jsonfile.readFileSync(path.join(__dirname,"../../config.json"));
 
 // teachers list
 router.get('/', function(req, res, next) {

@@ -8,7 +8,9 @@ var md5 = crypto.createHash('md5');
 
 var errors = require('../lib/errors');
 var code = require('../lib/code');
-var conf = require('../lib/config');
+
+var conf = require('../config');
+// var conf = require('../lib/config');
 
 var User = require('../models').User;
 

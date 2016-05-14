@@ -4,7 +4,9 @@ var router = express.Router();
 // load config file
 var jsonfile = require("jsonfile");
 var path = require("path")
-var config = jsonfile.readFileSync(path.join(__dirname,"../../config.json"));
+
+var config = require('../../config');
+// var config = jsonfile.readFileSync(path.join(__dirname,"../../config.json"));
 
 // admin auth.
 router.use(function(req, res, next){

@@ -4,7 +4,8 @@ var router = express.Router();
 var _ = require('underscore');
 var userAuth = require('../lib/middlewares').userAuth;
 
-var conf = require('../lib/config');
+var conf = require('../config');
+// var conf = require('../lib/config');
 
 var User = require('../models/').User;
 

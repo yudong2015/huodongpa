@@ -15,7 +15,9 @@ var logout = require('./routes/logout');
 // load config file
 var jsonfile = require("jsonfile");
 var path = require("path")
-var config = jsonfile.readFileSync(path.join(__dirname,"./config.json"));
+
+var config = require('./config');
+// var config = jsonfile.readFileSync(path.join(__dirname,"./config.json"));
 
 var json2xls = require('json2xls');
 

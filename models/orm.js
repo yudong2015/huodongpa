@@ -2,7 +2,8 @@ var Sequelize = require("sequelize");
 var jsonfile = require("jsonfile");
 var path = require("path")
 
-var conf = jsonfile.readFileSync(path.join(__dirname,"../config.json"));
+var config = require('../../config');
+// var conf = jsonfile.readFileSync(path.join(__dirname,"../config.json"));
 
 var orm = new Sequelize(
   conf.mysql.database, 

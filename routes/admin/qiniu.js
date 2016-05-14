@@ -5,7 +5,8 @@ var path = require('path');
 var jsonfile = require('jsonfile');
 var qiniu = require('qiniu');
 
-var conf = jsonfile.readFileSync(path.join(__dirname,"../../config.json"));
+var config = require('../../config');
+// var conf = jsonfile.readFileSync(path.join(__dirname,"../../config.json"));
 
 qiniu.conf.ACCESS_KEY = conf.qiniu.accesskey;
 qiniu.conf.SECRET_KEY = conf.qiniu.secretkey;

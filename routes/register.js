@@ -9,7 +9,9 @@ var _ = require('underscore');
 
 var errors = require('../lib/errors');
 var code = require('../lib/code');
-var conf = require('../lib/config');
+
+var conf = require('../config');
+// var conf = require('../lib/config');
 
 var User = require('../models').User;
 var Recommend = require('../models').Recommend;
