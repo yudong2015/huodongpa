@@ -9,7 +9,7 @@ var Category = require('../../models').Category;
 var path = require('path');
 var jsonfile = require('jsonfile');
 
-var config = require('../../config');
+var conf = require('../../config');
 // var conf = jsonfile.readFileSync(path.join(__dirname,"../../config.json"));
 
 // teachers list

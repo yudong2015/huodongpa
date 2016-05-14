@@ -2,7 +2,7 @@ var Sequelize = require("sequelize");
 var jsonfile = require("jsonfile");
 var path = require("path")
 
-var config = require('../../config');
+var conf = require('../config');
 // var conf = jsonfile.readFileSync(path.join(__dirname,"../config.json"));
 
 var orm = new Sequelize(
