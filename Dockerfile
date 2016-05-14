@@ -8,9 +8,6 @@ RUN npm install --production --registry=http://registry.npm.taobao.org
 
 COPY . /src
 
-# 同步数据库
-RUN node tools/migrate.js
-
-CMD ["node","bin/www"]
+CMD /bin/bash launch.sh
 
 
