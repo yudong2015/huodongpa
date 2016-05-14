@@ -1,4 +1,4 @@
-FROM node:6.1
+FROM daocloud.io/library/node:4.4
 
 RUN mkdir /src
 WORKDIR /src
