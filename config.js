@@ -13,7 +13,7 @@ module.exports = {
   "redis": {
     "host": process.env.REDIS_HOST || "localhost",
     "port": "6379",
-    "sessionSecret": process.env.REDIS_secret || "huodongpa"
+    "sessionSecret": process.env.REDIS_SECRET || "huodongpa"
   },
   "qiniu": {
     "bucket": "huodong-pa-dev",
