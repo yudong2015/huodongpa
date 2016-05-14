@@ -3,7 +3,7 @@
   <div class="helper-bar">
     <div class = "col-md-6" style="padding-left: 0;">
     <ol class="breadcrumb background-color: white">
-      <li><a href="/admin/teachers">主人管理</a></li>
+      <li><a href="/admin/teachers">讲师管理</a></li>
       <li class="active"><%=teacher.name%> 详情</li>
     </ol>
     </div>
@@ -24,7 +24,7 @@
         <option value="3">第四季度</option>
       </select>
       <span>季度</span>
-      <span>主人盈利</span>
+      <span>讲师盈利</span>
       <strong style="width: 80px; display:inline-block; text-align: right">
       <span>￥</span>
       <span class="profit-sum">-</span>
@@ -34,7 +34,7 @@
   </div>
   <div class="col-md-9" style="padding-left: 0">
     <table class="table table-striped">
-      <tr><th>课程编号</th><th width="100">课程名称</th><th width="150">课程分类</th><th>课程简介</tr>
+      <tr><th>活动编号</th><th width="100">活动名称</th><th width="150">活动分类</th><th>活动简介</tr>
       <% for(var courseid in courses) {%>
       <tr>
         <td><a href="/admin/classes?course=<%=courses[courseid].id%>"><%=courses[courseid].id%></a></td>
@@ -47,7 +47,7 @@
   </div>
   <div class="col-md-3" style="padding-right: 0">
     <div class="teacher-desc">
-      <div class="title">主人介绍</div>
+      <div class="title">讲师介绍</div>
       <div class="info">
         <h5>头像</h5>
         <div class="teacher-avatar" style="background: url(<%=teacher.avatar%>); background-size: cover">

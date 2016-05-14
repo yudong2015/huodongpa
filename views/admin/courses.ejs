@@ -3,7 +3,7 @@
     <div class="pull-left search">
       <form class="form-inline">
       <div class="form-group">
-        <input type="text" class="form-control" name="search" placeholder="请输入课程名查询" value='<%=search%>'>
+        <input type="text" class="form-control" name="search" placeholder="请输入活动名查询" value='<%=search%>'>
       </div>
       <button type="submit" class="btn btn-primary">查询</button>
       </form>
@@ -15,7 +15,7 @@
   <div>
     <table class="table table-striped">
       <tr>
-        <th>课程编号</th><th>课程名称</th><th>课程分类</th><th>授课主人</th><th>课程简介</th><th>总盈利</th><th>操作</th></tr>
+        <th>活动编号</th><th>活动名称</th><th>活动分类</th><th>讲师</th><th>活动简介</th><th>总盈利</th><th>操作</th></tr>
       <% for(var i=0; i<courses.rows.length; i++) {%>
       <tr class="course-row" data-id="<%=courses.rows[i].id%>">
         <td><a href="/admin/classes?course=<%=courses.rows[i].id%>"><%=courses.rows[i].id%></a></td>

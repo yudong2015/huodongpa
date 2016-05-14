@@ -4,18 +4,18 @@
     <div class="pull-left search">
       <form class="form-inline">
       <div class="form-group">
-        <input type="text" class="form-control" name="search" placeholder="输入萌宠名称或电话" value='<%=search%>'>
+        <input type="text" class="form-control" name="search" placeholder="输入学生名称或电话" value='<%=search%>'>
       </div>
       <button type="submit" class="btn btn-primary">查询</button>
       </form>
     </div>
     <div class="pull-right new">
-      <a type="submit" class="btn btn-success" href="/admin/users/new">新增萌宠</a>
+      <a type="submit" class="btn btn-success" href="/admin/users/new">新增学生</a>
     </div>
   </div>
   <div>
     <table class="table table-striped">
-      <tr><th>账号（联系电话）</th><th>萌宠名称</th><th>萌宠头像</th><th>紧急联系电话</th><th>住址</th><th>总盈利</th><th>收款二维码</th></tr>
+      <tr><th>账号（联系电话）</th><th>学生名称</th><th>学生头像</th><th>紧急联系电话</th><th>住址</th><th>总盈利</th><th>收款二维码</th></tr>
       <% for(var i=0; i<users.rows.length; i++) {%>
       <tr>
         <td><a href="/admin/users/detail?id=<%=users.rows[i].id%>" class="user-id" data-id="<%=users.rows[i].id%>"><%=users.rows[i].username%></a></td>
@@ -57,7 +57,7 @@
           </div><!-- /.col-lg-12 -->
         </div><!-- /.row -->
 
-        <div class="alert alert-success" role="alert" id="upload-dialog-message">让萌宠将自己的收款二维码上传至微信公众号</div>
+        <div class="alert alert-success" role="alert" id="upload-dialog-message">让学生将自己的收款二维码上传至微信公众号</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

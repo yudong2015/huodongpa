@@ -1,0 +1,24 @@
+{
+  "mysql": {
+    "host": "localhost",
+    "user": "root",
+    "password": "123456",
+    "database": "activitypar",
+    "port": "3306"
+  },
+  "admin": {
+    "username": "admin",
+    "password": "123456"
+  },
+  "redis": {
+    "host": "localhost",
+    "port": "6379",
+    "sessionSecret": "kdNMMmI85hqbWQIy/COmtNsM+LU="
+  },
+  "qiniu": {
+    "bucket": "zaker",
+    "url": "http://o759sw3sw.bkt.clouddn.com/",
+    "accesskey": "iR7EWQGW0QPUNwdeR1LAdQ_i5ps-ztDsegNvBg_8",
+    "secretkey": "V2aQeojUqURdRr3a2rtXmZGzolgY1_yTezaQgQs5"
+  }
+}

@@ -3,7 +3,7 @@
   <div class="helper-bar">
     <div class = "col-md-6" style="padding-left: 0;">
     <ol class="breadcrumb" style="padding-left: 0; background-color:transparent">
-      <li><a href="/admin/users">萌宠管理</a></li>
+      <li><a href="/admin/users">学生管理</a></li>
       <li class="active"><%=user.name%>（<%=user.username%>）</li>
     </ol>
     </div>
@@ -24,7 +24,7 @@
         <option value="3">第四季度</option>
       </select>
       <span>季度</span>
-      <span>萌宠购课</span>
+      <span>学生购课</span>
       <strong style="width: 80px; display:inline-block; text-align: right">
       <span>￥</span>
       <span class="profit-sum">-</span>
@@ -46,7 +46,7 @@
         </ul>
     <% if (sub == 'history' || sub == 'cart'){%>
     <table class="table table-striped">
-      <tr><th>课程编号</th><th>课程名称</th><th>课程分类</th><th>主人编号</th><th>主人名称</th><th>班级编号</th><th>班级名称</th><th>学费</th>
+      <tr><th>活动编号</th><th>活动名称</th><th>活动分类</th><th>讲师编号</th><th>讲师名称</th><th>班级编号</th><th>班级名称</th><th>学费</th>
         <% if (sub == 'history') {%>
         <th>购课日期</th>
         <% }else{ %>
@@ -79,7 +79,7 @@
     <% } %>
     <% } else if(sub == 'recommended'){%>
     <table class="table table-striped">
-      <tr><th>账号（联系电话）</th><th>萌宠姓名</th><th>购课总额</th><th>已返利金额</th><th>未返利金额</th><th>操作</th></tr>
+      <tr><th>账号（联系电话）</th><th>学生姓名</th><th>购课总额</th><th>已返利金额</th><th>未返利金额</th><th>操作</th></tr>
       <% for(var i=0; i<recommends.length; i++) {%>
       <tr class="recommended-user" data-id="<%=recommends[i].recommended%>">
         <td class="recommended-accout"></td>
@@ -95,7 +95,7 @@
   </div>
   <div class="col-md-3" style="padding-right: 0">
     <div class="teacher-desc">
-      <div class="title">萌宠详情</div>
+      <div class="title">学生详情</div>
       <div class="info">
         <h5>头像</h5>
         <div class="teacher-avatar" style="background: url(<%=user.avatar%>); background-size: cover">
