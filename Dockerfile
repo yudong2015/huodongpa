@@ -1,4 +1,4 @@
-FROM node:6.1
+FROM daocloud.io/library/node:4.4
 
 RUN mkdir /src
 WORKDIR /src
@@ -8,9 +8,6 @@ RUN npm install --production --registry=http://registry.npm.taobao.org
 
 COPY . /src
 
-# 同步数据库
-RUN node tools/migrate.js
-
-CMD ["node","bin/www"]
+CMD /bin/bash launch.sh
 
 
