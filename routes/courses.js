@@ -11,7 +11,7 @@ var Class = require('../models').Class;
 
 var renderConf = {
   tips: '',
-  title: '课程列表-学术葩',
+  title: '活动列表-活动葩',
   style: 'teacher',
   page: 'course'
 }
@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
   var search = req.query.search || '';
   var category = req.query.category;
 
-  var name = req.query.name || '全部课程';
+  var name = req.query.name || '全部活动';
 
   var conditions = {
     include: [

@@ -2,7 +2,6 @@
     <div class="header-panel">
         <header class="header">
             <h1>注册</h1>
-            <div class="de-avatar"><img src="../img/de-avatar.png" alt="avatar" /></div>
         </header>
     </div>
     <div class="content register-ct">
@@ -17,18 +16,21 @@
         </div>
         <p class="photo-tips">请上传属于自己的头像</p>
         <input type="hidden" id="qiniu-domain" value="<%=qiniuDomain%>">
-        <form class="form-panel" id="register-form" method="POST">
+        <form class="form-panel" id="register-form" method="POST" style="margin: 0 40px;">
             <input type="hidden" id="avatar-url" name="avatar" <%if (action == 'reform') {%>value="<%=form.avatar%>"<%}%>>
             <div class="input-panel">
                 <div class="form-group">
-                    <input required type="text" placeholder="手机号" name="username" id="user-phone" <%if (action == 'reform') {%>value="<%=form.username%>"<%}%>>
+
+                    <input required type="text" placeholder="手机号" name="username" id="user-phone" <%if (action == 'reform') {%>value="<%=form.username%>"<%}%>  style="padding-left: 40px;">
                 </div>
+
                 <div class="form-group">
-                    <input required type="password" placeholder="密码" name="password" <%if (action == 'reform') {%>value="<%=form.password%>"<%}%>>
-                </div>
-                <div class="form-group">
-                    <input required type="text" placeholder="验证码" name="code" >
+                    <input required type="text" placeholder="验证码" name="code"  style="padding-left: 40px;">
                     <div class="send-btn" id="send-code">发送</div>
+                </div>
+                <div class="form-group">
+
+                    <input required type="password" placeholder="密码" name="password" <%if (action == 'reform') {%>value="<%=form.password%>"<%}%> style="padding-left: 40px;">
                 </div>
             </div>
             <div class="y-lar-btn">

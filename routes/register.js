@@ -20,7 +20,7 @@ var renderConf = {
   qiniuDomain: conf.qiniu.url,
   tips: '',
   action: 'show',
-  title: '注册-学术葩',
+  title: '注册-活动葩',
   style: 'login',
   page: 'register',
   user: null
@@ -33,9 +33,26 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+
   var data = _.extend({form: req.body}, renderConf);
   data.action = 'reform';
-  code.validateVerifyCode(req.body.username, req.body.code, function(err) {
+
+  var user = _.clone(req.body);
+  var md5 = crypto.createHash('md5');
+  user.password = md5.update(user.password).digest('base64');
+
+  User.create(user).then(function(created) {
+    if (req.query.user) {
+      Recommend.create({
+        userId: req.query.user,
+        recommended: created.id
+      })
+    }
+
+    return res.redirect('/login');
+  });
+
+  /*code.validateVerifyCode(req.body.username, req.body.code, function(err) {
     if (err) {
       data.tips = '验证码错误';
       return res.render('register', data);
@@ -59,7 +76,7 @@ router.post('/', function(req, res, next) {
       data.tips = '该手机号已经注册';
       return res.render('register', data);
     });
-  })
+  })*/
 });
 
 router.post('/code', function(req, res, next) {

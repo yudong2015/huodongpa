@@ -3,18 +3,20 @@
     <header class="header">
         <div class="filter-box"><%=name%></div>
         <div class="search-box">
-            <div class="search-explain">请输入课程名字</div>
+            <div class="search-explain">搜索</div>
             <form id="search-form" action="">
             <input type="search" name="search">
             </form>
         </div>
-        <div class="de-avatar"><img src="<% if (user && user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>
+        <!--<div class="de-avatar">
+            <img src="<% if (user && user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" />
+        </div>-->
         <div class="cancel-btn">取消</div>
     </header>
     </div>
     <% if (search != '') { %>
     <div class="content teachers-ct search-num-ct">
-        关键词“<%=search%>”共搜到<%=count%>个课程
+        关键词“<%=search%>”共搜到<%=count%>个活动
     </div>
     <% } %>
     <div class="content teachers-ct">
@@ -48,6 +50,42 @@
                 </div>
                 <p class="des-box ellipsis-two"><%=courses[i].description%></p>
             </div>
+            <div class="teacher-panel course-panel" data-href="/classes?course=<%=courses[i].id%>">
+                <div class="m-line">
+                    <div class="name-box">
+                        <img src="img/teacher-demo.jpg" alt="" class=""/>
+                        <div class="profile">
+                            <h3>诺贝尔获奖得者教你学英语 <span class="shiting">试听</span></h3>
+                            <p>2016.06.16-06.25</p>
+                            <div class="right">
+                                <span class="price">￥<span class="num">2458</span></span>
+                                <span>起</span>
+                            </div>
+                                <p class="com">新东方(北京)
+
+
+                                </p>
+                           <!-- <span class="tag-box <%=pickLabelColor(courses[i].category.id)%>-tag"><%=courses[i].category.name%></span>
+                            <span class="name"><%=courses[i].name%></span>-->
+                        </div>
+                    </div>
+                    <!--<div class="price-box">
+                        <%  var minTuition;
+                            for(var j=0; j<courses[i].Classes.length; j++){
+                                if(j == 0 || courses[i].Classes[j].tuition < minTuition) {
+                                    minTuition = courses[i].Classes[j].tuition;
+                                }
+                            }
+                        %>
+                        <% if (minTuition){ %>
+                        <span class="price"><i>￥</i><%=minTuition%></span>
+                        <span>起</span>
+                        <% } %>
+                    </div>-->
+                </div>
+                <p class="des-box ellipsis-two">本站部分赏析内容来自网络或网友提供，旨在弘扬中华文化，仅
+                    用于学习交流，部分未署名皆因原作者无法考证。</p>
+            </div>
             <% } %>
         </div>
     </div>
@@ -57,7 +95,7 @@
         <input type="hidden" name="category" id="category-id">
         <input type="hidden" name="name" id="category-name">
         <ul id="category-filter">
-            <li data-id="">全部课程</li>
+            <li data-id="">全部活动</li>
             <% for (var i=0; i<categories.length; i++){ %>
             <li data-id="<%=categories[i].id%>"><%=categories[i].name%></li>
             <% } %>

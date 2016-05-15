@@ -2,25 +2,26 @@
     <div class="header-panel">
         <header class="header">
             <h1>登录</h1>
-            <div class="de-avatar"><img src="../img/de-avatar.png" alt="avatar" /></div>
+
         </header>
     </div>
     <div class="content login-ct">
-        <div class="logo-box">
-            <img src="../img/logo.jpg" alt="学术葩">
-        </div>
+
         <form class="form-panel" id="login-form" method="POST">
             <div class="input-panel">
                 <div class="form-group">
+                    <img src="/img/login/login.png" class="login-icon" >
+
                     <input type="text" placeholder="手机号" name="username" <%if (action == 'reform') {%>value="<%=form.username%>"<%}%>>
                 </div>
                 <div class="form-group">
+                    <img src="/img/login/password.png" class="login-icon" style="top:0;" >
                     <input type="password" placeholder="密码" name="password" >
                 </div>
             </div>
             <div class="y-lar-btn">
                 <div class="m-bg">
-                    <div class="btn-box" id="login-form-submit">登录</div>
+                    <div class="btn-box" id="login-form-submit" style="background: #8ed1c9;">登录</div>
                 </div>
             </div>
             <div class="form-tips">

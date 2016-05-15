@@ -17,6 +17,7 @@ body {
   -webkit-user-select: none;
   -webkit-text-size-adjust: none;
   background: #fff;
+  /* background: -webkit-linear-gradient(135deg, #50b5c1, #71cb9a); */
 }
 
 table {
@@ -41,7 +42,7 @@ input, textarea, select {
 
 a, a:link, a:visited, a:hover, a:active, [onclick], input {
   text-decoration: none;
-  color: #f7a100;
+  color: #1e1e1e;
   outline: none;
   -webkit-tap-highlight-color: none;
   -webkit-tap-highlight-color: transparent;
@@ -60,7 +61,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .hidden {
-  display: none;
+  /* display: none; */
 }
 
 .visi-hidden {
@@ -153,7 +154,7 @@ header, nav, section, article, footer, figure, figcaption {
   right: 0;
   line-height: 53px;
   height: 53px;
-  background-color: #524070;
+  background-color: #009bd7;
   text-align: center;
   color: #fff;
   z-index: 99;
@@ -223,7 +224,7 @@ header, nav, section, article, footer, figure, figcaption {
 
 .header .search-box {
   position: relative;
-  margin: 0 55px 0 95px;
+  margin: 0 5px 0 95px;
 }
 
 .header .search-box input {
@@ -235,7 +236,7 @@ header, nav, section, article, footer, figure, figcaption {
   box-sizing: border-box;
   font-size: 14px;
   color: #fff;
-  background-color: #392657;
+  background-color: #e5e5e5;
   -webkit-border-radius: 35px;
   border-radius: 35px;
 }
@@ -247,9 +248,9 @@ header, nav, section, article, footer, figure, figcaption {
   width: 110px;
   -webkit-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
-  text-align: right;
+  /* text-align: right; */
   font-size: 12px;
-  color: #74688e;
+  color: #8b9097;
 }
 
 .header .search-explain:before {position: absolute;
@@ -289,7 +290,7 @@ header, nav, section, article, footer, figure, figcaption {
   height: 18px;background-repeat: no-repeat;}
 
 .teachers-body, .teacher-detail-body, .course-detail-body, .course-body, .car-body, .user-ct, .card-body {
-  background-color: #f5f5f5;
+  background: #dcdcdc!important;
 }
 
 .teachers-ct {
@@ -445,12 +446,15 @@ header, nav, section, article, footer, figure, figcaption {
   -webkit-box-align: end;
   -webkit-align-items: flex-end;
   align-items: flex-end;
-  padding-right: 8px;
+  /* padding-right: 8px; */
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 0;
   flex: 1 1 0;
 }
-
+.teacher-class-panel .name-box, .course-panel .name-box  img{
+  width:25%;
+  /* border-radius: 4px; */
+}
 .teacher-class-panel .name-box > span, .course-panel .name-box > span {
   display: block;
 }
@@ -720,11 +724,11 @@ header, nav, section, article, footer, figure, figcaption {
   height: 24px;
   line-height: 24px;
   padding: 0 8px;
-  border: 1px solid #f6b01d;
+  border: 1px solid #00adef;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   font-size: 12px;
-  color: #f6b01d;
+  color: #00adef;
 }
 
 .course-detail-ct .course-time-box {
@@ -796,9 +800,9 @@ header, nav, section, article, footer, figure, figcaption {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 99;
   background: url(../img/course-mask.png) no-repeat scroll 0 0;
   background-size: 100% auto;
+  z-index: 100;
 }
 
 .course-ex-panel .close-btn {
@@ -1018,7 +1022,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .car-ct .car-panel .name {
-  margin-left: 8px;
+  /* margin-left: 8px; */
 }
 
 .car-ct .car-panel .course-time-box {
@@ -1044,12 +1048,15 @@ header, nav, section, article, footer, figure, figcaption {
   height: 40px;
 }
 
-.car-ct .car-top-info .check-panel i:after {position: absolute;
+.car-ct .car-top-info .check-panel i:after {
+  position: absolute;
   content: '';
   width: 14px;
   height: 14px;
   left: 7px;
-  top: 13px;background-repeat: no-repeat;}
+  top: -71px;
+  background-repeat: no-repeat;
+  }
 
 .car-ct .car-top-info .check-panel i.is-checked:after {background-repeat: no-repeat;}
 
@@ -1174,7 +1181,7 @@ header, nav, section, article, footer, figure, figcaption {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #fff;
+  background-color: #f5f5f5;
   z-index: 9;
 }
 

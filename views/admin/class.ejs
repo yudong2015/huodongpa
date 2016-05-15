@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="clasTeacher" class="col-sm-2 control-label">班级主人</label>
+      <label for="clasTeacher" class="col-sm-2 control-label">班级讲师</label>
       <div class="col-sm-8">
         <select required class="form-control" name="teacherId" id="class-teacher"  <%if (action=='edit'){%>data-id="<%=clas.teacherId%>"<%}%>>
           <% for(var i=0; i<teachers.length; i++) { %>
@@ -39,7 +39,7 @@
         </select>
       </div>
       <div class="col-sm-2 text-right">
-        <a class="btn btn-success" href="/admin/teachers/new">新增主人</a>
+        <a class="btn btn-success" href="/admin/teachers/new">新增讲师</a>
       </div>
     </div>
     <div class="form-group" id="register-date">
