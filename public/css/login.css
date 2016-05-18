@@ -657,8 +657,8 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .menus{background: #f8f8f8;position: fixed;bottom: 0;left: 0;right: 0;z-index: 100;border-top: 1px solid #d3d3d3;}
-.menus li{float: left;width: 25%;height: 60px;text-align: center;display: block;}
-.menus li a{color: #333333;display: block;height: 60px;position: relative;/* top: -5px; */}
+.menus li{float: left;width: 25%;height: 60px;text-align: center;display: block;display: block;}
+.menus li a{color: #333333;display: block;height: 60px;position: relative;top: -5px;}
 .menus li div{width: 36%;margin: 0 auto;}
 .menus li div img{width: 100%;margin-top: 5px;}
 .menus li.activity div{width: 36%;margin: 0 auto;color: #00adef;}
