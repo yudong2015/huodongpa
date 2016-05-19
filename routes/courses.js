@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
   var search = req.query.search || '';
   var category = req.query.category;
 
-  var name = req.query.name || '全部活动';
+  var name = req.query.name || '地区';
 
   var conditions = {
     include: [

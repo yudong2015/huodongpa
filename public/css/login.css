@@ -115,8 +115,9 @@ header, nav, section, article, footer, figure, figcaption {
 }
 .login-icon{
   position: absolute;
-  left: 25px;
-  top: 7px;
+  left: 10px;
+  top: 15px;
+  width: 30px;
   }
 .choose-dialog .btns-box {
   display: -webkit-box;
@@ -203,7 +204,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .form-panel {
-  margin: 140px 40px 0 40px;
+  margin: 140px 20px 0 20px;
 }
 
 .form-panel .form-group {
@@ -223,15 +224,15 @@ header, nav, section, article, footer, figure, figcaption {
 
 .form-panel .input-panel input {
   height: 55px;
-  padding: 10px 10px 10px 80px;
+  padding: 20px 20px 20px 40px;
   width: 100%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: #000;
   border: 0 none;
-  font-size: 30px;
+  font-size: 18px;
   color: #9ba0a9 !important;
-  /* background: url('/img/login/login.png') no-repeat; */
+  /* background: url('/img/login/login.png') no-repeat transparent; */
 }
 .form-panel .input-group input:before{
    background:url('/img/login/login.png');
@@ -291,7 +292,8 @@ header, nav, section, article, footer, figure, figcaption {
   background-color: #00adef;
   display: block;
   /* background: url('/img/login/login.png') no-repeat; */
-  font-size: 30px;
+  font-size: 24px;
+  font-weight: normal;
 }
 
 .y-lar-btn .btn-box:active {
@@ -299,7 +301,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .checkbox-label {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .checkbox-label .check-input {
@@ -314,7 +316,7 @@ header, nav, section, article, footer, figure, figcaption {
 .checkbox-label .check-box {
   position: relative;
   display: inline-block;
-  top: 2px;
+  top: 1px;
   width: 9px;
   height: 9px;
   border: 1px solid #FFF;
@@ -395,6 +397,7 @@ header, nav, section, article, footer, figure, figcaption {
   /* display: block; */
   padding-left: 15px;
   color: #bcc2ca;
+  font-size: 14px;
 }
 
 .login-ct .form-tips label {
@@ -657,28 +660,42 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .menus{background: #f8f8f8;position: fixed;bottom: 0;left: 0;right: 0;z-index: 100;border-top: 1px solid #d3d3d3;}
-.menus li{float: left;width: 25%;height: 60px;text-align: center;display: block;display: block;}
-.menus li a{color: #333333;display: block;height: 60px;position: relative;top: -5px;}
-.menus li div{width: 36%;margin: 0 auto;}
-.menus li div img{width: 100%;margin-top: 5px;}
-.menus li.activity div{width: 36%;margin: 0 auto;color: #00adef;}
+.menus li{float: left;width: 25%;height: 60px;text-align: center;display: block;position: relative;}
+.menus li a{color: #333333;display: block;height: 60px;position: relative;margin: 0;padding: 0;}
+.menus li div{width: 36%;margin: 0 auto;height: 60px;padding-top: 6px;color: #dfdfdf;}
+.menus li div img{width: 100%;/* margin-top: 5px; */display: block;}
+.menus li.activity div{width: 36%;margin: 0 auto;height: 60px;padding-top: 6px;}
+.menus li.active div{color: #00adef;}
 .menus li.teacher{}
 .menus li.buyers{}
 .menus li.my{}
 
 .teacher-class-panel .name-box, .course-panel .name-box .profile{
-    margin-left:15px;
+    margin-left: 10px;
+    position: relative;
 }
-.teacher-class-panel .name-box, .course-panel .name-box .profile h3{    overflow: hidden;
+.teacher-class-panel .name-box, .course-panel .name-box .profile h3{
+  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;}
+  -webkit-box-orient: vertical;
+  margin-right: 30px;
+  position: relative;
+  color: #414348;
+  }
+.course-panel .name-box .date{
+  color: #8b9097;
+  }
 .teacher-class-panel .name-box, .course-panel .name-box .profile span.shiting{
       color: #00adef;
       font-size: 12px;
       border: 1px solid;
-      /* border-radius: 2px; */
+      position: absolute;
+      top: 0;
+      right: -9px;
+      border-radius: 3px;
+      padding: 0 5px;
 }
 
 .teacher-class-panel .name-box, .course-panel .name-box .profile span.price{
@@ -688,6 +705,7 @@ header, nav, section, article, footer, figure, figcaption {
 
 .teacher-class-panel .name-box, .course-panel .name-box .profile span.price .num{
   font-size: 16px;
+  font-weight: 700;
 }
 .teacher-class-panel .name-box, .course-panel .name-box .com{
   color: #00adef;
@@ -698,3 +716,10 @@ header, nav, section, article, footer, figure, figcaption {
 .teacher-class-panel .name-box, .course-panel .name-box .com{
   color: #00adef;
 }
+.activity-details-banner{}
+.activity-details-banner img{width:100%;display:block;}
+.logout{
+  color: #ec5353 !important;
+  text-align: center;
+  font-size: 18px !important;
+  }

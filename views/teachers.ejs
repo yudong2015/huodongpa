@@ -33,14 +33,19 @@
                     <div class="avatar">
                         <img src="<% if(teachers[i].avatar){%><%=teachers[i].avatar%><%}else{%>../img/teacher-avatar.png<%}%>" alt="avatar">
                     </div>
-                    <div class="name ellipsis"><%=teachers[i].name%></div>
-                    <div class="tags">
+                    <div class="name ellipsis">春上椿<%=teachers[i].name%>
+
+                        <div class="name-desc">
+                            北京新东方邀约嘉宾
+                        </div>
+                    </div>
+                    <!--<div class="tags">
                         <% for (var id in categoriesMap){ %>
                         <span class="tag-box <%=pickLabelColor(id)%>-tag"><%=categoriesMap[id].name%></span>
                         <% } %>
-                    </div>
+                    </div>-->
                 </div>
-                <p class="des-box ellipsis-two"><span class="description-ellipsis"><%=teachers[i].description%></span></p>
+                <p class="des-box ellipsis-three"><span class="description-ellipsis">本站部分赏析内容来自网络或网友提供，旨在弘扬中 华文化，仅用于学习交流，部分未署名皆因原作者无 法考证，如侵犯您的合法权益，请<%=teachers[i].description%></span></p>
             </div>
             <% } %>
             <% } %>
@@ -61,3 +66,5 @@
     </div>
     <script src="/js/teachers.js"></script>
 <% include footer.ejs %>
+<% var activeMenu = 'teacher' %>
+<% include menu.ejs %>

@@ -1,7 +1,8 @@
 $(function(){
     // filter
-  $(".filter-box").click(function(){
-    var panel = $(".teacher-select-panel");
+  $(".downmenu").click(function(){
+    $('.teacher-select-panel').addClass('hidden');
+    var panel = $("."+$(this).data('downmenu'));
     if(panel.hasClass("hidden")){
       panel.removeClass("hidden");
     } else {

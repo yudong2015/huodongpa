@@ -1,22 +1,32 @@
 <% include header.ejs %>
     <div class="header-panel">
         <header class="header">
-            <h1><%=course.name%></h1>
+            <h1>活动详情</h1>
+            <!---->
            <!-- <div class="de-avatar"><img src="<% if (user && user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>-->
         </header>
     </div>
+    <div class="activity-details-banner">
+        <img src="/img/activity-details.jpg" alt=""/>
+    </div>
     <div class="content course-detail-ct">
         <div class="teacher-class-panel">
+
             <div class="m-line">
-                <div class="name-box">
+
+                <h1><%=course.name%></h1>
+                <span class="tag-shiting">试听</span>
+                <!--<div class="name-box">
                     <span class="tag-box <%=pickLabelColor(course.category.id)%>-tag"><%=course.category.name%></span>
                     <span class="name"><%=course.name%></span>
-                </div>
+                </div>-->
             </div>
-            <pre class="des-box"><%=course.description%></pre>
+            <div class="org">新东方（北京）</div>
+            <!--<pre class="des-box"><%=course.description%></pre>-->
+            <pre class="des-box">本站部分赏析内容来自网络或网友提供，旨在弘扬中华文化，仅用于学习交流，部分未署名皆因原作者无法考证，如侵犯您的合法权益，请及时通知我们。</pre>
         </div>
 
-        <div class="content course-detail-ct">
+        <!--<div class="content course-detail-ct">
             <h3 class="title">教师简介</h3>
             <% for (var id in teachers) { %>
             <div class="teacher-panel anchor" data-href="/teachers/detail?id=<%=id%>">
@@ -38,9 +48,9 @@
                 <p class="des-box ellipsis-two"><%=teachers[id].description%></p>
             </div>
             <% } %>
-        </div>
-        <h3 class="title">开设班级</h3>
-        <% var classes = course.Classes %>
+        </div>-->
+       <!-- <h3 class="title">开设班级</h3>-->
+        <!--<% var classes = course.Classes %>
         <% for (var i=0; i<classes.length; i++) { %>
         <% var classStatus = getClassStatus(classes[i]) %>
         <% if( classStatus == 'register' || classStatus == 'preregister' || ((classStatus == 'inclass' || classStatus == 'end') && (classes[i].showInFrontEnd == true))){ %>
@@ -99,9 +109,9 @@
             <div class="course-box">
                 <div class="f-b">时间：</div>
                 <div class="s-b"><%=classes[i].beginTime%> ~ <%=classes[i].endTime%></div>
-                <!--
+                &lt;!&ndash;
                 <div class="t-b notice-box">与现有课程冲突</div>
-                -->
+                &ndash;&gt;
             </div>
             <div class="course-box  break-box">
                 <div class="f-b">地址：</div>
@@ -122,7 +132,22 @@
             </div>
         </div>
         <% } %>
-        <% } %>
+        <% } %>-->
+        <div class="huodongchangci">
+            <h3 class="title">活动场次</h3>
+            <div class="content">
+                <div class="list-item-title">村上春树第一讲</div>
+
+                <div class="list-item"><label >讲师：</label>村上春树</div>
+                <div class="list-item"><label >日期：</label>2016-05-20</div>
+                <div class="list-item"><label >时间：</label>16:00</div>
+                <div class="list-item"><label >地址：</label>北京市朝阳媒体村天畅园7-1704</div>
+                <div class="btn-buy">购买</div>
+            </div>
+        </div>
+
     </div>
     <script src="/js/classes.js"></script>
 <% include footer.ejs %>
+<% var activeMenu = 'activity' %>
+<% include menu.ejs %>

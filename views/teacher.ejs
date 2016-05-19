@@ -5,8 +5,27 @@
 
         </header>
     </div>
-    <div class="content teacher-detail-ct">
-        <h3 class="title">教师简介</h3>
+    <div class="content teacher-detail-ct teacher-ct">
+        <div class="teacher-panel anchor" data-href="/teachers/detail?id=1001">
+            <div class="m-line">
+                <div class="avatar">
+                    <img src="http://o759sw3sw.bkt.clouddn.com/o_1aimhjgfr1h2r2lof3kqnje859.jpg" alt="avatar">
+                </div>
+                <div class="name ellipsis">春上椿zaker
+
+                    <div class="name-desc">
+                        北京新东方邀约嘉宾
+                    </div>
+                </div>
+                <!--<div class="tags">
+
+                    <span class="tag-box purple-tag">测试分类</span>
+
+                </div>-->
+            </div>
+            <p class="des-box ellipsis-three"><span class="description-ellipsis">本站部分赏析内容来自网络或网友提供，旨在弘扬中 华文化，仅用于学习交流，部分未署名皆因原作者无 法考证，如侵犯您的合法权益，请讲师简介</span></p>
+        </div>
+        <!--<h3 class="title">教师简介</h3>
         <div class="teacher-panel">
             <div class="m-line">
                 <div class="avatar">
@@ -21,7 +40,7 @@
                 </div>
             </div>
             <pre class="des-box"><%=teacher.description%></pre>
-        </div>
+        </div>-->
         <h3 class="title">所授课程</h3>
         <% var courses = findCoursesOfTeacher(teacher) %>
         <% for (var cid in courses){%>
@@ -45,8 +64,12 @@
                     <% } %>
                 </div>
             </div>
-            <p class="des-box ellipsis-two"><%=courses[cid].description%></p>
+            <p class="des-box ellipsis-three">
+                本站部分赏析内容来自网络或网友提供，旨在弘扬中 华文化，仅用于学习交流，部分未署名皆因原作者无 法考证，如侵犯您的合法权益，请讲师简介
+                <%=courses[cid].description%></p>
         </div>
         <% } %>
     </div>
 <% include footer.ejs %>
+<% var activeMenu = 'teacher' %>
+<% include menu.ejs %>

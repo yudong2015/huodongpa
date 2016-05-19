@@ -1,35 +1,82 @@
 <ul class="menus">
-    <li class="activity">
-        <a href="/courses">
-        <div>
-            <img src="/img/menus/activity-active.png" alt=""/>
-            活动
-        </div>
-        </a>
-    </li>
-    <li class="teacher">
-        <a href="/teachers">
-            <div>
-                <img src="/img/menus/teacher.png" alt=""/>
-                讲师
-            </div>
-        </a>
+    <% if(activeMenu=='activity'){ %>
+        <li class="activity active">
+            <a href="/courses">
+                <div>
+                    <img src="/img/menus/activity-active.png" alt=""/>
+                    活动
+                </div>
+            </a>
         </li>
-    <li class="buyers">
-        <a href="/cart">
-        <div>
-            <img src="/img/menus/buyers.png" alt=""/>
+    <%}else{ %>
+        <li class="activity ">
+            <a href="/courses">
+                <div>
+                    <img src="/img/menus/activity.png" alt=""/>
+                    活动
+                </div>
+            </a>
+        </li>
+    <% } %>
+    <% if(activeMenu=='teacher'){ %>
+        <li class="teacher active">
+            <a href="/teachers">
+                <div>
+                    <img src="/img/menus/teacher-active.png" alt="" style="    margin-bottom: 3px;"/>
+                    讲师
+                </div>
+            </a>
+        </li>
+    <%}else{ %>
+        <li class="teacher">
+            <a href="/teachers">
+                <div>
+                    <img src="/img/menus/teacher.png" alt="" style="    margin-bottom: 3px;"/>
+                    讲师
+                </div>
+            </a>
+        </li>
+    <% } %>
+    <% if(activeMenu=='buyers'){ %>
+        <li class="buyers active">
+            <a href="/cart">
+                <div>
+                    <img src="/img/menus/buyers-active.png" alt=""/>
+                    购课
+                </div>
+            </a>
+        </li>
+    <%}else{ %>
+        <li class="buyers">
+            <a href="/cart">
+                <div>
+                    <img src="/img/menus/buyers.png" alt=""/>
+                    购课
+                </div>
+            </a>
+        </li>
+    <% } %>
+    <% if(activeMenu=='my'){ %>
+        <li class="my active">
+            <a href="/me">
+                <div>
+                    <img src="/img/menus/my-active.png" alt=""/>
+                    我的
+                </div>
+            </a>
+        </li>
+    <%}else{ %>
+        <li class="my">
+            <a href="/me">
+                <div>
+                    <img src="/img/menus/my.png" alt=""/>
+                    我的
+                </div>
+            </a>
+        </li>
+    <% } %>
 
-        </div>
-            购课车
-        </a>
-        </li>
-    <li class="my">
-        <a href="/me">
-        <div>
-            <img src="/img/menus/my.png" alt=""/>
-            我的
-        </div>
-        </a>
-        </li>
+
+
+
 </ul>

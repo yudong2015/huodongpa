@@ -224,7 +224,7 @@ header, nav, section, article, footer, figure, figcaption {
 
 .header .search-box {
   position: relative;
-  margin: 0 5px 0 95px;
+  margin: 0 5px 0 65px;
 }
 
 .header .search-box input {
@@ -327,14 +327,13 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .teacher-panel .avatar {
-  width: 41px;
-  height: 41px;
+  width: 51px;
+  height: 51px;
   border: 1px solid #d0d0d0;
   margin-right: 14px;
-  -webkit-border-radius: 100%;
-  border-radius: 100%;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   overflow: hidden;
-  background-color: #d0d0d0;
 }
 
 .teacher-panel .avatar img {
@@ -343,10 +342,19 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .teacher-panel .name {
-  line-height: 1.2;
-  font-size: 15px;
-  font-weight: bold;
+  line-height: 1.0;
+  font-size: 18px;
+  font-weight: normal;
   color: #524070;
+  position: relative;
+  top: -10px;
+}
+
+.teacher-panel .name-desc {
+  float:right;
+  color: #00adef;
+  position: relative;
+  right: -2px;
 }
 
 .teacher-panel .tags {
@@ -362,10 +370,11 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .teacher-panel .des-box {
-  margin: 12px 0 10px;
+  margin: 20px 0 10px;
   line-height: 1.5;
   font-size: 14px;
-  color: #8a919b;
+  color: #9ba0a8;
+  /* margin-left: 66px; */
 }
 
 .tag-box {
@@ -418,8 +427,9 @@ header, nav, section, article, footer, figure, figcaption {
   padding: 10px 15px 5px;
   margin-bottom: 10px;
   background-color: #fff;
+  position: relative;
 }
-
+.teacher-class-panel .org{color:#00adef;}
 .teacher-class-panel .des-box {
   margin: 12px 0 10px;
   line-height: 1.5;
@@ -431,13 +441,25 @@ header, nav, section, article, footer, figure, figcaption {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  -webkit-box-align: end;
-  -webkit-align-items: flex-end;
-  align-items: flex-end;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
+  -webkit-box-align: flex-start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  /* -webkit-box-pack: justify; */
+  /* -webkit-justify-content: space-between; */
+  /* justify-content: space-between; */
 }
+.teacher-class-panel .m-line h1{
+    font-size: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    /* margin-right: 30px; */
+    position: relative;
+    color: #414348;
+}
+.teacher-class-panel .m-line .tag-shiting{color: #00adef;font-size: 12px;border: 1px solid;border-radius: 3px;padding: 0 5px;float: left;overflow: hidden;text-overflow: ellipsis;-webkit-line-clamp: 1;-webkit-box-orient: vertical;display: block;/* width: 73px; */margin-left: 10px;}
 
 .teacher-class-panel .name-box, .course-panel .name-box {
   display: -webkit-box;
@@ -508,6 +530,8 @@ header, nav, section, article, footer, figure, figcaption {
   font-style: normal;
 }
 
+
+
 .teacher-select-panel {
   position: absolute;
   left: 15px;
@@ -516,7 +540,24 @@ header, nav, section, article, footer, figure, figcaption {
   text-align: center;
   z-index: 201;
 }
-
+.downmenu-category,.downmenu-organization,.downmenu-time,.downmenu-price {
+  position: absolute;
+  left: 5px;
+  top: 98px;
+  width: 100px;
+  text-align: center;
+  z-index: 201;
+}
+.downmenu-organization{
+  left: 49%;
+}
+.downmenu-time{
+  left: auto;right:50%;
+}
+.downmenu-price {
+  right: 5px;
+  left: auto;
+}
 .teacher-select-panel:before {
   position: absolute;
   content: '';
@@ -529,7 +570,12 @@ header, nav, section, article, footer, figure, figcaption {
   border-right: 7px solid transparent;
   border-top: 0 none;
 }
-
+.downmenu-organization:before,.downmenu-time:before,.downmenu-price:before,.downmenu-category:before {
+  position: absolute;
+  content: '';
+  top: -7px;
+  left: 46px;
+}
 .teacher-select-panel ul {
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -543,6 +589,7 @@ header, nav, section, article, footer, figure, figcaption {
 .teacher-select-panel li {
   line-height: 45px;
   border-top: 1px solid #dfdee0;
+  color: #00adef;
 }
 
 .teacher-select-panel li:first-child {
@@ -1331,7 +1378,7 @@ header, nav, section, article, footer, figure, figcaption {
   height: 66px;
   margin-right: 15px;
   -webkit-border-radius: 100%;
-  border-radius: 100%;
+  border-radius: 5px;
   overflow: hidden;
 }
 
@@ -1972,4 +2019,48 @@ header, nav, section, article, footer, figure, figcaption {
 .header .search-explain:before,.header.is-search .search-box:before,.left-nav-ct .close-btn:after,.left-nav-ct .nav-list li:after,.left-nav-ct .nav-list li:nth-child(2) .nav-title:before,.left-nav-ct .nav-list li:nth-child(3) .nav-title:before,.left-nav-ct .nav-list li:nth-child(4) .nav-title:before,.left-nav-ct .nav-list li:nth-child(5) .nav-title:before,.left-nav-ct .nav-list .nav-title:before,.left-nav-ct .bot-box .phone-p:before,.share-panel .bot-box .phone-p:before,.left-nav-ct .bot-box .wx-p:before,.share-panel .bot-box .wx-p:before,.car-ct .car-top-info .check-panel i:after,.car-pay-panel .check-box:before,.car-ct .car-top-info .check-panel i.is-checked:after,.car-pay-panel .check-box.is-checked:before,.gray-name i,.user-ct .user-list .next-l:after,.user-center-box .right-box:after,.card-ct .bot-box .phone-p:before,.card-ct .bot-box .wx-p:before,.syllabus-body .date-mouth-box .left-btn:after,.syllabus-body .date-mouth-box .right-btn:after,.syll-list-panel .detail p:before{
     background-size: 117px 107px;
     background-image: url(../img/teacher.png)
+}
+.box-filter{
+    background: #FFF;
+}
+.box-filter ul{list-style: none;/* clear:both; */}
+.box-filter ul li{width: 25%;height: 50px;line-height: 50px;float: left;color: #9ba0a8;position: relative;text-align: center;}
+.box-filter ul li:after {
+  position: absolute;
+  content: '';
+  right: 10px;
+  top: 23px;
+  width: 0px;
+  height: 0px;
+  border-top: 6px solid #9ba0a8;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 0 none;
+}
+.box-filter ul li.line:before {
+  position: absolute;
+  content: '';
+  left: 7px;
+  top: 15px;
+  width: 1px;
+  height: 18px;
+  background: #9ba0a8;
+}
+.huodongchangci{}
+.huodongchangci .content{background: #FFF;padding: 15px;position:relative;}
+.huodongchangci .content .list-item-title{color: #484b50;font-size: 20px;padding-bottom: 10px;}
+.huodongchangci .content .list-item{    color: #484b50;font-size: 16px;margin-top:15px;}
+.huodongchangci .content .list-item label{    color: #9ba0a8;}
+.huodongchangci .content .btn-buy{
+    width: 60px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border: 1px solid #00adef;
+    background: #00adef;
+    color: #FFF;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 5px;
 }
