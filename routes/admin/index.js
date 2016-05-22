@@ -10,11 +10,11 @@ var config = require('../../config');
 
 // admin auth.
 router.use(function(req, res, next){
-  if(req.session.admin){
+  if(req.session.manager){
     next();
   } else {
-    if(req.path != '/login'){
-      res.redirect('/admin/login');
+    if(req.path != '/managers/login'){
+      res.redirect('/admin/managers/login');
     } else {
       next();
     }
@@ -26,6 +26,7 @@ router.use('/classes', require('./classes'));
 router.use('/orders', require('./orders'));
 router.use('/teachers', require('./teachers'));
 router.use('/users', require('./users'));
+router.use('/managers', require('./managers'));
 router.use('/profit', require('./profit'));
 router.use('/qiniu', require('./qiniu'));
 
@@ -33,26 +34,6 @@ router.use('/qiniu', require('./qiniu'));
 router.get('/', function(req, res, next) {
   res.redirect("courses");
 });
-
-// admin login
-router.get('/login', function(req, res, next) {
-  res.render('admin/login', {error: null});
-});
-router.post('/login', function(req, res, next) {
-  if(req.body.username == config.admin.username && req.body.password == config.admin.password){
-    req.session.admin = true;
-    res.redirect('/admin');
-  } else {
-    res.render('admin/login', {error: '用户名或密码错误，请重新登录！'});
-  }
-});
-
-// admin logout
-router.get('/logout', function(req, res, next) {
-  delete req.session.admin;
-  res.redirect('admin/login');
-});
-
 
 // catch 404 and forward to error handler
 router.use(function(req, res, next) {

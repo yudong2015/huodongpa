@@ -1,0 +1,61 @@
+<% include header.ejs %>
+<input type="hidden" id="qiniu-domain" value="<%=qiniuDomain%>">
+  <div class="helper-bar">
+    <div class="pull-left search">
+      <form class="form-inline">
+      <div class="form-group">
+        <input type="text" class="form-control" name="search" placeholder="输入管理员名称或电话" value='<%=search%>'>
+      </div>
+      <button type="submit" class="btn btn-primary">查询</button>
+      </form>
+    </div>
+    <div class="pull-right new">
+      <a type="submit" class="btn btn-success" href="/admin/managers/new">新增管理员</a>
+    </div>
+  </div>
+  <div>
+    <table class="table table-striped">
+      <tr><th>账号</th><th>管理员姓名</th><th>区域</th><th>联系电话</th><th>住址</th></tr>
+      <% for(var i=0; i<users.rows.length; i++) {%>
+      <tr>
+        <td><a href="/admin/users/detail?id=<%=users.rows[i].id%>" class="user-id" data-id="<%=users.rows[i].id%>"><%=users.rows[i].username%></a></td>
+        <td class="td-name"><%=users.rows[i].name%></td>
+        <td><%=users.rows[i].org%></td>
+        <td><%=users.rows[i].phone%></td>
+        <td><%=users.rows[i].address%></td>
+      </tr>
+      <% } %>
+    </table>
+    <% include pagination.ejs%>
+  </div>
+        <!-- Modal -->
+<div class="modal fade" id="qrcode-upload-dialog" role="dialog" aria-labelledby="myModalLabel2" data-target="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2"><span class="qrcode-name"></span>的收款二维码</h4>
+      </div>
+      <div class="modal-body" >
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="input-group">
+              <span class="input-group-btn">
+                <a class="btn btn-success"  id="pickfiles">上传</a>
+              </span>
+              <input type="text" class="form-control image-popover" id="avatar-url" readonly placeholder="请上传图片">
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-12 -->
+        </div><!-- /.row -->
+
+        <div class="alert alert-success" role="alert" id="upload-dialog-message">让学生将自己的收款二维码上传至微信公众号</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="qrcode-save-submit">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% include footer.ejs %>

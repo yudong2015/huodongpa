@@ -48,10 +48,11 @@ router.get('/', function(req, res, next) {
       }
     }
   }
-
+  console.log('Teacher')
   Teacher.findAndCountAll(conditions).then(function(teachers){
     res.render('admin/teachers', {
       nav: 'teachers',
+      user_:{username:req.session.manager.username,role:req.session.manager.role},
       teachers: teachers,
       stylesheets: [],
       javascripts: ['/admin/teachers.js'],
@@ -74,6 +75,7 @@ router.get('/', function(req, res, next) {
 router.get('/new', function(req, res, next) {
   res.render('admin/teacher', {
     nav: 'teachers',
+    user_:{username:req.session.manager.username,role:req.session.manager.role},
     javascripts: ['/thirdparty/pupload/plupload.full.min.js', '/thirdparty/qiniu/qiniu.min.js', '/admin/teacher.js'],
     stylesheets: [],
     action: 'new',
@@ -96,6 +98,7 @@ router.get('/edit', function(req, res, next) {
   Teacher.findById(req.query.id).then(function(teacher){
     res.render('admin/teacher', {
       nav: 'teachers',
+      user_:{username:req.session.manager.username,role:req.session.manager.role},
       javascripts: ['/thirdparty/pupload/plupload.full.min.js', '/thirdparty/qiniu/qiniu.min.js', '/admin/teacher.js'],
       stylesheets: [],
       action: 'edit',
@@ -160,6 +163,7 @@ router.get('/detail', function(req, res, next) {
     }
     res.render('admin/teacher-detail', {
       nav: 'teachers',
+      user_:{username:req.session.manager.username,role:req.session.manager.role},
       stylesheets: [],
       javascripts: ['/admin/teacher-detail.js'],
       courses: courses,

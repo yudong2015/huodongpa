@@ -45,5 +45,5 @@
 * `routes` 路由
 * `tools` 工具程序，如数据库脚本
 * `views` 模板文件
-* `config.example.json` 配置文件实例，实际配置文件为`config.json`
+* `config.js` 配置文件实例，实际配置文件为`config.js`
 * `app.js` 程序入口

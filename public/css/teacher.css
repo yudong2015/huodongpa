@@ -475,7 +475,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 .teacher-class-panel .name-box, .course-panel .name-box  img{
   width:25%;
-  /* border-radius: 4px; */
+  border-radius: 6px;
 }
 .teacher-class-panel .name-box > span, .course-panel .name-box > span {
   display: block;

@@ -47,6 +47,7 @@ router.get('/', function(req, res, next) {
 
     res.render('admin/courses', {
       nav: 'courses',
+      user_:{username:req.session.manager.username,role:req.session.manager.role},
       courses: result,
       stylesheets: [],
       javascripts: ['/admin/courses.js'],
@@ -69,6 +70,7 @@ router.get('/', function(req, res, next) {
 router.get('/new', function(req, res, next) {
   res.render('admin/course', {
     nav: 'courses',
+    user_:{username:req.session.manager.username,role:req.session.manager.role},
     javascripts: ['/admin/course.js'],
     stylesheets: [],
     action: 'new'
@@ -90,6 +92,7 @@ router.get('/edit', function(req, res, next) {
   Course.findById(req.query.id).then(function(result) {
     res.render('admin/course', {
      nav: 'courses',
+     user_:{username:req.session.manager.username,role:req.session.manager.role},
      javascripts: ['/admin/course.js'],
      stylesheets: [],
      action: 'edit',

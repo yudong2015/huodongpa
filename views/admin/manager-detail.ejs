@@ -1,0 +1,156 @@
+<% include header.ejs %>
+  <div class="hidden" id="user-id"><%=user.id%></div>
+  <div class="helper-bar">
+    <div class = "col-md-6" style="padding-left: 0;">
+    <ol class="breadcrumb" style="padding-left: 0; background-color:transparent">
+      <li><a href="/admin/users">学生管理</a></li>
+      <li class="active"><%=user.name%>（<%=user.username%>）</li>
+    </ol>
+    </div>
+    <div class="pull-right">
+      <form class="form-inline">
+      <% var thisyear = (new Date()).getFullYear() %>
+      <select class="profit-select form-control profit-year">
+        <option value="<%=thisyear%>"><%=thisyear%></option>
+        <option value="<%=thisyear-1%>"><%=thisyear-1%></option>
+        <option value="<%=thisyear-2%>"><%=thisyear-2%></option>
+      </select>
+      <span>季度</span>
+      <select class="profit-select form-control  profit-quarter">
+        <option value="65535">全部</option>
+        <option value="0">第一季度</option>
+        <option value="1">第二季度</option>
+        <option value="2">第三季度</option>
+        <option value="3">第四季度</option>
+      </select>
+      <span>季度</span>
+      <span>学生购课</span>
+      <strong style="width: 80px; display:inline-block; text-align: right">
+      <span>￥</span>
+      <span class="profit-sum">-</span>
+      </strong>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-9" style="padding-left: 0">
+    <ul class="nav nav-tabs">
+          <li role="presentation" <% if (sub == 'history'){%>class="active"<%}%>>
+            <a href="/admin/users/detail?id=<%=user.id%>&sub=history">历史购课</a>
+          </li>
+          <li role="presentation" <% if (sub == 'recommended'){%>class="active"<%}%>>
+            <a href="/admin/users/recommends?id=<%=user.id%>&sub=recommended">已推荐</a>
+          </li>
+          <li role="presentation" <% if (sub == 'cart'){%>class="active"<%}%>>
+            <a href="/admin/users/detail?id=<%=user.id%>&sub=cart">购课车</a>
+          </li>
+        </ul>
+    <% if (sub == 'history' || sub == 'cart'){%>
+    <table class="table table-striped">
+      <tr><th>活动编号</th><th>活动名称</th><th>活动分类</th><th>讲师编号</th><th>讲师名称</th><th>班级编号</th><th>班级名称</th><th>学费</th>
+        <% if (sub == 'history') {%>
+        <th>购课日期</th>
+        <% }else{ %>
+        <th>全选 <input type="checkbox" id="check-all-in-cart"></th>
+        <% } %>
+      </tr>
+      <% for(var i=0; i<orders.length; i++) {%>
+      <tr class="order-row" data-id="<%=orders[i].id%>">
+        <td><a href="/admin/classes?course=<%=orders[i].class.course.id%>"><%=orders[i].class.course.id%></a></td>
+        <td><%=orders[i].class.course.name%></td>
+        <td><%=orders[i].class.course.category.name%></td>
+        <td><a href="/admin/teachers/detail?id=<%=orders[i].class.teacher.id%>"><%=orders[i].class.teacher.id%></a></td>
+        <td><%=orders[i].class.teacher.name%></td>
+        <td><a href="/admin/orders?clas=<%=orders[i].class.id%>"><%=orders[i].class.id%></a></td>
+        <td><%=orders[i].class.name%></td>
+        <td><%=orders[i].tuition%></td>
+        <% if (sub == 'history') {%>
+        <td><%=formatDate(orders[i].updatedAt)%></td>
+        <% }else{ %>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" class="check-class-in-cart"></td>
+        <% } %>
+      </tr>
+      <% } %>
+    </table>
+    <% if (sub == 'cart') {%>
+    <div class="pull-right">
+      <a class="btn btn-danger" id="del-cart">删除</a>
+      <a class="btn btn-success" id="buy-cart">购买</a>
+    </div>
+    <% } %>
+    <% } else if(sub == 'recommended'){%>
+    <table class="table table-striped">
+      <tr><th>账号（联系电话）</th><th>学生姓名</th><th>购课总额</th><th>已返利金额</th><th>未返利金额</th><th>操作</th></tr>
+      <% for(var i=0; i<recommends.length; i++) {%>
+      <tr class="recommended-user" data-id="<%=recommends[i].recommended%>">
+        <td class="recommended-accout"></td>
+        <td class="recommended-name"></td>
+        <td class="recommended-tuition"></td>
+        <td class="recommended-rewarded"><%=recommends[i].rewarded%></td>
+        <td class="recommended-unrewarded"></td>
+        <td class="recommended-action"  data-id="<%=recommends[i].id%>"><a href="javacript:void">返现</a></td>
+      </tr>
+      <% } %>
+    </table>
+    <% } %>
+  </div>
+  <div class="col-md-3" style="padding-right: 0">
+    <div class="teacher-desc">
+      <div class="title">学生详情</div>
+      <div class="info">
+        <h5>头像</h5>
+        <div class="teacher-avatar" style="background: url(<%=user.avatar%>); background-size: cover">
+        </div>
+      </div>
+      <div class="info">
+        <h5>联系电话</h5>
+        <span><%=user.username%></span>
+      </div>
+      <div class="info">
+        <h5>紧急联系电话</h5>
+        <span><%=user.emergencyPhone%></span>
+      </div>
+      <div class="info">
+        <h5>住址</h5>
+        <span><%=user.address%></span>
+      </div>
+      <div class="info">
+        <h5>常用邮箱</h5>
+        <span><%=user.email%></span>
+      </div>
+      <div class="info">
+        <h5>生日</h5>
+        <span><%=user.birthday%></span>
+      </div>
+      <div class="info">
+        <h5>学校</h5>
+        <span><%=user.school%></span>
+      </div>
+      <div class="info">
+        <h5>年级</h5>
+        <span><%=user.grade%></span>
+      </div>
+    </div>
+  </div>
+
+      <!-- Modal -->
+<div class="modal fade" id="reward-confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-target="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2"><%=user.name%>的收款二维码</h4>
+      </div>
+      <div class="modal-body" >
+        <div>
+          <img style="display:block;margin:auto" width="300" src="<%=user.gatheringQrcode%>">
+        </div>
+        <div class="well">打开微信，扫描图中二维码，输入返现金额，即可完成返现，若支付失败或学院未上传收款二维码，请自行联系学员</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">支付失败</button>
+        <button type="button" class="btn btn-primary" id="reward-confirm-submit">支付成功</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% include footer.ejs %>

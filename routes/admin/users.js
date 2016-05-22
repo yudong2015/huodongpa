@@ -22,7 +22,7 @@ var jsonfile = require('jsonfile');
 var conf = require('../../config');
 // var conf = jsonfile.readFileSync(path.join(__dirname,"../../config.json"));
 
-var DEFAULT_PASSWORD = "woaixueshupa";
+var DEFAULT_PASSWORD = "woaihuodongpa";
 
 router.get('/', function(req, res, next) {
   var curpage = parseInt(req.query.curpage) || 0;
@@ -58,6 +58,7 @@ router.get('/', function(req, res, next) {
     res.render('admin/users', {
       nav: 'users',
       stylesheets: [],
+      user_:{username:req.session.manager.username,role:req.session.manager.role},
       javascripts: ['/thirdparty/pupload/plupload.full.min.js', '/thirdparty/qiniu/qiniu.min.js','/admin/users.js'],
       users: users,
       search: search,
@@ -78,6 +79,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/new', function(req, res, next) {
   res.render('admin/user', {
+    user_:{username:req.session.manager.username,role:req.session.manager.role},
     nav: 'users',
     stylesheets: [],
     javascripts: []
@@ -135,6 +137,7 @@ router.get('/detail', function(req, res, next) {
 
       res.render('admin/user-detail', {
         nav: 'users',
+        user_:{username:req.session.manager.username,role:req.session.manager.role},
         stylesheets: [],
         javascripts: ['/admin/user-detail.js'],
         orders: orderResult.rows,
@@ -179,6 +182,7 @@ router.get('/recommends', function(req, res, next) {
       res.render('admin/user-detail', {
         nav: 'users',
         stylesheets: [],
+        user_:{username:req.session.manager.username,role:req.session.manager.role},
         javascripts: ['/admin/user-detail.js'],
         recommends: recommendResult.rows,
         user: user,

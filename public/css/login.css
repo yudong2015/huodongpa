@@ -663,7 +663,7 @@ header, nav, section, article, footer, figure, figcaption {
 .menus li{float: left;width: 25%;height: 60px;text-align: center;display: block;position: relative;}
 .menus li a{color: #333333;display: block;height: 60px;position: relative;margin: 0;padding: 0;}
 .menus li div{width: 36%;margin: 0 auto;height: 60px;padding-top: 6px;color: #dfdfdf;}
-.menus li div img{width: 100%;/* margin-top: 5px; */display: block;}
+.menus li div img{width: 100%;/* margin-top: 5px; */display: block;max-width: 52px;}
 .menus li.activity div{width: 36%;margin: 0 auto;height: 60px;padding-top: 6px;}
 .menus li.active div{color: #00adef;}
 .menus li.teacher{}

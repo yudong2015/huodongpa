@@ -69,7 +69,20 @@ var User = orm.define('user', {
 }, {
   charset: 'utf8'
 });
+var Manager = orm.define('manager', {
+  id: { type:Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+  username: { type: Sequelize.STRING, allowNull: false, unique: true },
+  password: { type: Sequelize.STRING, allowNull: false },
+  name: { type: Sequelize.STRING },
+  avatar: { type: Sequelize.STRING },
+  address: { type: Sequelize.STRING },
+  org: { type: Sequelize.STRING },
 
+  region: { type: Sequelize.STRING },
+  phone: { type: Sequelize.STRING }
+}, {
+  charset: 'utf8'
+});
 var Order = orm.define('order', {
   id: { type:Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
   classId: { type:Sequelize.INTEGER, references: {model: Class, key: 'id'}, unique: 'classuser' },
@@ -93,6 +106,7 @@ var Recommend = orm.define('recommend', {
 
 Teacher.hasMany(Class, {as: 'Classes'});
 User.hasMany(Order, {as: 'Orders'});
+Manager.hasMany(Order, {as: 'Orders'});
 Class.belongsTo(Teacher, {onDelete: 'NO ACTION'});
 Class.belongsTo(Course, {onDelete: 'NO ACTION'});
 Course.belongsTo(Category, {onDelete: 'NO ACTION'});
@@ -109,6 +123,7 @@ exports.Course = Course;
 exports.Teacher= Teacher;
 exports.Order= Order;
 exports.User = User;
+exports.Manager = Manager;
 exports.Recommend = Recommend;
 
 exports.Sequelize = orm;

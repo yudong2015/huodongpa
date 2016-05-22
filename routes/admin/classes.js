@@ -18,7 +18,7 @@ var lib = require('../../lib');
 router.get('/', function(req, res, next) {
   var courseId = req.query.course;
   var scope = req.query.scope || 'preregister';
-
+  console.log('TTTTTT');
   var curpage = parseInt(req.query.curpage) || 0;
   var perpage = parseInt(req.query.perpage) || 10;
 
@@ -55,6 +55,7 @@ router.get('/', function(req, res, next) {
 
       res.render('admin/classes', {
         nav: 'courses',
+        user_:{username:req.session.manager.username,role:req.session.manager.role},
         course: course,
         classes: scopedClasses.slice(curpage * perpage, (curpage+1) * perpage),
         stylesheets: [],
@@ -81,6 +82,7 @@ router.get('/new', function(req, res, next) {
   Promise.join(Teacher.findAll(), Course.findById(courseId), function(teachers, course){
     res.render('admin/class', {
       nav: 'courses',
+      user_:{username:req.session.manager.username,role:req.session.manager.role},
       course: course,
       teachers: teachers,
       javascripts: [
@@ -115,6 +117,7 @@ router.get('/edit', function(req, res, next) {
   Promise.join(Teacher.findAll(), Class.findById(id, {include: [Course]}), function(teachers, clas){
     res.render('admin/class', {
       nav: 'courses',
+      user_:{username:req.session.manager.username,role:req.session.manager.role},
       clas: clas,
       teachers: teachers,
       javascripts: [
@@ -153,7 +156,7 @@ router.post('/delete', function(req, res, next) {
     console.log(error);
     res.json({
       code: 1,
-      message: "有报名的班级无法删除！"
+      message: "有报名的班级 无法删除！"
     });
   });
 });

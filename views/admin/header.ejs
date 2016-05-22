@@ -47,14 +47,16 @@
             <li <% if (nav=='courses') { %>class="active"<% } %>><a href="/admin/courses">活动管理</a></li>
             <li <% if (nav=='teachers') { %>class="active"<% } %>><a href="/admin/teachers">讲师管理</a></li>
             <li <% if (nav=='users') { %>class="active"<% } %>><a href="/admin/users">用户管理</a></li>
-            <li <% if (nav=='users') { %>class="active"<% } %>><a href="/admin/users">管理员管理</a></li>
+            <%if(user_.role=='super'){%>
+            <li <% if (nav=='managers') { %>class="active"<% } %>><a href="/admin/managers">管理员管理</a></li>
+            <%}%>
            <!-- <li <% if (nav=='users') { %>class="active"<% } %>><a href="/admin/users">学生管理</a></li>
             <li <% if (nav=='users') { %>class="active"<% } %>><a href="/admin/users">课程管理</a></li>-->
 
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a>超级管理员</a></li>
-            <li><a href="/admin/logout">退出</a></li>
+            <li><a><%=user_.username%></a></li>
+            <li><a href="/admin/managers/logout">退出</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('studypa:server');
+var debug = require('debug')('huodongpa:server');
 var http = require('http');
 
 /**

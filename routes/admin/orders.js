@@ -47,6 +47,7 @@ router.get('/', function(req, res, next){
     var orders = result[1];
     res.render('admin/orders', {
       nav: 'courses',
+      user_:{username:req.session.manager.username,role:req.session.manager.role},
       clas: clas,
       orders: orders,
       stylesheets: [],
@@ -190,7 +191,7 @@ router.get('/:clasId/download', function(req, res, next) {
                 '地址': item.user.address,
                 '学费': item.tuition,
                 '购课日期': moment(item.user.updatedAt).format('YYYY-MM-DD'),
-                '状态': item['status'] == 'paid' ? '已付款' :  '未付款'
+                    '状态': item['status'] == 'paid' ? '已付款' :  '未付款'
             };
         });
       

@@ -120,6 +120,14 @@
         <input type="hidden" name="name" id="category-name">
         <ul id="category-filter">
             <li data-id="">全类型</li>
+            <li data-id="">小升初</li>
+            <li data-id="">初一</li>
+            <li data-id="">初二</li>
+            <li data-id="">中考</li>
+            <li data-id="">高一</li>
+            <li data-id="">高二</li>
+            <li data-id="">高二</li>
+
             <% for (var i = 0; i < categories.length; i++){ %>
             <li data-id="<%= categories[i].id %>"><%= categories[i].name %></li>
             <% } %>
@@ -132,9 +140,11 @@
         <input type="hidden" name="name" id="category-name">
         <ul id="category-filter">
             <li data-id="">全时段</li>
-            <% for (var i = 0; i < categories.length; i++){ %>
-            <li data-id="<%= categories[i].id %>"><%= categories[i].name %></li>
-            <% } %>
+            <li data-id="">今天</li>
+            <li data-id="">明天</li>
+            <li data-id="">最近一周</li>
+            <li data-id="">最近一月</li>
+
         </ul>
     </form>
 </div>
@@ -156,6 +166,12 @@
         <input type="hidden" name="name" id="category-name">
         <ul id="category-filter">
             <li data-id="">全价位</li>
+            <li data-id="">0-500</li>
+            <li data-id="">500-1000</li>
+            <li data-id="">1000-2000</li>
+            <li data-id="">2000-5000</li>
+            <li data-id="">5000</li>
+
             <% for (var i = 0; i < categories.length; i++){ %>
             <li data-id="<%= categories[i].id %>"><%= categories[i].name %></li>
             <% } %>
