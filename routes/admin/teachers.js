@@ -31,24 +31,21 @@ router.get('/', function(req, res, next) {
       }],
     order: [['id', 'DESC']]
   };
-
+  req.session.manager.role==conf.default.managerRole.normal && (conditions.where = {
+    managerId: req.session.manager.id
+  });
   if (req.query.search) {
     var number = new RegExp("^[0-9]*$");
     if(number.test(search)) {
-      conditions.where = {
-        id : {
+      conditions.where.id = {
           $eq: search
-        }
       }
     } else {
-      conditions.where = {
-        name : {
+      conditions.where.name = {
           $like: '%' + search + '%'
-        }
       }
     }
   }
-  console.log('Teacher')
   Teacher.findAndCountAll(conditions).then(function(teachers){
     res.render('admin/teachers', {
       nav: 'teachers',
@@ -85,6 +82,7 @@ router.get('/new', function(req, res, next) {
 
 // teacher create form action
 router.post('/new', function(req, res, next) {
+  req.body.managerId = req.session.manager.id;
   Teacher.create(req.body).then(function() {
     res.redirect('/admin/teachers');
   }).catch(function(error){

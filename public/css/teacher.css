@@ -540,7 +540,7 @@ header, nav, section, article, footer, figure, figcaption {
   text-align: center;
   z-index: 201;
 }
-.downmenu-category,.downmenu-organization,.downmenu-time,.downmenu-price {
+.downmenu-type,.downmenu-org,.downmenu-interval,.downmenu-price {
   position: absolute;
   left: 5px;
   top: 98px;
@@ -548,10 +548,10 @@ header, nav, section, article, footer, figure, figcaption {
   text-align: center;
   z-index: 201;
 }
-.downmenu-organization{
+.downmenu-org{
   left: 49%;
 }
-.downmenu-time{
+.downmenu-interval{
   left: auto;right:50%;
 }
 .downmenu-price {
@@ -570,7 +570,7 @@ header, nav, section, article, footer, figure, figcaption {
   border-right: 7px solid transparent;
   border-top: 0 none;
 }
-.downmenu-organization:before,.downmenu-time:before,.downmenu-price:before,.downmenu-category:before {
+.downmenu-org:before,.downmenu-interval:before,.downmenu-price:before,.downmenu-region:before {
   position: absolute;
   content: '';
   top: -7px;

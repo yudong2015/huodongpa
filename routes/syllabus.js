@@ -11,7 +11,7 @@ var Course = require('../models').Course;
 
 var renderConf = {
   tips: '',
-  title: '课程表-学术葩',
+  title: '课程表-活动葩',
   style: 'teacher',
   page: 'syllabus'
 };

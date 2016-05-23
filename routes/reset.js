@@ -17,7 +17,7 @@ var User = require('../models').User;
 var renderConf = {
   tips: '',
   action: 'show',
-  title: '重置密码-学术葩',
+  title: '重置密码-活动葩',
   style: 'login',
   page: 'reset'
 }

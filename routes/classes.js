@@ -16,7 +16,7 @@ var utils = require('../lib');
 
 var renderConf = {
   tips: '',
-  title: '课程详情-学术葩',
+  title: '课程详情-活动葩',
   style: 'teacher',
   page: 'course-detail'
 };

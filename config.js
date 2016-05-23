@@ -23,6 +23,14 @@ var pro = {
   },
   "yunpian": {
     "apikey": "af2a722aa68ea24af35975332871130c"
+  },
+  default:{
+    categorys:function(){return '小升初、初一、初二、中考、高一、高二、高考'.split('、');}(), //��������
+    catetoryType:{common:'common',special:'special'},
+    managerRole:{super:'super', normal:'normal'},
+
+    isDeleted:{deleted:'deleted',normal:'normal'},//
+    password :"huodongpa",
   }
 };
 

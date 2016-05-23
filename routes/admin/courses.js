@@ -5,8 +5,9 @@ var Course = require('../../models').Course;
 var Category = require('../../models').Category;
 var Class = require('../../models').Class;
 var Teacher = require('../../models').Teacher;
-
+var _ = require('underscore');
 var lib = require('../../lib');
+var config = require('../../config');
 
 // course management
 router.get('/', function(req, res, next) {
@@ -29,11 +30,13 @@ router.get('/', function(req, res, next) {
     ],
     order: [['id', 'DESC']]
   };
+
+  req.session.manager.role==config.default.managerRole.normal && (conditions.where = {
+    managerId: req.session.manager.id
+  });
   if (search) {
-    conditions.where = {
-      name: {
+    conditions.where.name = {
         $like: '%' + search + '%'
-      }
     }
   }
   
@@ -79,7 +82,7 @@ router.get('/new', function(req, res, next) {
 
 // course create form action
 router.post('/new', function(req, res, next) {
-  Course.build(req.body).save().then(function() {
+  Course.build(_.extend(req.body,{managerId:req.session.manager.id})).save().then(function() {
     res.redirect('/admin/courses');
   }).catch(function(error){
     console.log(error);
@@ -134,6 +137,7 @@ router.post('/delete', function(req, res, next) {
 
 // category create
 router.post('/category', function(req, res, next) {
+  req.body.managerId = req.session.manager.id;
   Category.build(req.body).save().then(function(result){
     res.json({
       code: 0,

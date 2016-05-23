@@ -11,7 +11,7 @@ var User = require('../models/').User;
 
 var renderConf = {
   tips: '',
-  title: '我的账号-学术葩',
+  title: '我的账号-活动葩',
   style: 'teacher',
   page: 'me'
 }

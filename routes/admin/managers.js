@@ -38,40 +38,40 @@ router.post('/login', function(req, res, next) {
     //supermanager
     var data = {};
 
-    if(req.body.supermanager){
-        if(req.body.username == config.admin.username && req.body.password == config.admin.password){
-            req.session.manager = {username:'admin',role:'super'};
-            res.redirect('/admin');
-        } else {
-            res.render('admin/login', {error: '管理员用户名或密码错误，请确认您是否是超级管理员账户！'});
+    Manager.find({
+        where: {
+            username: req.body.username
         }
-    }else{
-
-        Manager.find({
-            where: {
-                username: req.body.username
-            }
-        }).then(function(user){
-            if (user){
-                var md5 = crypto.createHash('md5');
-                var password = md5.update(req.body.password).digest('base64');
-                if (password == user.password){
+    }).then(function(user){
+        if (user){
+            var md5 = crypto.createHash('md5');
+            var password = utils.genDefaultPassword(req.body.password);
+            if(req.body.supermanager){
+                if(user.role=='super' &&　password == user.password){
+                    req.session.manager = user;
+                    return res.redirect('/admin');
+                }else{
+                    data.error = '管理员用户名或密码错误，请确认您是否是超级管理员账户！';
+                    return res.render('admin/login', data);
+                }
+            }else{
+                if (user.role=='normal' && password == user.password){
                     req.session.manager = user;
                     return res.redirect('/admin');
                 } else {
                     data.error = '密码错误';
                     return res.render('admin/login', data);
                 }
-            } else {
-                data.error = '用户名不存在';
-                return res.render('admin/login', data);
             }
-        }).catch(function(error){
-            console.log(error);
-            data.error = '系统繁忙，请稍后再试';
+        } else {
+            data.error = '用户名不存在';
             return res.render('admin/login', data);
-        });
-    }
+        }
+    }).catch(function(error){
+        console.log(error);
+        data.error = '系统繁忙，请稍后再试';
+        return res.render('admin/login', data);
+    });
 });
 
 // admin logout
@@ -142,14 +142,13 @@ router.get('/new', function(req, res, next) {
     });
 });
 
-function genDefaultPassword(){
-    var md5 = crypto.createHash('md5');
-    return md5.update(DEFAULT_PASSWORD).digest('base64');
-}
+var genDefaultPassword  = utils.genDefaultPassword;
 
 router.post('/new', function(req, res, next) {
     var user = _.clone(req.body);
-    user.password = genDefaultPassword();
+    console.log(user.password+'=====================');
+    user.password = genDefaultPassword(user.password);
+    user.role = config.default.managerRole.normal;
     Manager
         .upsert(user)
         .then(function(){

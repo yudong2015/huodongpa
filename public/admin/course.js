@@ -30,11 +30,11 @@ $(function(){
       if(result.code == 0 && result.data){
         var opts = result.data;
         //小升初、初一、初二、中考、高一、高二、高考
-        var default_ = '小升初、初一、初二、中考、高一、高二、高考'.split('、');
+        /*var default_ = '小升初、初一、初二、中考、高一、高二、高考'.split('、');
         default_ = default_.map(function(item,index){
           return {id:item,name:item}
         });
-        opts = opts.concat(default_);
+        opts = opts.concat(default_);*/
         for( var i=0; i<opts.length; i++){
           sel.append("<option value="+opts[i].id+">"+opts[i].name+"</option>");
         }

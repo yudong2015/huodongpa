@@ -22,7 +22,7 @@ var jsonfile = require('jsonfile');
 var conf = require('../../config');
 // var conf = jsonfile.readFileSync(path.join(__dirname,"../../config.json"));
 
-var DEFAULT_PASSWORD = "woaihuodongpa";
+
 
 router.get('/', function(req, res, next) {
   var curpage = parseInt(req.query.curpage) || 0;
@@ -36,20 +36,18 @@ router.get('/', function(req, res, next) {
     limit: perpage,
     order: [['id', 'DESC']]
   };
-
+  req.session.manager.role==conf.default.managerRole.normal && (conditions.where = {
+    managerId: req.session.manager.id
+  });
   if (req.query.search) {
     var number = new RegExp("^[0-9]*$");
     if(number.test(search)) {
-      conditions.where = {
-        username : {
+      conditions.where.username = {
           $eq: search
-        }
       }
     } else {
-      conditions.where = {
-        name : {
+      conditions.where.name = {
           $like: '%' + search + '%'
-        }
       }
     }
   }
@@ -86,14 +84,12 @@ router.get('/new', function(req, res, next) {
   });
 });
 
-function genDefaultPassword(){
-  var md5 = crypto.createHash('md5');
-  return md5.update(DEFAULT_PASSWORD).digest('base64');
-}
+var genDefaultPassword = utils.genDefaultPassword;
 
 router.post('/new', function(req, res, next) {
   var user = _.clone(req.body);
-  user.password = genDefaultPassword();
+  user.managerId = req.session.manager.id;
+  user.password = genDefaultPassword(req.body.password);
   User
     .upsert(user)
     .then(function(){

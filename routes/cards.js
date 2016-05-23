@@ -13,7 +13,7 @@ var Order = require('../models').Order;
 
 var renderConf = {
   tips: '',
-  title: '听课证-学术葩',
+  title: '听课证-活动葩',
   style: 'teacher',
   page: 'card'
 }

@@ -19,7 +19,11 @@ var renderConf = {
 router.get('/', function(req, res, next) {
 
   var search = req.query.search || '';
-  var category = req.query.category;
+  var region = req.query.region || '地区';
+  var type = req.query.type || '';
+  var price = req.query.price || '';
+  var interval = req.query.interval || '';
+  var org = req.query.org || '';
 
   var name = req.query.name || '地区';
 

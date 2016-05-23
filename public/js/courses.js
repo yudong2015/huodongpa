@@ -10,9 +10,14 @@ $(function(){
     }
   });
 
-  $("#category-filter").find("li").click(function(){
-    $("#category-id").val($(this).data("id"));
-    $("#category-name").val($(this).text());
+  $(".teacher-select-panel ul").find("li").click(function(){
+
+    var ul_ = $(this).closest('ul');
+    ul_.siblings('input').val($(this).data('id'));
+    var id_ = ul_.attr('id');
+    id_ = id_.substr(0,id_.indexOf('-'));
+    $("#filter-"+id_+"").val($(this).text());
+
     $("#category-form").submit();
   });
 

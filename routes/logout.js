@@ -6,7 +6,7 @@ var _ = require('underscore');
 var renderConf = {
   tips: '',
   action: 'show',
-  title: '登录-学术葩',
+  title: '登录-活动葩',
   style: 'login',
   page: 'login',
   user: null

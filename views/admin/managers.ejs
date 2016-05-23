@@ -18,7 +18,7 @@
       <tr><th>账号</th><th>管理员姓名</th><th>区域</th><th>联系电话</th><th>住址</th></tr>
       <% for(var i=0; i<users.rows.length; i++) {%>
       <tr>
-        <td><a href="/admin/users/detail?id=<%=users.rows[i].id%>" class="user-id" data-id="<%=users.rows[i].id%>"><%=users.rows[i].username%></a></td>
+        <td><a href="#" class="user-id" data-id="<%=users.rows[i].id%>"><%=users.rows[i].username%></a></td>
         <td class="td-name"><%=users.rows[i].name%></td>
         <td><%=users.rows[i].org%></td>
         <td><%=users.rows[i].phone%></td>

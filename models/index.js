@@ -1,13 +1,16 @@
 var Sequelize = require("sequelize");
 
 var orm = require("./orm");
-
+var config =  require('../config');
 var util = require('../lib');
 
 var Category = orm.define('category', {
   id: { type:Sequelize.INTEGER, primaryKey: true, autoIncrement: true, unique: true },
   name: { type:Sequelize.STRING, allowNull: false },
   abbreviation: { type:Sequelize.STRING},
+  type:{type:Sequelize.ENUM(config.default.catetoryType.common,config.default.catetoryType.special),
+    defaultValue: config.default.catetoryType.special}, //基础类别、用户添加类别
+  managerId:{type:Sequelize.INTEGER,allowNull:false},
   description: { type:Sequelize.TEXT }
 }, {
   charset: 'utf8'
@@ -17,6 +20,7 @@ var Teacher = orm.define('teacher', {
   id: { type:Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type:Sequelize.STRING, allowNull: false },
   avatar: { type:Sequelize.STRING, allowNull: false },
+  managerId:{type:Sequelize.INTEGER,allowNull:false},
   description: { type:Sequelize.TEXT, allowNull: false }
 }, {
   initialAutoIncrement: 1001,
@@ -33,6 +37,7 @@ var Class = orm.define('class', {
   address: { type: Sequelize.STRING, allowNull: false },
   tuition: { type: Sequelize.INTEGER, allowNull: false },
   period: { type: Sequelize.INTEGER, allowNull: false },
+  count: { type: Sequelize.INTEGER, allowNull: false , defaultValue: 0,comment:'被查看次数统计'},
   status: { type: Sequelize.ENUM('normal', 'canceled'), defaultValue: 'normal', allowNull: false},
   minStudentsNumber: { type: Sequelize.INTEGER, allowNull: false },
   maxStudentsNumber: { type: Sequelize.INTEGER, allowNull: false },
@@ -46,6 +51,7 @@ var Course = orm.define('course', {
   id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type:Sequelize.STRING, allowNull: false},
   categoryId: { type: Sequelize.INTEGER, allowNull: false},
+  managerId:{type:Sequelize.INTEGER,allowNull:false},
   description: { type: Sequelize.TEXT }
 }, {
   initialAutoIncrement: 10001,
@@ -58,6 +64,7 @@ var User = orm.define('user', {
   password: { type: Sequelize.STRING, allowNull: false },
   name: { type: Sequelize.STRING },
   openid: { type: Sequelize.STRING },
+  managerId:{type:Sequelize.INTEGER,allowNull:false},
   avatar: { type: Sequelize.STRING },
   address: { type: Sequelize.STRING },
   gatheringQrcode: { type: Sequelize.STRING },
@@ -75,9 +82,10 @@ var Manager = orm.define('manager', {
   password: { type: Sequelize.STRING, allowNull: false },
   name: { type: Sequelize.STRING },
   avatar: { type: Sequelize.STRING },
+  role: { type: Sequelize.ENUM(config.default.managerRole.super, config.default.managerRole.normal) },
+  status:{type:Sequelize.ENUM(config.default.isDeleted.deleted,config.default.isDeleted.normal)},
   address: { type: Sequelize.STRING },
   org: { type: Sequelize.STRING },
-
   region: { type: Sequelize.STRING },
   phone: { type: Sequelize.STRING }
 }, {
@@ -106,10 +114,20 @@ var Recommend = orm.define('recommend', {
 
 Teacher.hasMany(Class, {as: 'Classes'});
 User.hasMany(Order, {as: 'Orders'});
-Manager.hasMany(Order, {as: 'Orders'});
+Manager.hasMany(User, {as: 'Users'});
+Manager.hasMany(Teacher, {as: 'Teachers'});
+Manager.hasMany(Category, {as: 'Categorys'});
+Manager.hasMany(Course, {as: 'Courses'});
+User.belongsTo(Manager,{onDelete:'NO ACTION'});
+Teacher.belongsTo(Manager,{onDelete:'NO ACTION'});
+Category.belongsTo(Manager,{onDelete:'NO ACTION'});
+Course.belongsTo(Manager,{onDelete:'NO ACTION'});
+
 Class.belongsTo(Teacher, {onDelete: 'NO ACTION'});
 Class.belongsTo(Course, {onDelete: 'NO ACTION'});
+
 Course.belongsTo(Category, {onDelete: 'NO ACTION'});
+
 Course.hasMany(Class, {as: 'Classes'});
 Order.belongsTo(Class, {onDelete: 'CASCADE'});
 Order.belongsTo(User, {onDelete: 'NO ACTION'});
