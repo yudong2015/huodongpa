@@ -41,9 +41,9 @@ router.get('/', function(req, res, next) {
       $like: '%' + search + '%'
     }
   }
-  if (category) {
+  /*if (category) {
     conditions.where.categoryId = category;
-  }
+  }*/
 
   var data = _.extend(req.query, renderConf);
 
