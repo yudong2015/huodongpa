@@ -5,6 +5,7 @@ var Course = require('../models').Course;
 var Category = require('../models').Category;
 var Class = require('../models').Class;
 var Teacher = require('../models').Teacher;
+var Manager = require('../models').Manager;
 
 var _ = require('underscore');
 var Promise = require('bluebird');
@@ -50,6 +51,7 @@ router.get('/', function(req, res, next) {
   
   Promise.join(Teacher.findAll(conditions), Category.findAll(), function(teachers, categories){
     var pinyin = utils.sortNameByPinyin(teachers);
+    console.log(JSON.stringify(teachers));
     data.teachers = teachers;
     data.categories = categories;
     data.count = teachers.length;
@@ -68,9 +70,8 @@ router.get('/detail', function(req, res, next) {
   var data = _.extend(req.query, renderConf);
   data.user = req.session.user;
 
-  Teacher
-    .findById(req.query.id, {
-      include: {
+  Teacher.findById(req.query.id, {
+      include: [{
         model: Class,
         as: "Classes",
         include : {
@@ -83,9 +84,10 @@ router.get('/detail', function(req, res, next) {
             }
           ]
         }
-      }
+      },Manager]
     })
     .then(function(teacher){
+        console.log(JSON.stringify(teacher));
       data.teacher = teacher;
       res.render('teacher', data);
     })

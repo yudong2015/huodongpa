@@ -1,4 +1,5 @@
 <% include header.ejs %>
+<input type="hidden" id="qiniu-domain" value="<%=qiniuDomain%>">
 <div class="helper-bar">
     <ol class="breadcrumb">
         <li><a href="/admin/courses">活动管理</a></li>
@@ -58,16 +59,32 @@
                 <label for="courseDescription" class="col-sm-2 control-label">活动简介</label>
 
                 <div class="col-sm-10">
-                    <textarea class="form-control" name="description" rows="20">
-                        <% if (action == 'edit'){ %>
-                        <%= course.description %>
-                        <% } %>
-                    </textarea>
+                    <textarea class="form-control" name="description" rows="20"><% if (action == 'edit'){ %><%= course.description %><% } %></textarea>
+                    <% if (action == 'edit'){ %>
+                    <input type="hidden" name="managerId" value="<%=course.managerId%>"/>
+                    <% } %>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="courseDescription" class="col-sm-2 control-label">活动海报</label>
+
+                <div class="col-sm-10" id="container">
+                    <input type="hidden" id="avatar-url-input"  name="avatar"
+                           <%if (action=='edit'){%>value="<%=course.avatar?course.avatar:'/img/preview.png'%>" <%}%>
+                            />
+                    <img id="avatar-url"
+                         <%if (action=='edit'){%>src="<%=course.avatar?course.avatar:'/img/preview.png'%>" <%}%>
+                         width="100%" alt=""/>
+                    <a class="btn btn-success" id="pickfiles" href="#" >
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>上传海报</span>
+                    </a>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-primary">保存</button>
+                    <button type="submit" class="btn btn-primary">保存并新增场次</button>
                 </div>
             </div>
         </form>

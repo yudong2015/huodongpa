@@ -59,10 +59,13 @@ router.post('/step1', function(req, res, next) {
   data.action = 'reform';
   data.user = null;
   code.validateVerifyCode(req.body.phone, req.body.code, function(err) {
+   /*
+    todo：此处开发环境去除验证码，生产环境请务必增加
+
     if (err) {
       data.tips = '验证码错误';
       return res.render('reset1', data);
-    } 
+    } */
     User.find({
       where: {
         username: req.body.phone

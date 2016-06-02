@@ -1,153 +1,67 @@
-<% include header.ejs %>
-    <div class="header-panel">
-        <header class="header">
-            <h1>活动详情</h1>
-            <!---->
-           <!-- <div class="de-avatar"><img src="<% if (user && user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>-->
-        </header>
-    </div>
-    <div class="activity-details-banner">
-        <img src="/img/activity-details.jpg" alt=""/>
-    </div>
-    <div class="content course-detail-ct">
-        <div class="teacher-class-panel">
+<% include ./header.ejs %>
+<div class="header-panel">
+    <header class="header">
+        <h1>活动详情</h1>
 
-            <div class="m-line">
-
-                <h1><%=course.name%></h1>
-                <span class="tag-shiting">试听</span>
-                <!--<div class="name-box">
-                    <span class="tag-box <%=pickLabelColor(course.category.id)%>-tag"><%=course.category.name%></span>
-                    <span class="name"><%=course.name%></span>
-                </div>-->
-            </div>
-            <div class="org">新东方（北京）</div>
-            <!--<pre class="des-box"><%=course.description%></pre>-->
-            <pre class="des-box">本站部分赏析内容来自网络或网友提供，旨在弘扬中华文化，仅用于学习交流，部分未署名皆因原作者无法考证，如侵犯您的合法权益，请及时通知我们。</pre>
+    </header>
+</div>
+<div class="activity-details-banner">
+    <img src="<%= course.avatar %>" alt=""/>
+</div>
+<div class="content course-detail-ct">
+    <div class="teacher-class-panel">
+        <div class="m-line">
+            <h1><%= course.name %></h1>
+            <span class="tag-shiting">试听</span>
         </div>
+        <div class="org"><%= course.category.manager.org %></div>
+        <pre class="des-box"><%= course.description %></pre>
+    </div>
 
-        <!--<div class="content course-detail-ct">
-            <h3 class="title">教师简介</h3>
-            <% for (var id in teachers) { %>
-            <div class="teacher-panel anchor" data-href="/teachers/detail?id=<%=id%>">
-                <div class="m-line">
-                    <div class="avatar">
-                        <% if(teachers[id].avatar == ''){ %>
-                        <img src="../img/teacher-avatar.png" alt="avatar">
-                        <% } else {%>
-                        <img src="<%=teachers[id].avatar%>" alt="avatar">
-                        <% } %>
-                    </div>
-                    <div class="name ellipsis"><%=teachers[id].name%></div>
-                    <div class="tags">
-                        <% for (var cat in teachers[id].categories) { %>
-                        <span class="tag-box <%=pickLabelColor(cat)%>-tag"><%=teachers[id].categories[cat].name%></span>
-                        <% } %>
-                    </div>
-                </div>
-                <p class="des-box ellipsis-two"><%=teachers[id].description%></p>
-            </div>
+    <div class="huodongchangci">
+        <h3 class="title">活动场次</h3>
+        <% for(var i = 0; i < course.Classes.length;i++){
+
+            var item = course.Classes[i];
+            var classStatus = getClassStatus(item);
+        if( classStatus == 'register' || classStatus == 'preregister' || ((classStatus == 'inclass' || classStatus == 'end') && (item.showInFrontEnd == true))){
+        %>
+        <div class="content">
+            <div class="list-item-title">村上春树讲课</div>
+
+            <div class="list-item"><label>讲师：</label><%= item.teacher.name %></div>
+            <%
+                var dateClass = item.classDates.split(',');
+                var formatDate = function(dateArg){
+                    return dateArg.substr(0,4)+'.'+dateArg.substr(4,2)+'.'+dateArg.substr(6,2);
+                }
+                var start = formatDate(dateClass[0]);
+                var end = formatDate(dateClass[dateClass.length-1]);
+              %>
+            <div class="list-item"><label>日期：</label><%= start %>-<%= end %></div>
+            <div class="list-item"><label>时间：</label><%= item.beginTime %>-<%= item.endTime %></div>
+            <div class="list-item"><label>地址：</label><%= item.address %></div>
+            <% if (classStatus == 'register'){ %>
+            <% if(item.inCart){ %>
+            <span class="add-btn btn-buy in-cart" data-id="<%= item.id %>">已加入购课车</span>
+            <% } else if(item.isPaid) { %>
+            <span class="add-btn btn-buy is-paid" data-id="<%= item.id %>"><%= item.tips %></span>
+            <% } else { %>
+            <span class="add-btn btn-buy" data-id="<%= item.id %>">加入购课车</span>
             <% } %>
-        </div>-->
-       <!-- <h3 class="title">开设班级</h3>-->
-        <!--<% var classes = course.Classes %>
-        <% for (var i=0; i<classes.length; i++) { %>
-        <% var classStatus = getClassStatus(classes[i]) %>
-        <% if( classStatus == 'register' || classStatus == 'preregister' || ((classStatus == 'inclass' || classStatus == 'end') && (classes[i].showInFrontEnd == true))){ %>
-        <div class="teacher-class-panel course-panel">
-            <div class="m-line">
-                <div class="name-box">
-                    <span class="name"><%=classes[i].name%>
-                        <%if(classStatus == 'preregister'){%>
-                            <% var registerDateStr = classes[i].registerDate + '' %>
-                            <span class="orange-tips">（<%=registerDateStr.substr(4,2) + '.' + registerDateStr.substr(6,2) %>开始报名）</span>
-                        <%} else if(classStatus == 'inclass'){%>
-                            <span class="orange-tips">（正在上课）</span>
-                        <%} else if(classStatus == 'end'){%>
-                            <span class="orange-tips">（已经结课）</span>
-                        <% } %>
-                    </span>
-                </div>
-                <div class="price-box">
-                    <span class="price"><i>￥</i><%=classes[i].tuition%></span>
-                    <span>/<%=classes[i].period%>课时</span>
-                </div>
-            </div>
-            <div class="course-box">
-                <div class="f-b">教师：</div>
-                <div class="s-b"><%=classes[i].teacher.name%></div>
-            </div>
-            <% var currentStudentsNumber = countPaidOrders(classes[i].Orders) %>
-            <% var availableStudentsNumber = classes[i].maxStudentsNumber - currentStudentsNumber %>
-            <% if(availableStudentsNumber <=5 && classStatus == "register"){%>
-            <div class="course-box">
-                <div class="f-b">人数：</div>
-                <div class="s-b"><%=currentStudentsNumber%>/<%=classes[i].maxStudentsNumber%></div>
-                <% if(availableStudentsNumber <=5 && availableStudentsNumber > 0) { %>
-                <div class="t-b notice-box">仅剩<%=availableStudentsNumber%>席</div>
-                <% } else if (availableStudentsNumber == 0) {%>
-                <div class="t-b notice-box">人数已满</div>
-                <% } %>
-            </div>
-            <%}%>
-            <% var dates = splitClassDates(classes[i].classDates) %>
-            <div class="course-box justify-box">
-                <div class="f-b">
-                    <div class="course-box">
-                        <div class="f-b">日期：</div>
-                        <div class="s-b"><%= dates[0].substr(0,10)%> ~ <%= dates[dates.length-1].substr(0,10)%></div>
-                    </div>
-                </div>
-                <div class="s-b orange-btn show-detail-btn">具体日期</div>
-            </div>
-            <div class="course-time-box hidden">
-                <h3 class="time-title">具体上课日期:</h3>
-                <ul class="clearfix">
-                    <% for(var j=0; j<dates.length; j++){ %><% if(!(j%2)) {%><li><%}%><%= dates[j]%> <% if((j%2)) {%></li><%}%> <% } %>
-                </ul>
-            </div>
-            <div class="course-box">
-                <div class="f-b">时间：</div>
-                <div class="s-b"><%=classes[i].beginTime%> ~ <%=classes[i].endTime%></div>
-                &lt;!&ndash;
-                <div class="t-b notice-box">与现有课程冲突</div>
-                &ndash;&gt;
-            </div>
-            <div class="course-box  break-box">
-                <div class="f-b">地址：</div>
-                <div class="s-b flex-b"><%=classes[i].address%></div>
-            </div>
-            <div class="course-bt-btns">
-                <% if (classStatus == 'register'){%>
-                <% if(classes[i].inCart){ %>
-                <span class="add-btn in-cart" data-id="<%=classes[i].id%>">已加入购课车</span>
-                <%} else if(classes[i].isPaid) {%>
-                <span class="add-btn is-paid" data-id="<%=classes[i].id%>"><%=classes[i].tips%></span>
-                <% } else {%>
-                <span class="add-btn" data-id="<%=classes[i].id%>">加入购课车</span>
-                <% } %>
-                <% } else {%>
-                <span class="add-btn invalid" data-id="<%=classes[i].id%>">无法购买</span>
-                <% } %>
-            </div>
-        </div>
-        <% } %>
-        <% } %>-->
-        <div class="huodongchangci">
-            <h3 class="title">活动场次</h3>
-            <div class="content">
-                <div class="list-item-title">村上春树第一讲</div>
+            <% } else { %>
+            <span class="add-btn btn-buy invalid" data-id="<%= item.id %>">无法购买</span>
+            <% } %>
 
-                <div class="list-item"><label >讲师：</label>村上春树</div>
-                <div class="list-item"><label >日期：</label>2016-05-20</div>
-                <div class="list-item"><label >时间：</label>16:00</div>
-                <div class="list-item"><label >地址：</label>北京市朝阳媒体村天畅园7-1704</div>
-                <div class="btn-buy">购买</div>
-            </div>
         </div>
+        <%
+        }}
+        %>
 
     </div>
-    <script src="/js/classes.js"></script>
+
+</div>
+<script src="/js/classes.js"></script>
 <% include footer.ejs %>
 <% var activeMenu = 'activity' %>
 <% include menu.ejs %>

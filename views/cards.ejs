@@ -2,12 +2,12 @@
     <div class="header-panel">
         <header class="header">
             <h1>听课证</h1>
-            <div class="de-avatar"><img src="<%if(user.avatar){%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>
+
         </header>
     </div>
     <div class="card-top-panel">
         <div class="card-fixed-box">
-            <div class="user-center-box">
+            <!--<div class="user-center-box">
                 <div class="left-box">
                     <div class="avatar-pic">
                         <img src="<%if(user.avatar){%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar">
@@ -17,7 +17,7 @@
                         <p class="ellipsis">手机号：<%=user.username%></p>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="card-nav">
                 <ul class="card-nav-list">
                     <li class=" anchor <%if(scope == 'register'){%>active<%}%>" data-href="?scope=register">即将开课</li>
@@ -42,14 +42,14 @@
                 </div>
                 <div class="price-box">
                     <span class="price"><i>￥</i><%=orders[i].tuition%></span>
-                    <span>／<%=clas.period%>课时</span>
+                    <span>／<%=clas.period%>场次</span>
                 </div>
             </div>
             <% if (scope == "canceled"){%>
-            <div class="cancel-panel">非常抱歉，由于报课人数不足5人，该课程已被取消。建议选择其它合适课程，或自组VIP班级</div>
+            <div class="cancel-panel">非常抱歉，由于参加活动人数不足5人，该课程已被取消。建议选择其它合适活动</div>
             <%} %>
             <div class="course-box">
-                <div class="f-b">教师：</div>
+                <div class="f-b">讲师：</div>
                 <div class="s-b"><%=clas.teacher.name%></div>
             </div>
             <% var currentStudentsNumber = countPaidOrders(orders[i].class.Orders) %>
@@ -170,3 +170,5 @@
         </div>
     </div>
 <% include footer.ejs %>
+<% var activeMenu = 'my' %>
+<% include menu.ejs %>

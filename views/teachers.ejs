@@ -1,70 +1,78 @@
-<% include header.ejs %>    
-    <div class="header-panel">
-        <header class="header">
-            <div class="filter-box"><%=name%></div>
-            <div class="search-box">
-                <div class="search-explain">请输入教师名字</div>
-                <form id="search-form" action="">
-                <input type="text" name="search" >
-                </form>
-            </div>
-            <!--<div class="de-avatar"><img src="<% if (user && user.avatar) {%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" /></div>-->
-            <div class="cancel-btn">取消</div>
-        </header>
-    </div>
-    <% if (search != '') { %>
-    <div class="content teachers-ct search-num-ct">
-        关键词“<%=search%>”共搜到<%=count%>个老师
-    </div>
-    <% } %>
-    <div class="content teachers-ct">
-        <div>
-            <% var group = 'A' %>
-            <% for(var i=0; i<teachers.length; i++){ %>
-            <% var categoriesMap = findCategoriesOfTeacher(teachers[i]) %>
-            <% if (!category ||  categoriesMap[category]){ %>
-            <% if(pinyin[i][0] != group){ group = pinyin[i][0] %>
-            <% if (search == '') { %>
-            <div class="sort-name"><%=group%></div>
-            <% } %>
-            <% } %>
-            <div class="teacher-panel anchor" data-href="/teachers/detail?id=<%=teachers[i].id%>">
-                <div class="m-line">
+<% include header.ejs %>
+<div class="header-panel">
+    <header class="header">
+        <div class="filter-box"><%= name %></div>
+        <div class="search-box">
+            <div class="search-explain">请输入教师名字</div>
+            <form id="search-form" action="">
+                <input type="text" name="search">
+            </form>
+        </div>
+        <!--<div class="de-avatar"><img src="<% if (user && user.avatar) { %> <%= user.avatar %> <% }else{ %>../img/de-avatar.png<% } %>" alt="avatar" /></div>-->
+        <div class="cancel-btn">取消</div>
+    </header>
+</div>
+<% if (search != '') { %>
+<div class="content teachers-ct search-num-ct">
+    关键词“<%= search %>”共搜到<%= count %>个老师
+</div>
+<% } %>
+<div class="content teachers-ct">
+    <div>
+        <% var group = 'A' %>
+        <% for(var i = 0; i < teachers.length; i++){ %>
+        <% var categoriesMap = findCategoriesOfTeacher(teachers[i]) %>
+        <% if (!category || categoriesMap[category]){ %>
+        <% if(pinyin[i][0] != group){ group = pinyin[i][0] %>
+        <% if (search == '') { %>
+        <div class="sort-name"><%= group %></div>
+        <% } %>
+        <% } %>
+        <div class="teacher-panel anchor" data-href="/teachers/detail?id=<%= teachers[i].id %>">
+            <div class="m-line">
+                <div class="portrait">
                     <div class="avatar">
-                        <img src="<% if(teachers[i].avatar){%><%=teachers[i].avatar%><%}else{%>../img/teacher-avatar.png<%}%>" alt="avatar">
+                        <img src="<% if(teachers[i].avatar){ %> <%= teachers[i].avatar %> <% }else{ %>../img/teacher-avatar.png<% } %>"
+                             alt="avatar">
                     </div>
-                    <div class="name ellipsis">春上椿<%=teachers[i].name%>
+                </div>
+                <div class="name ">
+                    <div class="ellipsis">
+                        <%= teachers[i].name %>
 
                         <div class="name-desc">
                             北京新东方邀约嘉宾
                         </div>
                     </div>
-                    <!--<div class="tags">
+                    <p class="des-box ellipsis-three"><span class="description-ellipsis">本站部分赏析内容来自网络或网友提供，旨在弘扬中 华文化，仅用于学习交流，部分未署名皆因原作者无 法考证，如侵犯您的合法权益，请<%= teachers[i].description %></span>
+                    </p>
+                </div>
+                <!--<div class="tags">
                         <% for (var id in categoriesMap){ %>
-                        <span class="tag-box <%=pickLabelColor(id)%>-tag"><%=categoriesMap[id].name%></span>
+                        <span class="tag-box <%= pickLabelColor(id) %>-tag"><%= categoriesMap[id].name %></span>
                         <% } %>
                     </div>-->
-                </div>
-                <p class="des-box ellipsis-three"><span class="description-ellipsis">本站部分赏析内容来自网络或网友提供，旨在弘扬中 华文化，仅用于学习交流，部分未署名皆因原作者无 法考证，如侵犯您的合法权益，请<%=teachers[i].description%></span></p>
             </div>
-            <% } %>
-            <% } %>
+
         </div>
+        <% } %>
+        <% } %>
     </div>
-    <div class="mask hidden"></div>
-    <div class="teacher-select-panel hidden">
-        <form id="category-form">
+</div>
+<div class="mask hidden"></div>
+<div class="teacher-select-panel hidden">
+    <form id="category-form">
         <input type="hidden" name="category" id="category-id">
         <input type="hidden" name="name" id="category-name">
         <ul id="category-filter">
             <li data-id="">全部老师</li>
-            <% for (var i=0; i<categories.length; i++){ %>
-            <li data-id="<%=categories[i].id%>"><%=categories[i].name%></li>
+            <% for (var i = 0; i < categories.length; i++){ %>
+            <li data-id="<%= categories[i].id %>"><%= categories[i].name %></li>
             <% } %>
         </ul>
-        </form>
-    </div>
-    <script src="/js/teachers.js"></script>
+    </form>
+</div>
+<script src="/js/teachers.js"></script>
 <% include footer.ejs %>
 <% var activeMenu = 'teacher' %>
 <% include menu.ejs %>

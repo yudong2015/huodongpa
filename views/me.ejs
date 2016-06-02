@@ -2,7 +2,6 @@
     <div class="header-panel">
         <header class="header">
             <h1>我的帐号</h1>
-            
         </header>
     </div>
     <div class="content user-ct">
@@ -12,7 +11,7 @@
                     <img src="<%if (user.avatar){%><%=user.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar">
                 </div>
                 <div class="user-info">
-                    <h3 class="ellipsis">村上春指数<%=user.name%></h3>
+                    <h3 class="ellipsis"><%=user.name%></h3>
                     <p class="ellipsis">手机号：<%=user.username%></p>
                 </div>
             </div>
@@ -27,7 +26,7 @@
         </ul>
         <ul class="user-list">
             <li class="next-l anchor" data-href="/syllabus">我的日程表</li>
-            <li class="next-l anchor" data-href="/syllabus">推荐我的名片</li>
+            <li class="next-l anchor" data-href="/recommend">推荐我的名片</li>
         </ul>
         <ul class="user-list">
             <li class="flex-l">

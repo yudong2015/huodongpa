@@ -11,7 +11,7 @@ var config = require('../config');
 
 var renderConf = {
   tips: '',
-  title: '分享-活动葩',
+  title: '推荐我的名片-活动葩',
   style: 'teacher',
   page: 'share'
 }

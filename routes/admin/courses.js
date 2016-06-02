@@ -74,9 +74,10 @@ router.get('/new', function(req, res, next) {
   res.render('admin/course', {
     nav: 'courses',
     user_:{username:req.session.manager.username,role:req.session.manager.role},
-    javascripts: ['/admin/course.js'],
+    javascripts: ['/thirdparty/pupload/plupload.full.min.js', '/thirdparty/qiniu/qiniu.min.js','/admin/course.js'],
     stylesheets: [],
-    action: 'new'
+    action: 'new',
+    'qiniuDomain': config.qiniu.url
   });
 });
 
@@ -96,9 +97,10 @@ router.get('/edit', function(req, res, next) {
     res.render('admin/course', {
      nav: 'courses',
      user_:{username:req.session.manager.username,role:req.session.manager.role},
-     javascripts: ['/admin/course.js'],
+     javascripts: ['/thirdparty/pupload/plupload.full.min.js', '/thirdparty/qiniu/qiniu.min.js','/admin/course.js'],
      stylesheets: [],
      action: 'edit',
+     'qiniuDomain': config.qiniu.url,
      course: result
     });
   }).catch(function(error) {
@@ -110,6 +112,7 @@ router.get('/edit', function(req, res, next) {
 
 // course edit
 router.post('/edit', function(req, res, next) {
+
   Course.upsert(req.body).then(function(course){
     res.redirect('/admin/courses');
   }).catch(function(error){

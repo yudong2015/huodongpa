@@ -17,7 +17,7 @@ body {
   -webkit-user-select: none;
   -webkit-text-size-adjust: none;
   background: #fff;
-  /* background: -webkit-linear-gradient(135deg, #50b5c1, #71cb9a); */
+  background: -webkit-linear-gradient(135deg, #50b5c1, #71cb9a);
 }
 
 table {
@@ -294,7 +294,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .teachers-ct {
-  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .teachers-ct .sort-name {
@@ -324,8 +324,9 @@ header, nav, section, article, footer, figure, figcaption {
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
+  position: relative;
 }
-
+.teacher-panel .portrait{position:absolute;}
 .teacher-panel .avatar {
   width: 51px;
   height: 51px;
@@ -334,6 +335,8 @@ header, nav, section, article, footer, figure, figcaption {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   overflow: hidden;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .teacher-panel .avatar img {
@@ -342,12 +345,14 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .teacher-panel .name {
-  line-height: 1.0;
+  /* line-height: 1.0; */
   font-size: 18px;
   font-weight: normal;
   color: #524070;
   position: relative;
-  top: -10px;
+  /* top: -10px; */
+  flex: 1;
+  margin-left: 60px;
 }
 
 .teacher-panel .name-desc {
@@ -370,7 +375,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .teacher-panel .des-box {
-  margin: 20px 0 10px;
+  margin: 10px 0 10px;
   line-height: 1.5;
   font-size: 14px;
   color: #9ba0a8;
@@ -471,11 +476,12 @@ header, nav, section, article, footer, figure, figcaption {
   /* padding-right: 8px; */
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 0;
-  flex: 1 1 0;
+  flex: 1 auto;
 }
 .teacher-class-panel .name-box, .course-panel .name-box  img{
-  width:25%;
-  border-radius: 6px;
+  /* width: 100%; */
+  /* border-radius: 6px; */
+  height: 100%;
 }
 .teacher-class-panel .name-box > span, .course-panel .name-box > span {
   display: block;
@@ -510,6 +516,8 @@ header, nav, section, article, footer, figure, figcaption {
   max-width: 146px;
   font-size: 12px;
   color: #8a919b;
+  flex-shrink: 0;
+  justify-content: flex-end;
 }
 
 .teacher-class-panel .price-box > span, .course-panel .price-box > span {
@@ -522,7 +530,7 @@ header, nav, section, article, footer, figure, figcaption {
   top: 2px;
   padding-right: 2px;
   font-size: 20px;
-  color: #f6b01d;
+  color: #b5da5a;
 }
 
 .teacher-class-panel .price-box .price i, .course-panel .price-box .price i {
@@ -710,6 +718,7 @@ header, nav, section, article, footer, figure, figcaption {
 
 .course-detail-ct .course-panel .m-line {
   margin-bottom: 10px;
+  justify-content: space-between;
 }
 
 .course-detail-ct .course-panel .name {
@@ -1111,6 +1120,7 @@ header, nav, section, article, footer, figure, figcaption {
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 0;
   flex: 1 1 0;
+  /* margin-left: 28px; */
 }
 
 .car-ct .name-box .tag-box {
@@ -1143,7 +1153,7 @@ header, nav, section, article, footer, figure, figcaption {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 68px;
   height: 50px;
   background-color: #fff;
   z-index: 99;
@@ -1175,7 +1185,7 @@ header, nav, section, article, footer, figure, figcaption {
   font-size: 15px;
   text-align: center;
   color: #fff;
-  background-color: #f6b01d;
+  background-color: #00adef;
 }
 
 .car-pay-panel .total-price {
@@ -1188,7 +1198,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .car-pay-panel .total-price .orange-f {
-  color: #f6b01d;
+  color: #00adef;
 }
 
 .car-pay-panel .total-price .price {
@@ -1452,7 +1462,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .card-fixed-box .card-nav-list li.active {
-  color: #f6b01d;
+  color: #00adef;
 }
 
 .card-ct .course-panel .name {
@@ -1571,7 +1581,7 @@ header, nav, section, article, footer, figure, figcaption {
 }
 
 .share-panel {
-  background: url(../img/nav-bg.png) no-repeat scroll 0 0 #546493;
+  /* background: url(../img/nav-bg.png) no-repeat scroll 0 0 #546493; */
   background-size: cover;
 }
 
@@ -1851,7 +1861,7 @@ header, nav, section, article, footer, figure, figcaption {
 
 .syllabus-body .day-list .active div {
   color: #fff;
-  background-color: #f6b01d;
+  background-color: #00adef;
   -webkit-border-radius: 100%;
   border-radius: 100%;
 }
@@ -2047,14 +2057,14 @@ header, nav, section, article, footer, figure, figcaption {
   background: #9ba0a8;
 }
 .huodongchangci{}
-.huodongchangci .content{background: #FFF;padding: 15px;position:relative;}
+.huodongchangci .content{background: #FFF;padding: 15px;position:relative;margin-bottom: 10px;}
 .huodongchangci .content .list-item-title{color: #484b50;font-size: 20px;padding-bottom: 10px;}
 .huodongchangci .content .list-item{    color: #484b50;font-size: 16px;margin-top:15px;}
 .huodongchangci .content .list-item label{    color: #9ba0a8;}
 .huodongchangci .content .btn-buy{
-    width: 60px;
-    height: 35px;
-    line-height: 35px;
+    /* width: 60px; */
+    /* height: 35px; */
+    /* line-height: 35px; */
     text-align: center;
     border: 1px solid #00adef;
     background: #00adef;
@@ -2063,4 +2073,21 @@ header, nav, section, article, footer, figure, figcaption {
     right: 15px;
     bottom: 15px;
     border-radius: 5px;
+    padding: 7px 10px;
+    /* width: 100%; */
+    display: inline;
+    display: inline;
+    position: relative;
+    /* float: right; */
+    position: absolute;
+    /* right: 0; */
+    line-height: 1;
 }
+
+.huodongchangci .content .btn-buy.invalid{ background: #999;border-color:#999;}
+.haibao-ctner{
+    width: 100px;
+    overflow: hidden;
+    height: 100px;
+    border-radius: 6px;
+    }

@@ -50,6 +50,7 @@ var Class = orm.define('class', {
 var Course = orm.define('course', {
   id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type:Sequelize.STRING, allowNull: false},
+  avatar: { type:Sequelize.STRING, allowNull: false },
   categoryId: { type: Sequelize.INTEGER, allowNull: false},
   managerId:{type:Sequelize.INTEGER,allowNull:false},
   description: { type: Sequelize.TEXT }

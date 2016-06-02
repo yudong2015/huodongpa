@@ -195,7 +195,7 @@ router.get('/:clasId/download', function(req, res, next) {
             };
         });
       
-        res.xls(clasId + '.xlsx', userInfo);
+        res.xls(clasId + '.xlsx', userInfo||[]);
 
         /*
         fieldCsv = ['账号', '姓名', '紧急电话', '地址', '学费', '购课日期', '状态'];

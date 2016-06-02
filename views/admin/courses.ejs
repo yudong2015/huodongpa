@@ -1,45 +1,71 @@
 <% include header.ejs %>
-  <div class="helper-bar">
+<div class="helper-bar">
     <div class="pull-left search">
-      <form class="form-inline">
-      <div class="form-group">
-        <input type="text" class="form-control" name="search" placeholder="请输入活动名查询" value='<%=search%>'>
-      </div>
-      <button type="submit" class="btn btn-primary">查询</button>
-      </form>
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control" name="search" placeholder="请输入活动名查询" value='<%= search %>'>
+            </div>
+            <button type="submit" class="btn btn-primary">查询</button>
+        </form>
     </div>
     <div class="pull-right new">
-      <a type="submit" class="btn btn-success" href="/admin/courses/new">新增</a>
+        <a type="submit" class="btn btn-success" href="/admin/courses/new">新增</a>
     </div>
-  </div>
-  <div>
+</div>
+<div>
     <table class="table table-striped">
-      <tr>
-        <th>活动编号</th><th>活动名称</th><th>活动分类</th><th>讲师</th><th>活动简介</th><th>总盈利</th><th>操作</th></tr>
-      <% for(var i=0; i<courses.rows.length; i++) {%>
-      <tr class="course-row" data-id="<%=courses.rows[i].id%>">
-        <td><a href="/admin/classes?course=<%=courses.rows[i].id%>"><%=courses.rows[i].id%></a></td>
-        <td><%=courses.rows[i].name%></td>
-        <td><%=courses.rows[i].category.name%></td>
-        <td><%var teachers = '';
-          for(var id in courses.rows[i].teachers){
-            teachers += courses.rows[i].teachers[id].name + ',';
-          }
-          if(teachers.length > 0){
-            teachers = teachers.substring(0,teachers.length-1);
-          }
-          %><%= teachers%></td>
-        <td width="40%"><%=courses.rows[i].description.substr(0,70)%>...</td>
-        <td class="profit-sum">-</td>
-        <td>
-          <a href="/admin/courses/edit?id=<%=courses.rows[i].id%>">编辑</a><br>
-          <%if(courses.rows[i].Classes.length == 0){%>
-          <a class="text-danger delete-action" data-url="/admin/courses/delete" data-id="<%=courses.rows[i].id%>" href="javacript:void">删除</a>
-          <%}%>
-        </td>
-      </tr>
-      <% } %>
+        <tr>
+            <th>活动编号</th>
+            <th>活动名称</th>
+            <th>活动海报</th>
+            <th>活动分类</th>
+            <th>讲师</th>
+            <th>活动简介</th>
+            <th>总盈利</th>
+            <th>操作</th>
+        </tr>
+        <%
+        if(courses.rows.length){
+        for(var i = 0; i < courses.rows.length; i++) { %>
+        <tr class="course-row" data-id="<%= courses.rows[i].id %>">
+            <td><a href="/admin/classes?course=<%= courses.rows[i].id %>"><%= courses.rows[i].id %></a></td>
+            <td><%= courses.rows[i].name %></td>
+            <td>
+                <% if(courses.rows[i].avatar != ''){ %>
+                <a class="image-popover" href="javascript:void" data-href="<%= courses.rows[i].avatar %>">查看</a>
+                <% } %>
+            </td>
+
+            <td><%= courses.rows[i].category.name %></td>
+            <td>
+                <% var teachers = '';
+                    for (var id in courses.rows[i].teachers) {
+                        teachers += courses.rows[i].teachers[id].name + ',';
+                    }
+                    if (teachers.length > 0) {
+                        teachers = teachers.substring(0, teachers.length - 1);
+                    }
+                %>
+                <%= teachers %></td>
+            <td width="40%"><%= courses.rows[i].description.substr(0, 70) %>...</td>
+            <td class="profit-sum">-</td>
+            <td>
+                <a href="/admin/courses/edit?id=<%= courses.rows[i].id %>">编辑</a><br>
+                <% if(courses.rows[i].Classes.length == 0){ %>
+                <a class="text-danger delete-action" data-url="/admin/courses/delete"
+                   data-id="<%= courses.rows[i].id %>" href="javacript:void">删除</a>
+                <% } %>
+            </td>
+        </tr>
+        <% }
+        }else{
+        %>
+        <tr class="course-row" >
+            <td colspan="8" class="text-center">没有数据项</td>
+        </tr>
+        <%
+        } %>
     </table>
-    <% include pagination.ejs%>
-  </div>
+    <% include pagination.ejs %>
+</div>
 <% include footer.ejs %>

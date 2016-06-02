@@ -17,11 +17,11 @@
 ### 部署
 
 1. 安装node环境
-2. 安装MySQL，并新建数据库`xueshupa`，
+2. 安装MySQL，并新建数据库`activitypar`，
 3. 安装redis
 4. 使用`git`clone项目
 5. `npm install`安装依赖
-6. 新建`config.json`,参照`config.example.json`配置
+6. 新建`config.js`
 7. 初始化数据库: `node ./tools/migrate.js`(注意：只限新增表，修改表结构需手动更新)
 8. `node ./bin/www`，或安装pm2后`pm2 start ./bin/www --name xueshupa -l xueshupa.log`
 9. 如果是在新环境部署，**务必**在[云片](yunpian.com)网将该服务器ip增加到ip白名单，否则短信验证码无法发送。

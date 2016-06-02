@@ -2,101 +2,68 @@
 
 <div class="header-panel">
     <header class="header">
-        <div class="filter-box downmenu" data-downmenu="downmenu-region"><%= name %></div>
+        <div class="filter-box downmenu" data-downmenu="downmenu-region"><%= query.region || '全国' %></div>
         <div class="search-box">
             <div class="search-explain">搜索</div>
             <form id="search-form" action="">
-                <input type="search" name="search">
+                <input type="search" name="search" value="<%= search||'' %>">
             </form>
         </div>
-        <!--<div class="de-avatar">
-            <img src="<% if (user && user.avatar) { %> <%= user.avatar %> <% }else{ %>../img/de-avatar.png<% } %>" alt="avatar" />
-        </div>-->
+
         <div class="cancel-btn">取消</div>
     </header>
 </div>
 <div class="box-filter">
     <ul>
-        <li class="downmenu" data-downmenu="downmenu-type">全类型</li>
-        <li class="line downmenu" data-downmenu="downmenu-interval">全时段</li>
-        <li class="line downmenu" data-downmenu="downmenu-org">机构</li>
-        <li class="line downmenu" data-downmenu="downmenu-price">全价位</li>
+        <%
+        var type = query.type ? query.type : '全类型';
+        var interval = (query.interval ? query.interval : '全时段');
+        var org = (query.org ? query.org : '全机构');
+        var price = (query.price ? query.price : '全价位');
+        %>
+        <li class="downmenu" data-downmenu="downmenu-type"><%= type %></li>
+        <li class="line downmenu" data-downmenu="downmenu-interval"><%= interval %></li>
+        <li class="line downmenu" data-downmenu="downmenu-org"><%= org %></li>
+        <li class="line downmenu" data-downmenu="downmenu-price"><%= price %></li>
         <div class="clearfix"></div>
     </ul>
 </div>
-<% if (search != '') { %>
+<% if (search != '' || courses.length == 0) { %>
 <div class="content teachers-ct search-num-ct">
     关键词“<%= search %>”共搜到<%= count %>个活动
 </div>
 <% } %>
 <div class="content teachers-ct">
     <div>
+
         <% var group = 'A' %>
-        <% for(var i = 0; i < courses.length; i++){ %>
-        <% if(pinyin[i][0] != group){ group = pinyin[i][0] %>
-        <% if (search == '') { %>
-        <div class="sort-name"><%= group %></div>
-        <% } %>
-        <% } %>
+
+        <% var minTuition;
+        for (var i = 0;  i < courses.length; i++) { %>
         <div class="teacher-panel course-panel" data-href="/classes?course=<%= courses[i].id %>">
             <div class="m-line">
                 <div class="name-box">
-                    <span class="tag-box <%= pickLabelColor(courses[i].category.id) %>-tag"><%= courses[i].category.name %></span>
-                    <span class="name"><%= courses[i].name %></span>
-                </div>
-                <div class="price-box">
-                    <% var minTuition;
-                        for (var j = 0; j < courses[i].Classes.length; j++) {
-                            if (j == 0 || courses[i].Classes[j].tuition < minTuition) {
-                                minTuition = courses[i].Classes[j].tuition;
-                            }
-                        }
-                    %>
-                    <% if (minTuition){ %>
-                    <span class="price"><i>￥</i><%= minTuition %></span>
-                    <span>起</span>
-                    <% } %>
-                </div>
-            </div>
-            <p class="des-box ellipsis-two"><%= courses[i].description %></p>
-        </div>
-        <div class="teacher-panel course-panel" data-href="/classes?course=<%= courses[i].id %>">
-            <div class="m-line">
-                <div class="name-box">
-                    <img src="img/teacher-demo.jpg" alt="" class=""/>
+                    <div class="haibao-ctner">
+                        <img src="<%= courses[i].avatar %>" alt="" class=""/>
+                    </div>
 
                     <div class="profile">
                         <span class="shiting">试听</span>
-
-                        <h3>诺贝尔获奖得者教你学英语 </h3>
-
-                        <p class="date">2016.06.16-06.25</p>
-
-                        <div class="right">
-                            <span class="price">￥<span class="num">2458</span></span>
-                            <span>起</span>
+                        <h3><%= courses[i].name %> </h3>
+                        <p class="date">2016.05.03<%=    %>-<%=    %>06.09</p>
+                        <div class="com">
+                            <%= courses[i].manager.org %>
+                            <div class="right">
+                                <span class="price">￥<span class="num">3000<%=    %></span></span>
+                                <span>起</span>
+                            </div>
                         </div>
-                        <p class="com">新东方(北京)</p>
-                        <!-- <span class="tag-box <%= pickLabelColor(courses[i].category.id) %>-tag"><%= courses[i].category.name %></span>
-                            <span class="name"><%= courses[i].name %></span>-->
+
                     </div>
                 </div>
-                <!--<div class="price-box">
-                        <% var minTuition;
-                    for (var j = 0; j < courses[i].Classes.length; j++) {
-                        if (j == 0 || courses[i].Classes[j].tuition < minTuition) {
-                            minTuition = courses[i].Classes[j].tuition;
-                        }
-                    }
-                %>
-                        <% if (minTuition){ %>
-                        <span class="price"><i>￥</i><%= minTuition %></span>
-                        <span>起</span>
-                        <% } %>
-                    </div>-->
+
             </div>
-            <p class="des-box ellipsis-two">本站部分赏析内容来自网络或网友提供，旨在弘扬中华文化，仅
-                用于学习交流，部分未署名皆因原作者无法考证。</p>
+            <p class="des-box ellipsis-two"><%= courses[i].description %></p>
         </div>
         <% } %>
     </div>
@@ -107,23 +74,17 @@
         <input type="hidden" name="region" id="filter-region">
         <ul id="region-filter">
             <li data-id="">全国</li>
-            <% for (var i = 0; i < categories.length; i++){ %>
-            <li data-id="<%= categories[i].id %>"><%= categories[i].name %></li>
-            <% } %>
+            <li data-id="北京">北京</li>
+            <li data-id="上海">上海</li>
+            <li data-id="广州">广州</li>
+            <li data-id="深圳">深圳</li>
+
         </ul>
     </div>
     <div class="teacher-select-panel hidden downmenu-type">
         <input type="hidden" name="type" id="filter-type">
         <ul id="type-filter">
             <li data-id="">全类型</li>
-            <li data-id="小升初">小升初</li>
-            <li data-id="初一">初一</li>
-            <li data-id="初二">初二</li>
-            <li data-id="中考">中考</li>
-            <li data-id="高一">高一</li>
-            <li data-id="高二">高二</li>
-            <li data-id="高考">高考</li>
-
             <% for (var i = 0; i < categories.length; i++){ %>
             <li data-id="<%= categories[i].id %>"><%= categories[i].name %></li>
             <% } %>
@@ -133,19 +94,23 @@
         <input type="hidden" name="interval" id="filter-interval">
         <ul id="interval-filter">
             <li data-id="">全时段</li>
-            <li data-id="今天">今天</li>
-            <li data-id="明天">明天</li>
-            <li data-id="最近一周">最近一周</li>
-            <li data-id="最近一月">最近一月</li>
+            <li data-id="today">今天</li>
+            <li data-id="tomorrow">明天</li>
+            <li data-id="recentweek">最近一周</li>
+            <li data-id="recentmonth">最近一月</li>
         </ul>
     </div>
     <div class="teacher-select-panel downmenu-org hidden">
         <input type="hidden" name="org" id="filter-org">
         <ul id="org-filter">
-            <li data-id="">机构</li>
-            <% for (var i = 0; i < categories.length; i++){ %>
-            <li data-id="<%= categories[i].id %>"><%= categories[i].name %></li>
-            <% } %>
+            <li data-id="">全机构</li>
+            <% for (var i = 0; i < managers.length; i++){
+            if(managers[i].org){
+            %>
+            <li data-id="<%= managers[i].id %>"><%= managers[i].org %></li>
+            <%
+            }
+            } %>
         </ul>
     </div>
     <div class="teacher-select-panel downmenu-price hidden">
@@ -158,9 +123,7 @@
             <li data-id="2000-5000">2000-5000</li>
             <li data-id="5000-">5000+</li>
 
-            <% for (var i = 0; i < categories.length; i++){ %>
-            <li data-id="<%= categories[i].id %>"><%= categories[i].name %></li>
-            <% } %>
+
         </ul>
     </div>
 

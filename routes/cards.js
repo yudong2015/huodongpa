@@ -25,7 +25,6 @@ router.get('/', function(req, res, next) {
   var data = _.extend(renderConf);
   data.user = req.session.user;
   data['scope'] = scope;
-
   Order.findAll({
     where: {
       userId: req.session.user.id,
@@ -47,6 +46,7 @@ router.get('/', function(req, res, next) {
       ]
     }]
   }).then(function(orders) {
+    console.log(JSON.stringify(orders));
     data.orders = orders;
     res.render('cards', data);
   }).catch(function(err){

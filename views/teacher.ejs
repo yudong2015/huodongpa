@@ -1,75 +1,60 @@
 <% include header.ejs %>
-    <div class="header-panel">
-        <header class="header">
-            <h1><%=teacher.name%> 老师</h1>
+<div class="header-panel">
+    <header class="header">
+        <h1><%= teacher.name %> 讲师</h1>
 
-        </header>
-    </div>
-    <div class="content teacher-detail-ct teacher-ct">
-        <div class="teacher-panel anchor" data-href="/teachers/detail?id=1001">
-            <div class="m-line">
+    </header>
+</div>
+<div class="content teacher-detail-ct teacher-ct">
+    <div class="teacher-panel anchor" data-href="/teachers/detail?id=1001">
+        <div class="m-line">
+            <div class="portrait">
                 <div class="avatar">
-                    <img src="http://o759sw3sw.bkt.clouddn.com/o_1aimhjgfr1h2r2lof3kqnje859.jpg" alt="avatar">
+                    <img src="<%= teacher.avatar %>" alt="avatar">
                 </div>
-                <div class="name ellipsis">春上椿zaker
+            </div>
+            <div class="name ">
+                <div class="ellipsis">
+                    <%= teacher.name %>
 
                     <div class="name-desc">
-                        北京新东方邀约嘉宾
+                        <%= teacher.manager.org %>
                     </div>
                 </div>
-                <!--<div class="tags">
+                <p class="des-box ellipsis-three"><span class="description-ellipsis"><%= teacher.description %></span>
+                </p>
+            </div>
+            <!--<div class="tags">
 
-                    <span class="tag-box purple-tag">测试分类</span>
+                <span class="tag-box purple-tag">测试分类</span>
 
-                </div>-->
-            </div>
-            <p class="des-box ellipsis-three"><span class="description-ellipsis">本站部分赏析内容来自网络或网友提供，旨在弘扬中 华文化，仅用于学习交流，部分未署名皆因原作者无 法考证，如侵犯您的合法权益，请讲师简介</span></p>
+            </div>-->
         </div>
-        <!--<h3 class="title">教师简介</h3>
-        <div class="teacher-panel">
-            <div class="m-line">
-                <div class="avatar">
-                    <img src="<% if (teacher && teacher.avatar) {%><%=teacher.avatar%><%}else{%>../img/de-avatar.png<%}%>" alt="avatar" />
-                </div>
-                <div class="name ellipsis"><%=teacher.name%></div>
-                <div class="tags">
-                    <% var categories = findCategoriesOfTeacher(teacher) %>
-                    <% for (var id in categories){%>
-                    <span class="tag-box <%=pickLabelColor(id)%>-tag"><%=categories[id].name%></span>
-                    <% } %>
-                </div>
-            </div>
-            <pre class="des-box"><%=teacher.description%></pre>
-        </div>-->
-        <h3 class="title">所授课程</h3>
-        <% var courses = findCoursesOfTeacher(teacher) %>
-        <% for (var cid in courses){%>
-        <div class="teacher-class-panel anchor" data-href="/classes?course=<%=courses[cid].id%>">
-            <div class="m-line">
-                <div class="name-box">
-                    <span class="tag-box <%=pickLabelColor(courses[cid].category.id)%>-tag"><%=courses[cid].category.name%></span>
-                    <span class="name"><%=courses[cid].name%></span>
-                </div>
-                <div class="price-box">
-                    <%  var minTuition; 
-                            for(var j=0; j<courses[cid].Classes.length; j++){
-                                if(j == 0 || courses[cid].Classes[j].tuition < minTuition) {
-                                    minTuition = courses[cid].Classes[j].tuition;
-                                }
-                            }
-                    %>
-                    <% if (minTuition){ %>
-                    <span class="price"><i>￥</i><%=minTuition%></span>
-                    <span>起</span>
-                    <% } %>
-                </div>
-            </div>
-            <p class="des-box ellipsis-three">
-                本站部分赏析内容来自网络或网友提供，旨在弘扬中 华文化，仅用于学习交流，部分未署名皆因原作者无 法考证，如侵犯您的合法权益，请讲师简介
-                <%=courses[cid].description%></p>
-        </div>
-        <% } %>
+
     </div>
+
+    <h3 class="title">所授课程</h3>
+    <% var courses = findCoursesOfTeacher(teacher) %>
+
+    <% for (var cid in courses){ %>
+    <div class="teacher-class-panel anchor" data-href="/classes?course=<%= courses[cid].id %>">
+        <div class="m-line" style="display: block;">
+            <div class="profile">
+                <h3><%=courses[cid].name%><span class="shiting-g">试听</span>
+                    <div class="right" style="float: right;">
+                        <span class="price">￥<span class="num"><%= courses[cid].lowprice %></span></span>
+                        <span>起</span>
+                    </div>
+                </h3>
+                <p class="date"><span style="color:#8a919b;">日期：</span><%= courses[cid].datedesc %></p>
+
+            </div>
+            <p class="des-box ellipsis-three"><%= courses[cid].description %></p>
+        </div>
+
+    </div>
+    <% } %>
+</div>
 <% include footer.ejs %>
 <% var activeMenu = 'teacher' %>
 <% include menu.ejs %>
