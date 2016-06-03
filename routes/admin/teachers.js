@@ -47,6 +47,7 @@ router.get('/', function (req, res, next) {
             }
         }
     }
+    console.log('====================')
     Teacher.findAndCountAll(conditions).then(function (teachers) {
         res.render('admin/teachers', {
             nav: 'teachers',
@@ -71,7 +72,7 @@ router.get('/', function (req, res, next) {
 
 // teacher create
 router.get('/new', function (req, res, next) {
-    res.render('admin/teacher   ', {
+    res.render('admin/teacher', {
         nav: 'teachers',
         user_: {username: req.session.manager.username, role: req.session.manager.role},
         javascripts: ['/thirdparty/pupload/plupload.full.min.js', '/thirdparty/qiniu/qiniu.min.js', '/admin/teacher.js'],
