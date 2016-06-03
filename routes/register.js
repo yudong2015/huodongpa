@@ -40,7 +40,7 @@ router.post('/', function(req, res, next) {
   var user = _.clone(req.body);
   var md5 = crypto.createHash('md5');
   user.password = md5.update(user.password).digest('base64');
-
+  user.managerId = 1;
   User.create(user).then(function(created) {
     if (req.query.user) {
       Recommend.create({
