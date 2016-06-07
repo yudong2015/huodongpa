@@ -135,7 +135,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/new', function(req, res, next) {
     res.render('admin/manager', {
-        nav: 'users',
+        nav: 'managers',
         user_:{username:req.session.manager.username,role:req.session.manager.role},
         stylesheets: [],
         javascripts: []

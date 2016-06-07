@@ -245,7 +245,7 @@ header, nav, section, article, footer, figure, figcaption {
   position: absolute;
   left: 50%;
   top: 0px;
-  width: 110px;
+  width: 50%;
   -webkit-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
   /* text-align: right; */
@@ -2071,7 +2071,7 @@ header, nav, section, article, footer, figure, figcaption {
     color: #FFF;
     position: absolute;
     right: 15px;
-    bottom: 15px;
+    bottom: 8px;
     border-radius: 5px;
     padding: 7px 10px;
     /* width: 100%; */
@@ -2082,6 +2082,7 @@ header, nav, section, article, footer, figure, figcaption {
     position: absolute;
     /* right: 0; */
     line-height: 1;
+    /* top: 0px; */
 }
 
 .huodongchangci .content .btn-buy.invalid{ background: #999;border-color:#999;}
